@@ -7,10 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import styles from "./styles";
 import Footer from "../../components/Footer/Footer";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from '../../../App';
 const background = require("../../../assets/images/home_bg.jpeg");
 const chef = require('../../../assets/images/chef.png');
-
-const Home : React.FC = () => {
+type Navigation = {
+    navigation: StackNavigationProp<RootStackParamList>;
+};
+const Home: React.FC<Navigation> = ({ navigation }) => {
 
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
@@ -66,7 +70,7 @@ const Home : React.FC = () => {
                 </View>
 
             </ScrollView>
-            <Footer/>
+            <Footer navigation={navigation} />
         </View>
     );
 };

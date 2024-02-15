@@ -8,6 +8,7 @@ import Login from './src/pages/Login/Login';
 import Register from './src/pages/Register/Register';
 import OptionLogin from './src/layouts/OptionLogin/OptionLogin';
 import Home from './src/pages/Home/Home';
+import Setting from './src/pages/Setting/Setting';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -15,6 +16,7 @@ export type RootStackParamList = {
     Register: undefined;
     OptionLogin: undefined;
     Home: undefined;
+    Setting: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -29,6 +31,7 @@ const App: React.FC = () => {
                 <Stack.Screen name = "Register" component={Register} options={{ headerShown: false }} />
                 <Stack.Screen name = "OptionLogin" component={OptionLogin} options={{ headerShown: false }} />
                 <Stack.Screen name = "Home" component={Home} options={{ headerShown: false }} />
+                <Stack.Screen name = "Setting" component={Setting} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

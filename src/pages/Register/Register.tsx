@@ -8,7 +8,7 @@ import { RootStackParamList } from '../../../App';
 import app from '../../../firebaseconfig.js';
 import { User } from '@firebase/auth';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '@firebase/auth';
-
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import styles from './styles';
 import { useFonts } from 'expo-font';
 const image = require('../../../assets/images/food-1898194_640.jpg');
@@ -18,13 +18,15 @@ type Navigation = {
 };
 
 const Register: React.FC<Navigation> = ({ navigation }) => {
+    const [name, setName]= useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, setUser] = useState<User | null>(null); // Track user authentication state
-    const [isLogin, setIsLogin] = useState(true);
+    
+    const [user, setUser] = useState<User | null>(null); 
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const db = getFirestore(app);
     const auth = getAuth(app);
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,6 +38,11 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
     const handleRegister = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
+            const userRef = collection(db, 'users');
+            await addDoc(userRef, {
+                email: email,
+                name: name, 
+            });
             setIsSuccessModalVisible(true);
         } catch (error: any) {
             if (error.code === 'auth/weak-password') {
@@ -75,7 +82,13 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
         <View style={styles.container}>
             <ImageBackground source={image} resizeMode="cover" style={styles.imgBackground} blurRadius={16}>
                 <View style={styles.form}>
-                    <TextInput style={styles.input} placeholder="Tên" placeholderTextColor={'#212121'} />
+                    <TextInput 
+                        style={styles.input} 
+                        placeholder="Tên" 
+                        value={name}
+                        onChangeText={setName}
+                        placeholderTextColor={'#212121'} 
+                    />
                     <TextInput
                         style={styles.input}
                         placeholder="Email"

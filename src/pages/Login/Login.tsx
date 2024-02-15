@@ -11,7 +11,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import app from '../../../firebaseconfig.js';
 import { User } from '@firebase/auth';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '@firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from '@firebase/auth';
 
 import styles from './styles';
 const facebook = require('../../../assets/images/facebook.png');
