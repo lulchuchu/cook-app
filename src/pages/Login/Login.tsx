@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Image, ImageBackground, ScrollView, Text, 
     TextInput, TouchableOpacity, View
@@ -9,6 +9,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
+import app from '../../../firebaseconfig.js';
+import { User } from '@firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '@firebase/auth';
 
 import styles from './styles';
 const facebook = require('../../../assets/images/facebook.png');
@@ -19,7 +22,34 @@ type Navigation = {
 }
 
 const Login : React.FC<Navigation> = ({navigation}) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [user, setUser] = useState<User | null>(null); // Track user authentication state
+    const [isLogin, setIsLogin] = useState(true);
 
+    const [loading, setLoading] = useState(false);
+    const auth = getAuth(app);
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        setUser(user);
+        });
+
+        return () => unsubscribe();
+    }, [auth]);
+    const handleLogin = async() =>{
+        try {
+            setLoading(true);
+            await signInWithEmailAndPassword(auth, email, password);
+            navigation.navigate('Home');
+                
+            
+        } catch (error:any) {
+            // setErrorMessage('Sai email hoặc mật khẩu. Vui lòng thử lại.');
+            console.error('Login error:', error.message);
+        }finally {
+            setLoading(false);
+        }
+    }
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         'Inconsolata': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -81,13 +111,18 @@ const Login : React.FC<Navigation> = ({navigation}) => {
                             <TextInput
                                 style = {styles.input}
                                 placeholder='Email'
+                                value={email}
+                                onChangeText={setEmail}
                                 placeholderTextColor={'#212121'}
                             />
 
                             <TextInput
                                 style = {styles.input} 
                                 placeholder='Mật khẩu'
+                                value={password}
+                                onChangeText={setPassword}
                                 placeholderTextColor={'#212121'}
+                                secureTextEntry
                             />
 
                             <View style = {styles.iconEye}>
@@ -98,8 +133,9 @@ const Login : React.FC<Navigation> = ({navigation}) => {
                         </View>
 
                         <TouchableOpacity style={styles.btnLogin}>
-                            <Text style={styles.textBtnLogin}>Đăng nhập</Text>
+                            <Text style={styles.textBtnLogin} onPress={handleLogin}>{loading ? 'Đang đăng nhập...' : 'Đăng nhập'}</Text>
                         </TouchableOpacity>
+                        
 
                         <View style = {styles.resetPass}>
                             <Text style = {styles.textReset}>Bạn quên mật khẩu?</Text>
@@ -124,3 +160,7 @@ const Login : React.FC<Navigation> = ({navigation}) => {
 };
 
 export default Login;
+
+function setErrorMessage(arg0: string) {
+    throw new Error('Function not implemented.');
+}

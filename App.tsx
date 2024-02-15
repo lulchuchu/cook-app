@@ -14,6 +14,7 @@ export type RootStackParamList = {
     Login: undefined;
     Register: undefined;
     OptionLogin: undefined;
+    Home: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -26,7 +27,8 @@ const App: React.FC = () => {
                 <Stack.Screen name = "Intro" component={Intro} options={{ headerShown: false }} />
                 <Stack.Screen name = "Login" component={Login} options={{headerShown: false}} />
                 <Stack.Screen name = "Register" component={Register} options={{ headerShown: false }} />
-                <Stack.Screen name = "OptionLogin" component={Home} options={{ headerShown: false }} />
+                <Stack.Screen name = "OptionLogin" component={OptionLogin} options={{ headerShown: false }} />
+                <Stack.Screen name = "Home" component={Home} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

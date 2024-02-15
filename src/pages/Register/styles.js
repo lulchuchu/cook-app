@@ -58,6 +58,29 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
     },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: '#fff', // Màu nền của nội dung modal
+        padding: 20,
+        borderRadius: 10,
+        width: '80%',
+    },
+    successMessage: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'green',
+        marginBottom: 10,
+      },
+    closeButton: {
+        alignSelf: 'flex-end',
+        fontSize: 20,
+        color: 'red',
+    },
     textRole: {
         color: '#fff',
         fontFamily: 'Inconsolata',
