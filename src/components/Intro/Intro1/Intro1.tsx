@@ -42,6 +42,14 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
         setIndex(index + 1);
     };
 
+    const handleClick = () => {
+        setShow(true);
+    };
+
+    const handleNextLayout = () => {
+        navigation.navigate('OptionLogin');
+    };
+
     if (!fontLoaded) {
         return null;
     }
@@ -57,11 +65,11 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
             <View style={styles.footer}>
                 <Text style={styles.textWelcome}>Chào mừng</Text>
 
-                <TouchableOpacity style={styles.ctnButton} onPress={() => setShow(true)}>
+                <TouchableOpacity style={styles.ctnButton} onPress={handleClick}>
                     <Text style={styles.textButton}>Tôi là người mới</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.ctnButton}>
+                <TouchableOpacity style={styles.ctnButton} onPress={handleNextLayout}>
                     <Text style={styles.textButton}>Tôi đã biết trước đó</Text>
                 </TouchableOpacity>
             </View>

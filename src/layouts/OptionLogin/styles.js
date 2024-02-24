@@ -74,11 +74,11 @@ const styles = StyleSheet.create({
     textFacebook: {
         color: '#fff',
         fontWeight: '600',
-        marginLeft: 8
+        marginLeft: 8,
     },
     imgIcon: {
         width: 20,
-        height: 20
+        height: 20,
     },
     btnEmail: {
         width: '100%',

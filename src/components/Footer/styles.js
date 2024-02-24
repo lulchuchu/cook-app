@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: "#fff",
+        backgroundColor: '#fff',
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 16,
@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     text: {
         fontFamily: 'Inconsolata-Bold',
         color: '#747678',
-        marginTop: 4
-    }
+        marginTop: 4,
+    },
 });
 
 export default styles;

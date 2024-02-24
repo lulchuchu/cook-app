@@ -1,0 +1,16 @@
+{
+    "ast": null,
+    "code": "",
+    "map": {
+        "version": 3,
+        "names": [],
+        "sources": [
+            "D:\\React Native\\MAD\\cook-app\\node_modules\\expo-modules-core\\src\\sweet\\setUpErrorManager.fx.web.ts"
+        ],
+        "sourcesContent": [null],
+        "mappings": ""
+    },
+    "metadata": {},
+    "sourceType": "script",
+    "externalDependencies": []
+}

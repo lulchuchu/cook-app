@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -8,39 +8,39 @@ const styles = StyleSheet.create({
         paddingVertical: 24,
         backgroundColor: '#fff',
         borderTopLeftRadius: 12,
-        borderTopRightRadius: 12
+        borderTopRightRadius: 12,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         position: 'relative',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     iconClose: {
         paddingHorizontal: 2,
         paddingVertical: 2,
         position: 'absolute',
-        left: 0
+        left: 0,
     },
     textHeader: {
         textAlign: 'center',
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 24
+        fontSize: 24,
     },
     ctnImg: {
         flexDirection: 'row',
         justifyContent: 'center',
         width: '100%',
-        marginVertical: 88
+        marginVertical: 88,
     },
     image: {
         width: '60%',
-        height: 200
+        height: 200,
     },
     ctnText: {
         flexDirection: 'column',
         justifyContent: 'center',
-        width: '100%'
+        width: '100%',
     },
     text1: {
         fontFamily: 'Inconsolata-Bold',
@@ -48,18 +48,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: 48,
         lineHeight: 24,
-        marginBottom: 12
+        marginBottom: 12,
     },
     text2: {
         fontFamily: 'Inconsolata',
         fontSize: 18,
         textAlign: 'center',
         lineHeight: 24,
-        marginBottom: 40
+        marginBottom: 40,
     },
     ctnButton: {
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     button: {
         backgroundColor: '#2d5c48',
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         fontFamily: 'Inconsolata-Bold',
-    }
+    },
 });
 
 export default styles;

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -8,52 +8,52 @@ const styles = StyleSheet.create({
         paddingVertical: 24,
         backgroundColor: '#fdf6eb',
         borderTopLeftRadius: 12,
-        borderTopRightRadius: 12
+        borderTopRightRadius: 12,
     },
     ctnIcon: {
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     iconXMark: {
         paddingHorizontal: 2,
-        paddingVertical: 2
+        paddingVertical: 2,
     },
     paging: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginVertical: 20
+        marginVertical: 20,
     },
     item1: {
         height: 6,
         width: '48%',
         backgroundColor: '#c64d24',
-        borderRadius: 8
+        borderRadius: 8,
     },
     item2: {
         height: 6,
         width: '48%',
         backgroundColor: '#e1ddd6',
-        borderRadius: 8
+        borderRadius: 8,
     },
     ctnText: {
         width: '100%',
-        marginVertical: 32
+        marginVertical: 32,
     },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: 22,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     textHeader2: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: 22,
         textAlign: 'center',
         paddingHorizontal: 40,
-        lineHeight: 28
+        lineHeight: 28,
     },
     ctnSelect: {
-        marginVertical: 24
+        marginVertical: 24,
     },
     itemSelect: {
         paddingHorizontal: 12,
@@ -66,15 +66,15 @@ const styles = StyleSheet.create({
         width: '100%',
         borderColor: '#ccc',
         borderWidth: 1,
-        marginVertical: 12
+        marginVertical: 12,
     },
     imgSelect: {
         width: 40,
-        height: 40
+        height: 40,
     },
     textSelect: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 18
+        fontSize: 18,
     },
     footer: {
         position: 'absolute',
@@ -82,42 +82,42 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     btnSkip: {
         paddingHorizontal: 20,
         paddingVertical: 12,
         backgroundColor: '#f0eeed',
         marginRight: 12,
-        borderRadius: 20
+        borderRadius: 20,
     },
     textSkip: {
         fontFamily: 'Inconsolata',
         fontSize: 18,
         color: '#212',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     btnNext: {
         paddingHorizontal: 20,
         paddingVertical: 12,
         backgroundColor: '#458e6e',
-        borderRadius: 20
+        borderRadius: 20,
     },
     textNext: {
         fontFamily: 'Inconsolata',
         fontSize: 18,
         color: '#fff',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     ctnSelect2: {
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
     itemLeft: {
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     itemRight: {
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     itemCountry: {
         width: 184,
@@ -127,13 +127,13 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderColor: '#ccc',
         borderWidth: 1,
-        marginVertical: 8
+        marginVertical: 8,
     },
     textCountry: {
         justifyContent: 'center',
         fontFamily: 'Inconsolata',
         textAlign: 'center',
-        fontSize: 18
+        fontSize: 18,
     },
     btnSelectAll: {
         width: '100%',
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         marginVertical: 8,
-        marginTop: 16
-    }
+        marginTop: 16,
+    },
 });
 
 export default styles;

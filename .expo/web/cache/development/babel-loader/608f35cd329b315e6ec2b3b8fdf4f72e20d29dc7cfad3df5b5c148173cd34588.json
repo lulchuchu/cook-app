@@ -1,0 +1,18 @@
+{
+    "ast": null,
+    "code": "import RCTDeviceEventEmitter from \"../../vendor/react-native/EventEmitter/RCTDeviceEventEmitter\";\nexport default RCTDeviceEventEmitter;",
+    "map": {
+        "version": 3,
+        "names": ["RCTDeviceEventEmitter"],
+        "sources": [
+            "D:/React Native/MAD/cook-app/node_modules/react-native-web/dist/exports/DeviceEventEmitter/index.js"
+        ],
+        "sourcesContent": [
+            "import RCTDeviceEventEmitter from '../../vendor/react-native/EventEmitter/RCTDeviceEventEmitter';\nexport default RCTDeviceEventEmitter;"
+        ],
+        "mappings": "AAAA,OAAOA,qBAAqB;AAC5B,eAAeA,qBAAqB"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

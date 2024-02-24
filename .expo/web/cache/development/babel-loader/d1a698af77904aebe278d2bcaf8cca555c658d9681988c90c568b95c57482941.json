@@ -1,0 +1,39 @@
+{
+    "ast": null,
+    "code": "import _asyncToGenerator from \"@babel/runtime/helpers/asyncToGenerator\";\nimport { NetworkStateType } from \"./Network.types\";\nexport default {\n  getIpAddressAsync: function () {\n    var _getIpAddressAsync = _asyncToGenerator(function* () {\n      try {\n        var resp = yield fetch('https://api.ipify.org?format=json');\n        var data = yield resp.json();\n        return data.ip;\n      } catch (e) {\n        throw e;\n      }\n    });\n    function getIpAddressAsync() {\n      return _getIpAddressAsync.apply(this, arguments);\n    }\n    return getIpAddressAsync;\n  }(),\n  getNetworkStateAsync: function () {\n    var _getNetworkStateAsync = _asyncToGenerator(function* () {\n      var isOnline = typeof navigator !== 'undefined' && navigator.onLine;\n      return {\n        type: isOnline ? NetworkStateType.UNKNOWN : NetworkStateType.NONE,\n        isConnected: isOnline,\n        isInternetReachable: isOnline\n      };\n    });\n    function getNetworkStateAsync() {\n      return _getNetworkStateAsync.apply(this, arguments);\n    }\n    return getNetworkStateAsync;\n  }()\n};",
+    "map": {
+        "version": 3,
+        "names": [
+            "NetworkStateType",
+            "getIpAddressAsync",
+            "_getIpAddressAsync",
+            "_asyncToGenerator",
+            "resp",
+            "fetch",
+            "data",
+            "json",
+            "ip",
+            "e",
+            "apply",
+            "arguments",
+            "getNetworkStateAsync",
+            "_getNetworkStateAsync",
+            "isOnline",
+            "navigator",
+            "onLine",
+            "type",
+            "UNKNOWN",
+            "NONE",
+            "isConnected",
+            "isInternetReachable"
+        ],
+        "sources": ["D:\\React Native\\MAD\\cook-app\\node_modules\\expo-network\\src\\ExpoNetwork.web.ts"],
+        "sourcesContent": [
+            "import { NetworkState, NetworkStateType } from './Network.types';\n\nexport default {\n  async getIpAddressAsync(): Promise<string> {\n    try {\n      const resp = await fetch('https://api.ipify.org?format=json');\n      const data = await resp.json();\n      return data.ip;\n    } catch (e) {\n      throw e;\n    }\n  },\n  async getNetworkStateAsync(): Promise<NetworkState> {\n    const isOnline = typeof navigator !== 'undefined' && navigator.onLine;\n    return {\n      type: isOnline ? NetworkStateType.UNKNOWN : NetworkStateType.NONE,\n      isConnected: isOnline,\n      isInternetReachable: isOnline,\n    };\n  },\n};\n"
+        ],
+        "mappings": ";AAAA,SAAuBA,gBAAgB;AAEvC,eAAe;EACPC,iBAAiB;IAAA,IAAAC,kBAAA,GAAAC,iBAAA;MACrB,IAAI;QACF,IAAMC,IAAI,SAASC,KAAK,CAAC,mCAAmC,CAAC;QAC7D,IAAMC,IAAI,SAASF,IAAI,CAACG,IAAI,EAAE;QAC9B,OAAOD,IAAI,CAACE,EAAE;OACf,CAAC,OAAOC,CAAC,EAAE;QACV,MAAMA,CAAC;;IAEX,CAAC;IAAA,SAAAR,kBAAA;MAAA,OAAAC,kBAAA,CAAAQ,KAAA,OAAAC,SAAA;IAAA;IAAA,OAAAV,iBAAA;EAAA;EACKW,oBAAoB;IAAA,IAAAC,qBAAA,GAAAV,iBAAA;MACxB,IAAMW,QAAQ,GAAG,OAAOC,SAAS,KAAK,WAAW,IAAIA,SAAS,CAACC,MAAM;MACrE,OAAO;QACLC,IAAI,EAAEH,QAAQ,GAAGd,gBAAgB,CAACkB,OAAO,GAAGlB,gBAAgB,CAACmB,IAAI;QACjEC,WAAW,EAAEN,QAAQ;QACrBO,mBAAmB,EAAEP;OACtB;IACH,CAAC;IAAA,SAAAF,qBAAA;MAAA,OAAAC,qBAAA,CAAAH,KAAA,OAAAC,SAAA;IAAA;IAAA,OAAAC,oBAAA;EAAA;CACF"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

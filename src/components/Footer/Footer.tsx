@@ -13,10 +13,10 @@ type Navigation = {
 
 const Footer: React.FC<Navigation> = ({ navigation }) => {
     const handleNavigateToSetting = () => {
-        navigation.navigate('Setting'); 
+        navigation.navigate('Setting');
     };
     const handleNavigateToHome = () => {
-        navigation.navigate('Home'); 
+        navigation.navigate('Home');
     };
 
     return (
