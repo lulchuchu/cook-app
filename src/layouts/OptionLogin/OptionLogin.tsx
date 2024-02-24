@@ -46,7 +46,7 @@ const OptionLogin: React.FC<Navigation> = ({ navigation }) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.btnFacebook}>
-                        <Image source={facebook} style = {styles.imgIcon}/>
+                        <Image source={facebook} style={styles.imgIcon} />
                         <Text style={styles.textFacebook}>Đăng ký với Facebook</Text>
                     </TouchableOpacity>
 

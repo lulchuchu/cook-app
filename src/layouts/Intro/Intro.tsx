@@ -25,7 +25,7 @@ const Intro: React.FC<Navigation> = ({ navigation }) => {
     if (!nextPage) {
         setTimeout(() => {
             setNextPage(true);
-        }, 4000);
+        }, 2000);
     }
 
     return nextPage ? (

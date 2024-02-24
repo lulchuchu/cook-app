@@ -63,26 +63,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: 12,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textFacebook: {
         color: '#fff',
         fontWeight: '600',
-        marginLeft: 8
+        marginLeft: 8,
     },
     imgIcon: {
         width: 20,
-        height: 20
+        height: 20,
     },
     separate: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     item: {
         width: '40%',
         paddingBottom: 12,
         borderTopColor: '#fff',
-        borderTopWidth: 1
+        borderTopWidth: 1,
     },
     textOr: {
         width: '20%',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata',
     },
     form: {
-        width:"100%",
+        width: '100%',
         flexDirection: 'column',
         justifyContent: 'center',
     },
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         top: 88,
         right: 16,
         paddingHorizontal: 2,
-        paddingVertical: 2
+        paddingVertical: 2,
     },
     btnLogin: {
         width: '100%',
@@ -133,13 +133,13 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textReset: {
         color: '#fff',
         fontSize: 18,
         fontFamily: 'Inconsolata-Bold',
-        marginBottom: 18
+        marginBottom: 18,
     },
     btnReset: {
         fontSize: 18,
@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 1,
         backgroundColor: '#fff',
-        marginVertical: 32
-    }
+        marginVertical: 32,
+    },
 });
 
 export default styles;

@@ -1,0 +1,29 @@
+{
+    "ast": null,
+    "code": "import _asyncToGenerator from \"@babel/runtime/helpers/asyncToGenerator\";\nimport { UnavailabilityError } from 'expo-modules-core';\nimport ExpoNetwork from \"./ExpoNetwork\";\nimport { NetworkStateType } from \"./Network.types\";\nexport { NetworkStateType };\nexport function getNetworkStateAsync() {\n  return _getNetworkStateAsync.apply(this, arguments);\n}\nfunction _getNetworkStateAsync() {\n  _getNetworkStateAsync = _asyncToGenerator(function* () {\n    if (!ExpoNetwork.getNetworkStateAsync) {\n      throw new UnavailabilityError('expo-network', 'getNetworkStateAsync');\n    }\n    return yield ExpoNetwork.getNetworkStateAsync();\n  });\n  return _getNetworkStateAsync.apply(this, arguments);\n}\nexport function getIpAddressAsync() {\n  return _getIpAddressAsync.apply(this, arguments);\n}\nfunction _getIpAddressAsync() {\n  _getIpAddressAsync = _asyncToGenerator(function* () {\n    if (!ExpoNetwork.getIpAddressAsync) {\n      throw new UnavailabilityError('expo-network', 'getIpAddressAsync');\n    }\n    return yield ExpoNetwork.getIpAddressAsync();\n  });\n  return _getIpAddressAsync.apply(this, arguments);\n}\nexport function isAirplaneModeEnabledAsync() {\n  return _isAirplaneModeEnabledAsync.apply(this, arguments);\n}\nfunction _isAirplaneModeEnabledAsync() {\n  _isAirplaneModeEnabledAsync = _asyncToGenerator(function* () {\n    if (!ExpoNetwork.isAirplaneModeEnabledAsync) {\n      throw new UnavailabilityError('expo-network', 'isAirplaneModeEnabledAsync');\n    }\n    return yield ExpoNetwork.isAirplaneModeEnabledAsync();\n  });\n  return _isAirplaneModeEnabledAsync.apply(this, arguments);\n}",
+    "map": {
+        "version": 3,
+        "names": [
+            "UnavailabilityError",
+            "ExpoNetwork",
+            "NetworkStateType",
+            "getNetworkStateAsync",
+            "_getNetworkStateAsync",
+            "apply",
+            "arguments",
+            "_asyncToGenerator",
+            "getIpAddressAsync",
+            "_getIpAddressAsync",
+            "isAirplaneModeEnabledAsync",
+            "_isAirplaneModeEnabledAsync"
+        ],
+        "sources": ["D:\\React Native\\MAD\\cook-app\\node_modules\\expo-network\\src\\Network.ts"],
+        "sourcesContent": [
+            "import { UnavailabilityError } from 'expo-modules-core';\n\nimport ExpoNetwork from './ExpoNetwork';\nimport { NetworkState, NetworkStateType } from './Network.types';\n\nexport { NetworkState, NetworkStateType };\n\n// @needsAudit\n/**\n * Gets the device's current network connection state.\n *\n * On web, `navigator.connection.type` is not available on browsers. So if there is an active\n * network connection, the field `type` returns `NetworkStateType.UNKNOWN`. Otherwise, it returns\n * `NetworkStateType.NONE`.\n * @return A `Promise` that fulfils with a `NetworkState` object.\n *\n * @example\n * ```ts\n * await Network.getNetworkStateAsync();\n * // {\n * //   type: NetworkStateType.CELLULAR,\n * //   isConnected: true,\n * //   isInternetReachable: true,\n * // }\n * ```\n */\nexport async function getNetworkStateAsync(): Promise<NetworkState> {\n  if (!ExpoNetwork.getNetworkStateAsync) {\n    throw new UnavailabilityError('expo-network', 'getNetworkStateAsync');\n  }\n  return await ExpoNetwork.getNetworkStateAsync();\n}\n\n// @needsAudit\n/**\n * Gets the device's current IPv4 address. Returns `0.0.0.0` if the IP address could not be retrieved.\n *\n * On web, this method uses the third-party [`ipify service`](https://www.ipify.org/) to get the\n * public IP address of the current device.\n * @return A `Promise` that fulfils with a `string` of the current IP address of the device's main\n * network interface. Can only be IPv4 address.\n *\n * @example\n * ```ts\n * await Network.getIpAddressAsync();\n * // \"92.168.32.44\"\n * ```\n */\nexport async function getIpAddressAsync(): Promise<string> {\n  if (!ExpoNetwork.getIpAddressAsync) {\n    throw new UnavailabilityError('expo-network', 'getIpAddressAsync');\n  }\n  return await ExpoNetwork.getIpAddressAsync();\n}\n\n// @needsAudit\n/**\n * Tells if the device is in airplane mode.\n * @return Returns a `Promise` that fulfils with a `boolean` value for whether the device is in\n * airplane mode or not.\n * @platform android\n *\n * @example\n * ```ts\n * await Network.isAirplaneModeEnabledAsync();\n * // false\n * ```\n */\nexport async function isAirplaneModeEnabledAsync(): Promise<boolean> {\n  if (!ExpoNetwork.isAirplaneModeEnabledAsync) {\n    throw new UnavailabilityError('expo-network', 'isAirplaneModeEnabledAsync');\n  }\n  return await ExpoNetwork.isAirplaneModeEnabledAsync();\n}\n"
+        ],
+        "mappings": ";AAAA,SAASA,mBAAmB,QAAQ,mBAAmB;AAEvD,OAAOC,WAAW;AAClB,SAAuBC,gBAAgB;AAEvC,SAAuBA,gBAAgB;AAqBvC,gBAAsBC,oBAAoBA,CAAA;EAAA,OAAAC,qBAAA,CAAAC,KAAA,OAAAC,SAAA;AAAA;AAKzC,SAAAF,sBAAA;EAAAA,qBAAA,GAAAG,iBAAA,CALM,aAAmC;IACxC,IAAI,CAACN,WAAW,CAACE,oBAAoB,EAAE;MACrC,MAAM,IAAIH,mBAAmB,CAAC,cAAc,EAAE,sBAAsB,CAAC;;IAEvE,aAAaC,WAAW,CAACE,oBAAoB,EAAE;EACjD,CAAC;EAAA,OAAAC,qBAAA,CAAAC,KAAA,OAAAC,SAAA;AAAA;AAiBD,gBAAsBE,iBAAiBA,CAAA;EAAA,OAAAC,kBAAA,CAAAJ,KAAA,OAAAC,SAAA;AAAA;AAKtC,SAAAG,mBAAA;EAAAA,kBAAA,GAAAF,iBAAA,CALM,aAAgC;IACrC,IAAI,CAACN,WAAW,CAACO,iBAAiB,EAAE;MAClC,MAAM,IAAIR,mBAAmB,CAAC,cAAc,EAAE,mBAAmB,CAAC;;IAEpE,aAAaC,WAAW,CAACO,iBAAiB,EAAE;EAC9C,CAAC;EAAA,OAAAC,kBAAA,CAAAJ,KAAA,OAAAC,SAAA;AAAA;AAeD,gBAAsBI,0BAA0BA,CAAA;EAAA,OAAAC,2BAAA,CAAAN,KAAA,OAAAC,SAAA;AAAA;AAK/C,SAAAK,4BAAA;EAAAA,2BAAA,GAAAJ,iBAAA,CALM,aAAyC;IAC9C,IAAI,CAACN,WAAW,CAACS,0BAA0B,EAAE;MAC3C,MAAM,IAAIV,mBAAmB,CAAC,cAAc,EAAE,4BAA4B,CAAC;;IAE7E,aAAaC,WAAW,CAACS,0BAA0B,EAAE;EACvD,CAAC;EAAA,OAAAC,2BAAA,CAAAN,KAAA,OAAAC,SAAA;AAAA"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

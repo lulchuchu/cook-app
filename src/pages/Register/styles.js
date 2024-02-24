@@ -36,12 +36,37 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: '#ffe',
         paddingHorizontal: 8,
-        paddingVertical: 16,
+        paddingVertical: 12,
         borderRadius: 8,
         marginVertical: 8,
         color: '#000',
-        // fontFamily: 'Inconsolata',
-        // fontSize: 17,
+        fontFamily: 'Inconsolata-Medium',
+        fontSize: 18,
+        // borderColor: '#ee82ee',
+        // borderWidth: 1,
+    },
+    error: {
+        color: '#fd7f51',
+        fontFamily: 'Inconsolata-Medium',
+        marginVertical: 6,
+        fontSize: 14,
+        paddingLeft: 12,
+        // #fd7f51
+    },
+    ctnValidName: {
+        position: 'absolute',
+        top: 22,
+        right: 8,
+    },
+    ctnValidEmail: {
+        position: 'absolute',
+        top: 82,
+        right: 8,
+    },
+    ctnValidPass: {
+        position: 'absolute',
+        top: 143,
+        right: 8,
     },
     btnRegister: {
         width: '100%',
@@ -57,29 +82,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata-Bold',
         textAlign: 'center',
         fontSize: 18,
-    },
-    modalContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContent: {
-        backgroundColor: '#fff', // Màu nền của nội dung modal
-        padding: 20,
-        borderRadius: 10,
-        width: '80%',
-    },
-    successMessage: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: 'green',
-        marginBottom: 10,
-      },
-    closeButton: {
-        alignSelf: 'flex-end',
-        fontSize: 20,
-        color: 'red',
     },
     textRole: {
         color: '#fff',

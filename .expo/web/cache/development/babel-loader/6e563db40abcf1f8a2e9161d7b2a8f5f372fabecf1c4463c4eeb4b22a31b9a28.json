@@ -1,0 +1,50 @@
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nimport Dimensions from \"react-native-web/dist/exports/Dimensions\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1\n  },\n  backgroundVideo: {\n    position: 'relative',\n    width: Dimensions.get('window').width,\n    height: Dimensions.get('window').height\n  },\n  title: {\n    position: 'absolute',\n    top: 60,\n    width: '100%'\n  },\n  appName: {\n    color: '#fff',\n    fontSize: 32,\n    fontFamily: 'Inconsolata',\n    textAlign: 'center'\n  },\n  footer: {\n    position: 'absolute',\n    bottom: 32,\n    width: '100%',\n    flexDirection: 'column',\n    justifyContent: 'center',\n    alignItems: 'center'\n  },\n  textWelcome: {\n    fontFamily: 'Other',\n    fontSize: 48,\n    fontWeight: '700',\n    color: '#fff',\n    marginBottom: 20\n  },\n  ctnButton: {\n    backgroundColor: '#458e6e',\n    width: '80%',\n    paddingVertical: 16,\n    paddingHorizontal: 20,\n    borderRadius: 24,\n    marginTop: 12\n  },\n  textButton: {\n    fontFamily: 'Inconsolata',\n    color: '#fff',\n    textAlign: 'center',\n    fontSize: 17\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "flex",
+            "backgroundVideo",
+            "position",
+            "width",
+            "Dimensions",
+            "get",
+            "height",
+            "title",
+            "top",
+            "appName",
+            "color",
+            "fontSize",
+            "fontFamily",
+            "textAlign",
+            "footer",
+            "bottom",
+            "flexDirection",
+            "justifyContent",
+            "alignItems",
+            "textWelcome",
+            "fontWeight",
+            "marginBottom",
+            "ctnButton",
+            "backgroundColor",
+            "paddingVertical",
+            "paddingHorizontal",
+            "borderRadius",
+            "marginTop",
+            "textButton"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/Intro/Intro1/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet, Dimensions } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n    },\n    backgroundVideo: {\n        position: 'relative',\n        width: Dimensions.get('window').width,\n        height: Dimensions.get('window').height,\n    },\n    title: {\n        position: 'absolute',\n        top: 60,\n        width: '100%',\n    },\n    appName: {\n        color: '#fff',\n        fontSize: 32,\n        fontFamily: 'Inconsolata',\n        textAlign: 'center',\n    },\n    footer: {\n        position: 'absolute',\n        bottom: 32,\n        width: '100%',\n        flexDirection: 'column',\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    textWelcome: {\n        fontFamily: 'Other',\n        fontSize: 48,\n        fontWeight: '700',\n        color: '#fff',\n        marginBottom: 20,\n    },\n    ctnButton: {\n        backgroundColor: '#458e6e',\n        width: '80%',\n        paddingVertical: 16,\n        paddingHorizontal: 20,\n        borderRadius: 24,\n        marginTop: 12,\n    },\n    textButton: {\n        fontFamily: 'Inconsolata',\n        color: '#fff',\n        textAlign: 'center',\n        fontSize: 17,\n    },\n});\n\nexport default styles;\n"
+        ],
+        "mappings": ";;AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE;EACV,CAAC;EACDC,eAAe,EAAE;IACbC,QAAQ,EAAE,UAAU;IACpBC,KAAK,EAAEC,UAAU,CAACC,GAAG,CAAC,QAAQ,CAAC,CAACF,KAAK;IACrCG,MAAM,EAAEF,UAAU,CAACC,GAAG,CAAC,QAAQ,CAAC,CAACC;EACrC,CAAC;EACDC,KAAK,EAAE;IACHL,QAAQ,EAAE,UAAU;IACpBM,GAAG,EAAE,EAAE;IACPL,KAAK,EAAE;EACX,CAAC;EACDM,OAAO,EAAE;IACLC,KAAK,EAAE,MAAM;IACbC,QAAQ,EAAE,EAAE;IACZC,UAAU,EAAE,aAAa;IACzBC,SAAS,EAAE;EACf,CAAC;EACDC,MAAM,EAAE;IACJZ,QAAQ,EAAE,UAAU;IACpBa,MAAM,EAAE,EAAE;IACVZ,KAAK,EAAE,MAAM;IACba,aAAa,EAAE,QAAQ;IACvBC,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE;EAChB,CAAC;EACDC,WAAW,EAAE;IACTP,UAAU,EAAE,OAAO;IACnBD,QAAQ,EAAE,EAAE;IACZS,UAAU,EAAE,KAAK;IACjBV,KAAK,EAAE,MAAM;IACbW,YAAY,EAAE;EAClB,CAAC;EACDC,SAAS,EAAE;IACPC,eAAe,EAAE,SAAS;IAC1BpB,KAAK,EAAE,KAAK;IACZqB,eAAe,EAAE,EAAE;IACnBC,iBAAiB,EAAE,EAAE;IACrBC,YAAY,EAAE,EAAE;IAChBC,SAAS,EAAE;EACf,CAAC;EACDC,UAAU,EAAE;IACRhB,UAAU,EAAE,aAAa;IACzBF,KAAK,EAAE,MAAM;IACbG,SAAS,EAAE,QAAQ;IACnBF,QAAQ,EAAE;EACd;AACJ,CAAC,CAAC;AAEF,eAAef,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

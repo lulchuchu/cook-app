@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
     },
     ctnImage: {
         width: '100%',
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: '100%'
+        height: '100%',
     },
     body: {
         position: 'absolute',
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         paddingHorizontal: 20,
-        paddingBottom: 20
+        paddingBottom: 20,
     },
     suggest: {
         width: '100%',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     headerSuggest: {
         fontFamily: 'Inconsolata',
         fontSize: 20,
-        marginBottom: 20
+        marginBottom: 20,
     },
     textSuggest: {
         fontFamily: 'Inconsolata-Medium',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 20
+        marginTop: 20,
     },
     author: {
         fontFamily: 'Inconsolata-Bold',
@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
     },
     iconHeart: {
         marginRight: 12,
-        color: '#747678'
+        color: '#747678',
     },
     content: {
         paddingHorizontal: 20,
         backgroundColor: '#fff',
         width: '100%',
         paddingBottom: 140,
-        paddingTop: 40
+        paddingTop: 40,
     },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
@@ -86,31 +86,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         marginVertical: 16,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textAll: {
         color: '#da7e4f',
         fontSize: 18,
         fontFamily: 'Inconsolata-Bold',
         textTransform: 'uppercase',
-        marginRight: 4
+        marginRight: 4,
     },
     itemRecipe: {
-        width: 240
+        width: 240,
     },
     imgRecipe: {
         width: '100%',
         height: 300,
-        borderRadius: 18
+        borderRadius: 18,
     },
     nameRecipe: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
-        marginVertical: 16
+        marginVertical: 16,
     },
     ctnChef: {
-        flexDirection:"row",
-        alignItems: 'center'
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     imgChef: {
         width: 28,
@@ -118,13 +118,13 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         marginRight: 12,
         borderColor: '#ccc',
-        borderWidth: 0.2
+        borderWidth: 0.2,
     },
     nameChef: {
         fontFamily: 'Inconsolata-Medium',
         color: '#da7e4f',
         fontSize: 17,
-    }
+    },
 });
 
 export default styles;

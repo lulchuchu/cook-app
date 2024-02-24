@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { Alert, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { faChevronLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
+import axios from 'axios';
+import * as Network from 'expo-network';
 
-import app from '../../../firebaseconfig.js';
-import { User } from '@firebase/auth';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '@firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import styles from './styles';
 import { useFonts } from 'expo-font';
 const image = require('../../../assets/images/food-1898194_640.jpg');
@@ -18,53 +16,88 @@ type Navigation = {
 };
 
 const Register: React.FC<Navigation> = ({ navigation }) => {
-    const [name, setName]= useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    
-    const [user, setUser] = useState<User | null>(null); 
-    const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [showModal, setShowModal] = useState(false);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-        setUser(user);
-        });
+    const [email, setEmail] = useState<string>('');
+    const [username, setName] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [ipAddress, setIpAddress] = useState<string>('');
 
-        return () => unsubscribe();
-    }, [auth]);
-    const handleRegister = async () => {
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            const userRef = collection(db, 'users');
-            await addDoc(userRef, {
-                email: email,
-                name: name, 
-            });
-            setIsSuccessModalVisible(true);
-        } catch (error: any) {
-            if (error.code === 'auth/weak-password') {
-                setErrorMessage('Mật khẩu quá yếu. Vui lòng chọn mật khẩu dài hơn 6 ký tự.');
-                setShowModal(true);
-              } else if (error.code === 'auth/invalid-email') {
-                setErrorMessage('Email không hợp lệ. Vui lòng nhập lại.');
-                setShowModal(true);
-              } else {
-                console.error('Authentication error:', error.message);
-              }
-            
+    const [validName, setValidName] = useState(false);
+    const [validEmail, setValidEmail] = useState(false);
+    const [validPass, setValiddPass] = useState(false);
+
+    const [fontLoaded] = useFonts({
+        Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
+        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
+        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata_Condensed-Medium.ttf'),
+    });
+
+    useEffect(() => {
+        const getLocalIpAddress = async () => {
+            try {
+                const ipLocal = await Network.getIpAddressAsync();
+                setIpAddress(ipLocal);
+            } catch (err: any) {
+                setIpAddress(err.message);
+            }
+        };
+        getLocalIpAddress();
+    }, []);
+
+    Alert.alert(ipAddress);
+
+    const onChangName = (name: string) => {
+        setName(name);
+        if (name.length > 0) {
+            setValidName(true);
+        } else {
+            setValidName(false);
         }
     };
-    const handleCloseSuccessModal = () => {
-        setIsSuccessModalVisible(false);
-        navigation.navigate('Home');
+
+    const onChangeMail = (mail: string) => {
+        setEmail(mail);
+        if (mail.length > 0 && mail.includes('@gmail.com')) {
+            setValidEmail(true);
+        } else {
+            setValidEmail(false);
+        }
     };
-    const [fontLoaded] = useFonts({
-        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        'Inconsolata': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
-    });
+
+    const onChangePass = (password: string) => {
+        setPassword(password);
+        if (password.length >= 8) {
+            setValiddPass(true);
+        } else {
+            setValiddPass(false);
+        }
+    };
+
+    const handleRegister = () => {
+        if (validEmail && validName && validPass) {
+            const data = {
+                email,
+                username,
+                password,
+            };
+            axios
+                .post(`http://${ipAddress}:3056/user/register`, data, {
+                    timeout: 1000,
+                })
+                .then((response) => {
+                    if (response.status === 200) {
+                        Alert.alert(response.data.token);
+                    } else {
+                        Alert.alert(response.data.message);
+                    }
+                })
+                .catch((error) => {
+                    Alert.alert(error.message);
+                });
+        }
+        else {
+            Alert.alert('Nhập chính xác thông tin.');
+        }
+    };
 
     const handleBack = () => {
         navigation.navigate('OptionLogin');
@@ -72,67 +105,64 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
 
     const handleToLogin = () => {
         navigation.navigate('Login');
-    }
+    };
 
     if (!fontLoaded) {
         return null;
     }
-    
+
     return (
         <View style={styles.container}>
             <ImageBackground source={image} resizeMode="cover" style={styles.imgBackground} blurRadius={16}>
                 <View style={styles.form}>
-                    <TextInput 
-                        style={styles.input} 
-                        placeholder="Tên" 
-                        value={name}
-                        onChangeText={setName}
-                        placeholderTextColor={'#212121'} 
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Tên"
+                        value={username}
+                        onChangeText={(text) => onChangName(text)}
+                        placeholderTextColor={'#212121'}
                     />
+                    {validName ? (
+                        <View style={styles.ctnValidName}>
+                            <FontAwesomeIcon icon={faCheck} color="#458e6e" />
+                        </View>
+                    ) : (
+                        ''
+                    )}
                     <TextInput
                         style={styles.input}
                         placeholder="Email"
                         value={email}
-                        onChangeText={setEmail}
-                        textContentType="emailAddress"
+                        onChangeText={(mail) => onChangeMail(mail)}
                         placeholderTextColor={'#212121'}
                     />
+                    {validEmail ? (
+                        <View style={styles.ctnValidEmail}>
+                            <FontAwesomeIcon icon={faCheck} color="#458e6e" />
+                        </View>
+                    ) : (
+                        ''
+                    )}
+                    {email.length > 0 && !validEmail ? 
+                        <Text style={styles.error}>Email này không hợp lệ.</Text> 
+                        : ''
+                    }
                     <TextInput
                         style={styles.input}
                         placeholder="Mật khẩu"
                         value={password}
-                        onChangeText={setPassword}
-                        textContentType="password"
+                        onChangeText={(pass) => onChangePass(pass)}
                         placeholderTextColor={'#212121'}
+                        secureTextEntry={true}
                     />
-                    <Modal visible={showModal} animationType="slide" transparent={true}>
-                        <View style={styles.modalContainer}>
-                        <View style={styles.modalContent}>
-                            <Text>{errorMessage}</Text>
-                            <TouchableOpacity onPress={() => setShowModal(false)}>
-                            <Text style={styles.closeButton}>Đóng</Text>
-                            </TouchableOpacity>
-                        </View>
-                        </View>
-                    </Modal>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={isSuccessModalVisible}
-                        onRequestClose={() => setIsSuccessModalVisible(false)}
-                    >
-                        <View style={styles.modalContainer}>
-                            <View style={styles.modalContent}>
-                                <Text style={styles.successMessage}>Đăng ký thành công!</Text>
-                                <TouchableOpacity onPress={handleCloseSuccessModal}>
-                                    <Text style={styles.closeButton}>Đóng</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </Modal>
+                    {password.length > 0 && !validPass ? (
+                        <Text style={styles.error}>Mật khẩu phải có ít nhất 8 ký tự.</Text>
+                    ) : (
+                        ''
+                    )}
                     <View>
-                        <TouchableOpacity style={styles.btnRegister}>
-                            <Text style={styles.textBtnRegister} onPress={handleRegister}>Đăng ký</Text>
+                        <TouchableOpacity style={styles.btnRegister} onPress={handleRegister}>
+                            <Text style={styles.textBtnRegister}>Đăng ký</Text>
                         </TouchableOpacity>
 
                         <View>

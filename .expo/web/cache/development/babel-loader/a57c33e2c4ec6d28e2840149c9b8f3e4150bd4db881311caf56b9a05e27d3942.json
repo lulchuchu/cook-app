@@ -1,0 +1,33 @@
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    flexDirection: 'column',\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#fff'\n  },\n  appName: {\n    color: '#000',\n    fontSize: 40,\n    fontFamily: 'Inconsolata',\n    marginVertical: 4\n  },\n  slogan: {\n    color: '#000',\n    textTransform: 'uppercase',\n    fontFamily: 'Inconsolata'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "flex",
+            "flexDirection",
+            "justifyContent",
+            "alignItems",
+            "backgroundColor",
+            "appName",
+            "color",
+            "fontSize",
+            "fontFamily",
+            "marginVertical",
+            "slogan",
+            "textTransform"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/layouts/Intro/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n        flexDirection: 'column',\n        justifyContent: 'center',\n        alignItems: 'center',\n        backgroundColor: '#fff',\n    },\n    appName: {\n        color: '#000',\n        fontSize: 40,\n        fontFamily: 'Inconsolata',\n        marginVertical: 4,\n    },\n    slogan: {\n        color: '#000',\n        textTransform: 'uppercase',\n        fontFamily: 'Inconsolata',\n    },\n});\n\nexport default styles;\n"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE,CAAC;IACPC,aAAa,EAAE,QAAQ;IACvBC,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE,QAAQ;IACpBC,eAAe,EAAE;EACrB,CAAC;EACDC,OAAO,EAAE;IACLC,KAAK,EAAE,MAAM;IACbC,QAAQ,EAAE,EAAE;IACZC,UAAU,EAAE,aAAa;IACzBC,cAAc,EAAE;EACpB,CAAC;EACDC,MAAM,EAAE;IACJJ,KAAK,EAAE,MAAM;IACbK,aAAa,EAAE,WAAW;IAC1BH,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAeZ,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

@@ -1,0 +1,40 @@
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    position: 'absolute',\n    zIndex: 100,\n    bottom: 0,\n    left: 0,\n    right: 0,\n    backgroundColor: \"#fff\",\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    paddingHorizontal: 16,\n    paddingTop: 16,\n    paddingBottom: 8,\n    borderTopColor: '#ddd',\n    borderTopWidth: 0.6\n  },\n  item: {\n    flexDirection: 'column',\n    justifyContent: 'center',\n    alignItems: 'center'\n  },\n  text: {\n    fontFamily: 'Inconsolata-Bold',\n    color: '#747678',\n    marginTop: 4\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "position",
+            "zIndex",
+            "bottom",
+            "left",
+            "right",
+            "backgroundColor",
+            "flexDirection",
+            "justifyContent",
+            "paddingHorizontal",
+            "paddingTop",
+            "paddingBottom",
+            "borderTopColor",
+            "borderTopWidth",
+            "item",
+            "alignItems",
+            "text",
+            "fontFamily",
+            "color",
+            "marginTop"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/Footer/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        position: 'absolute',\r\n        zIndex: 100,\r\n        bottom: 0,\r\n        left: 0,\r\n        right: 0,\r\n        backgroundColor: \"#fff\",\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        paddingHorizontal: 16,\r\n        paddingTop: 16,\r\n        paddingBottom: 8,\r\n        borderTopColor: '#ddd',\r\n        borderTopWidth: 0.6,\r\n    },\r\n    item: {\r\n        flexDirection: 'column',\r\n        justifyContent: 'center',\r\n        alignItems: 'center'\r\n    },\r\n    text: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        color: '#747678',\r\n        marginTop: 4\r\n    }\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,QAAQ,EAAE,UAAU;IACpBC,MAAM,EAAE,GAAG;IACXC,MAAM,EAAE,CAAC;IACTC,IAAI,EAAE,CAAC;IACPC,KAAK,EAAE,CAAC;IACRC,eAAe,EAAE,MAAM;IACvBC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,iBAAiB,EAAE,EAAE;IACrBC,UAAU,EAAE,EAAE;IACdC,aAAa,EAAE,CAAC;IAChBC,cAAc,EAAE,MAAM;IACtBC,cAAc,EAAE;EACpB,CAAC;EACDC,IAAI,EAAE;IACFP,aAAa,EAAE,QAAQ;IACvBC,cAAc,EAAE,QAAQ;IACxBO,UAAU,EAAE;EAChB,CAAC;EACDC,IAAI,EAAE;IACFC,UAAU,EAAE,kBAAkB;IAC9BC,KAAK,EAAE,SAAS;IAChBC,SAAS,EAAE;EACf;AACJ,CAAC,CAAC;AAEF,eAAetB,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}
