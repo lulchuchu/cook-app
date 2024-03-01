@@ -1,15 +1,18 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useFonts } from 'expo-font';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import styles from './styles';
-import { useFonts } from 'expo-font';
 
-const Item2: React.FC = () => {
+type Func = {
+    close: () => void;
+}
+
+const Item2: React.FC<Func> = ({close}) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
 
     if (!fontLoaded) {
@@ -19,7 +22,7 @@ const Item2: React.FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.ctnIcon}>
-                <TouchableOpacity style={styles.iconXMark}>
+                <TouchableOpacity style={styles.iconXMark} onPress={close}>
                     <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
                 </TouchableOpacity>
             </View>
@@ -68,7 +71,7 @@ const Item2: React.FC = () => {
             </TouchableOpacity>
 
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.btnSkip}>
+                <TouchableOpacity style={styles.btnSkip} onPress={close}>
                     <Text style={styles.textSkip}>Bỏ qua câu hỏi</Text>
                 </TouchableOpacity>
 

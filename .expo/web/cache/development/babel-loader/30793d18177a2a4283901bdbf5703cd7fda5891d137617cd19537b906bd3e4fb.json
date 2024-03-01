@@ -1,1 +1,50 @@
-{"ast":null,"code":"import _slicedToArray from \"@babel/runtime/helpers/slicedToArray\";\nvar _jsxFileName = \"D:\\\\React Native\\\\MAD\\\\cook-app\\\\src\\\\layouts\\\\Intro\\\\Intro.tsx\",\n  _this = this;\nimport React, { useState } from 'react';\nimport Text from \"react-native-web/dist/exports/Text\";\nimport View from \"react-native-web/dist/exports/View\";\nimport { useFonts } from 'expo-font';\nimport styles from \"./styles\";\nimport Intro1 from \"../../components/Intro/Intro1/Intro1\";\nimport { jsxDEV as _jsxDEV } from \"react/jsx-dev-runtime\";\nvar Intro = function Intro(_ref) {\n  var navigation = _ref.navigation;\n  var _useState = useState(false),\n    _useState2 = _slicedToArray(_useState, 2),\n    nextPage = _useState2[0],\n    setNextPage = _useState2[1];\n  var _useFonts = useFonts({\n      Inconsolata: require(\"../../../assets/fonts/Inconsolata-Light.ttf\")\n    }),\n    _useFonts2 = _slicedToArray(_useFonts, 1),\n    fontLoaded = _useFonts2[0];\n  if (!fontLoaded) {\n    return null;\n  }\n  if (!nextPage) {\n    setTimeout(function () {\n      setNextPage(true);\n    }, 2000);\n  }\n  return nextPage ? _jsxDEV(Intro1, {\n    navigation: navigation\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 32,\n    columnNumber: 9\n  }, _this) : _jsxDEV(View, {\n    style: styles.container,\n    children: [_jsxDEV(Text, {\n      style: styles.appName,\n      children: \"kitchen stories\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 35,\n      columnNumber: 13\n    }, _this), _jsxDEV(Text, {\n      style: styles.slogan,\n      children: \"ai c\\u0169ng c\\xF3 th\\u1EC3 n\\u1EA5u \\u0103n\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 36,\n      columnNumber: 13\n    }, _this)]\n  }, void 0, true, {\n    fileName: _jsxFileName,\n    lineNumber: 34,\n    columnNumber: 9\n  }, _this);\n};\nexport default Intro;","map":{"version":3,"names":["React","useState","Text","View","useFonts","styles","Intro1","jsxDEV","_jsxDEV","Intro","_ref","navigation","_useState","_useState2","_slicedToArray","nextPage","setNextPage","_useFonts","Inconsolata","require","_useFonts2","fontLoaded","setTimeout","fileName","_jsxFileName","lineNumber","columnNumber","_this","style","container","children","appName","slogan"],"sources":["D:/React Native/MAD/cook-app/src/layouts/Intro/Intro.tsx"],"sourcesContent":["import React, { useState } from 'react';\nimport { Text, View } from 'react-native';\nimport { useFonts } from 'expo-font';\nimport { StackNavigationProp } from '@react-navigation/stack';\nimport { RootStackParamList } from '../../../App';\n\nimport styles from './styles';\nimport Intro1 from '../../components/Intro/Intro1/Intro1';\n\ntype Navigation = {\n    navigation: StackNavigationProp<RootStackParamList>;\n};\n\nconst Intro: React.FC<Navigation> = ({ navigation }) => {\n    const [nextPage, setNextPage] = useState(false);\n\n    const [fontLoaded] = useFonts({\n        Inconsolata: require('../../../assets/fonts/Inconsolata-Light.ttf'),\n    });\n\n    if (!fontLoaded) {\n        return null;\n    }\n\n    if (!nextPage) {\n        setTimeout(() => {\n            setNextPage(true);\n        }, 2000);\n    }\n\n    return nextPage ? (\n        <Intro1 navigation={navigation} />\n    ) : (\n        <View style={styles.container}>\n            <Text style={styles.appName}>kitchen stories</Text>\n            <Text style={styles.slogan}>ai cũng có thể nấu ăn</Text>\n        </View>\n    );\n};\n\nexport default Intro;\n"],"mappings":";;;AAAA,OAAOA,KAAK,IAAIC,QAAQ,QAAQ,OAAO;AAAC,OAAAC,IAAA;AAAA,OAAAC,IAAA;AAExC,SAASC,QAAQ,QAAQ,WAAW;AAIpC,OAAOC,MAAM;AACb,OAAOC,MAAM;AAA6C,SAAAC,MAAA,IAAAC,OAAA;AAM1D,IAAMC,KAA2B,GAAG,SAA9BA,KAA2BA,CAAAC,IAAA,EAAuB;EAAA,IAAjBC,UAAU,GAAAD,IAAA,CAAVC,UAAU;EAC7C,IAAAC,SAAA,GAAgCX,QAAQ,CAAC,KAAK,CAAC;IAAAY,UAAA,GAAAC,cAAA,CAAAF,SAAA;IAAxCG,QAAQ,GAAAF,UAAA;IAAEG,WAAW,GAAAH,UAAA;EAE5B,IAAAI,SAAA,GAAqBb,QAAQ,CAAC;MAC1Bc,WAAW,EAAEC,OAAO,8CAA8C;IACtE,CAAC,CAAC;IAAAC,UAAA,GAAAN,cAAA,CAAAG,SAAA;IAFKI,UAAU,GAAAD,UAAA;EAIjB,IAAI,CAACC,UAAU,EAAE;IACb,OAAO,IAAI;EACf;EAEA,IAAI,CAACN,QAAQ,EAAE;IACXO,UAAU,CAAC,YAAM;MACbN,WAAW,CAAC,IAAI,CAAC;IACrB,CAAC,EAAE,IAAI,CAAC;EACZ;EAEA,OAAOD,QAAQ,GACXP,OAAA,CAACF,MAAM;IAACK,UAAU,EAAEA;EAAW;IAAAY,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KAAE,CAAC,GAElCnB,OAAA,CAACL,IAAI;IAACyB,KAAK,EAAEvB,MAAM,CAACwB,SAAU;IAAAC,QAAA,GAC1BtB,OAAA,CAACN,IAAI;MAAC0B,KAAK,EAAEvB,MAAM,CAAC0B,OAAQ;MAAAD,QAAA,EAAC;IAAe;MAAAP,QAAA,EAAAC,YAAA;MAAAC,UAAA;MAAAC,YAAA;IAAA,GAAAC,KAAM,CAAC,EACnDnB,OAAA,CAACN,IAAI;MAAC0B,KAAK,EAAEvB,MAAM,CAAC2B,MAAO;MAAAF,QAAA,EAAC;IAAqB;MAAAP,QAAA,EAAAC,YAAA;MAAAC,UAAA;MAAAC,YAAA;IAAA,GAAAC,KAAM,CAAC;EAAA;IAAAJ,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KACtD,CACT;AACL,CAAC;AAED,eAAelB,KAAK"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import _slicedToArray from \"@babel/runtime/helpers/slicedToArray\";\nvar _jsxFileName = \"D:\\\\React Native\\\\MAD\\\\cook-app\\\\src\\\\layouts\\\\Intro\\\\Intro.tsx\",\n  _this = this;\nimport React, { useState } from 'react';\nimport Text from \"react-native-web/dist/exports/Text\";\nimport View from \"react-native-web/dist/exports/View\";\nimport { useFonts } from 'expo-font';\nimport styles from \"./styles\";\nimport Intro1 from \"../../components/Intro/Intro1/Intro1\";\nimport { jsxDEV as _jsxDEV } from \"react/jsx-dev-runtime\";\nvar Intro = function Intro(_ref) {\n  var navigation = _ref.navigation;\n  var _useState = useState(false),\n    _useState2 = _slicedToArray(_useState, 2),\n    nextPage = _useState2[0],\n    setNextPage = _useState2[1];\n  var _useFonts = useFonts({\n      Inconsolata: require(\"../../../assets/fonts/Inconsolata-Light.ttf\")\n    }),\n    _useFonts2 = _slicedToArray(_useFonts, 1),\n    fontLoaded = _useFonts2[0];\n  if (!fontLoaded) {\n    return null;\n  }\n  if (!nextPage) {\n    setTimeout(function () {\n      setNextPage(true);\n    }, 2000);\n  }\n  return nextPage ? _jsxDEV(Intro1, {\n    navigation: navigation\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 32,\n    columnNumber: 9\n  }, _this) : _jsxDEV(View, {\n    style: styles.container,\n    children: [_jsxDEV(Text, {\n      style: styles.appName,\n      children: \"kitchen stories\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 35,\n      columnNumber: 13\n    }, _this), _jsxDEV(Text, {\n      style: styles.slogan,\n      children: \"ai c\\u0169ng c\\xF3 th\\u1EC3 n\\u1EA5u \\u0103n\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 36,\n      columnNumber: 13\n    }, _this)]\n  }, void 0, true, {\n    fileName: _jsxFileName,\n    lineNumber: 34,\n    columnNumber: 9\n  }, _this);\n};\nexport default Intro;",
+    "map": {
+        "version": 3,
+        "names": [
+            "React",
+            "useState",
+            "Text",
+            "View",
+            "useFonts",
+            "styles",
+            "Intro1",
+            "jsxDEV",
+            "_jsxDEV",
+            "Intro",
+            "_ref",
+            "navigation",
+            "_useState",
+            "_useState2",
+            "_slicedToArray",
+            "nextPage",
+            "setNextPage",
+            "_useFonts",
+            "Inconsolata",
+            "require",
+            "_useFonts2",
+            "fontLoaded",
+            "setTimeout",
+            "fileName",
+            "_jsxFileName",
+            "lineNumber",
+            "columnNumber",
+            "_this",
+            "style",
+            "container",
+            "children",
+            "appName",
+            "slogan"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/layouts/Intro/Intro.tsx"],
+        "sourcesContent": [
+            "import React, { useState } from 'react';\nimport { Text, View } from 'react-native';\nimport { useFonts } from 'expo-font';\nimport { StackNavigationProp } from '@react-navigation/stack';\nimport { RootStackParamList } from '../../../App';\n\nimport styles from './styles';\nimport Intro1 from '../../components/Intro/Intro1/Intro1';\n\ntype Navigation = {\n    navigation: StackNavigationProp<RootStackParamList>;\n};\n\nconst Intro: React.FC<Navigation> = ({ navigation }) => {\n    const [nextPage, setNextPage] = useState(false);\n\n    const [fontLoaded] = useFonts({\n        Inconsolata: require('../../../assets/fonts/Inconsolata-Light.ttf'),\n    });\n\n    if (!fontLoaded) {\n        return null;\n    }\n\n    if (!nextPage) {\n        setTimeout(() => {\n            setNextPage(true);\n        }, 2000);\n    }\n\n    return nextPage ? (\n        <Intro1 navigation={navigation} />\n    ) : (\n        <View style={styles.container}>\n            <Text style={styles.appName}>kitchen stories</Text>\n            <Text style={styles.slogan}>ai cũng có thể nấu ăn</Text>\n        </View>\n    );\n};\n\nexport default Intro;\n"
+        ],
+        "mappings": ";;;AAAA,OAAOA,KAAK,IAAIC,QAAQ,QAAQ,OAAO;AAAC,OAAAC,IAAA;AAAA,OAAAC,IAAA;AAExC,SAASC,QAAQ,QAAQ,WAAW;AAIpC,OAAOC,MAAM;AACb,OAAOC,MAAM;AAA6C,SAAAC,MAAA,IAAAC,OAAA;AAM1D,IAAMC,KAA2B,GAAG,SAA9BA,KAA2BA,CAAAC,IAAA,EAAuB;EAAA,IAAjBC,UAAU,GAAAD,IAAA,CAAVC,UAAU;EAC7C,IAAAC,SAAA,GAAgCX,QAAQ,CAAC,KAAK,CAAC;IAAAY,UAAA,GAAAC,cAAA,CAAAF,SAAA;IAAxCG,QAAQ,GAAAF,UAAA;IAAEG,WAAW,GAAAH,UAAA;EAE5B,IAAAI,SAAA,GAAqBb,QAAQ,CAAC;MAC1Bc,WAAW,EAAEC,OAAO,8CAA8C;IACtE,CAAC,CAAC;IAAAC,UAAA,GAAAN,cAAA,CAAAG,SAAA;IAFKI,UAAU,GAAAD,UAAA;EAIjB,IAAI,CAACC,UAAU,EAAE;IACb,OAAO,IAAI;EACf;EAEA,IAAI,CAACN,QAAQ,EAAE;IACXO,UAAU,CAAC,YAAM;MACbN,WAAW,CAAC,IAAI,CAAC;IACrB,CAAC,EAAE,IAAI,CAAC;EACZ;EAEA,OAAOD,QAAQ,GACXP,OAAA,CAACF,MAAM;IAACK,UAAU,EAAEA;EAAW;IAAAY,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KAAE,CAAC,GAElCnB,OAAA,CAACL,IAAI;IAACyB,KAAK,EAAEvB,MAAM,CAACwB,SAAU;IAAAC,QAAA,GAC1BtB,OAAA,CAACN,IAAI;MAAC0B,KAAK,EAAEvB,MAAM,CAAC0B,OAAQ;MAAAD,QAAA,EAAC;IAAe;MAAAP,QAAA,EAAAC,YAAA;MAAAC,UAAA;MAAAC,YAAA;IAAA,GAAAC,KAAM,CAAC,EACnDnB,OAAA,CAACN,IAAI;MAAC0B,KAAK,EAAEvB,MAAM,CAAC2B,MAAO;MAAAF,QAAA,EAAC;IAAqB;MAAAP,QAAA,EAAAC,YAAA;MAAAC,UAAA;MAAAC,YAAA;IAAA,GAAAC,KAAM,CAAC;EAAA;IAAAJ,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KACtD,CACT;AACL,CAAC;AAED,eAAelB,KAAK"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

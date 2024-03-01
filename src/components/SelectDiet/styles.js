@@ -3,12 +3,17 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 52,
         paddingHorizontal: 16,
-        paddingVertical: 24,
+        paddingTop: 24,
+        paddingBottom: 48,
         backgroundColor: '#fdf6eb',
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
+        position: 'absolute',
+        bottom: 0,
+        zIndex: 100,
+        width: '100%',
+        height: '92%'
     },
     ctnIcon: {
         width: '100%',

@@ -5,8 +5,8 @@
         "paths": {
             "*": ["src/*"],
             "tests": ["tests/*"],
-            "@components/*": ["src/*"],
+            "@components/*": ["src/*"]
         },
-        "jsx": "react-native",
-    },
+        "jsx": "react-native"
+    }
 }

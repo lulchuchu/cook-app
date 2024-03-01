@@ -125,6 +125,42 @@ const styles = StyleSheet.create({
         color: '#da7e4f',
         fontSize: 17,
     },
+    ctnRecipeSelect: {
+        backgroundColor: '#fdf6eb',
+        width: '100%',
+        paddingHorizontal: 12,
+        paddingVertical: 24,
+        borderRadius: 12,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 40
+    },
+    imgMess: {
+        width: 100,
+        height: 100,
+    },
+    textInconsolata: {
+        fontFamily: 'Inconsolata-Medium',
+        lineHeight: 22,
+        fontSize: 16,
+        marginTop: 8,
+        color: '#575450'
+    },
+    btnGetStart: {
+        paddingHorizontal: 24,
+        paddingVertical: 12,
+        backgroundColor: '#2c5d48',
+        marginTop: 12,
+        width: 220,
+        borderRadius: 24
+    },
+    textGetStart: {
+        fontFamily: 'Inconsolata-Medium',
+        fontSize: 18,
+        color: '#fff',
+        textAlign: 'center'
+    }
 });
 
 export default styles;
