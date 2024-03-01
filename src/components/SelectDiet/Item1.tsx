@@ -9,10 +9,14 @@ const dinner = require('../../../assets/images/dinner.png');
 const vegan = require('../../../assets/images/diet.png');
 const kidFood = require('../../../assets/images/baby.png');
 
-const Item1: React.FC = () => {
+type Func = {
+    func: () => void;
+    close: () => void;
+}
+
+const Item1: React.FC<Func> = ({func, close}) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
 
     if (!fontLoaded) {
@@ -22,7 +26,7 @@ const Item1: React.FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.ctnIcon}>
-                <TouchableOpacity style={styles.iconXMark}>
+                <TouchableOpacity style={styles.iconXMark} onPress={close}>
                     <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
                 </TouchableOpacity>
             </View>
@@ -54,11 +58,11 @@ const Item1: React.FC = () => {
             </View>
 
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.btnSkip}>
+                <TouchableOpacity style={styles.btnSkip} onPress={close}>
                     <Text style={styles.textSkip}>Bỏ qua câu hỏi</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.btnNext}>
+                <TouchableOpacity style={styles.btnNext} onPress={func}>
                     <Text style={styles.textNext}>Tiếp theo</Text>
                 </TouchableOpacity>
             </View>

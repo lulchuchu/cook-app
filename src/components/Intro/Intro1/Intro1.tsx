@@ -46,6 +46,10 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
         setShow(true);
     };
 
+    const handleCancel = () => {
+        navigation.navigate('Home');
+    };
+
     const handleNextLayout = () => {
         navigation.navigate('OptionLogin');
     };
@@ -56,7 +60,7 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
 
     return !show ? (
         <View style={styles.container}>
-            <Video ref={videoRef} source={video} style={styles.backgroundVideo} isLooping shouldPlay />
+            <Video ref={videoRef} source={video} style={styles.backgroundVideo} isLooping shouldPlay/>
 
             <View style={styles.title}>
                 <Text style={styles.appName}>kitchen stories</Text>
@@ -82,6 +86,7 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
             numberPage={index + 1}
             nextPage={nextPage}
             navigation={navigation}
+            handleCancel={handleCancel}
         />
     );
 };

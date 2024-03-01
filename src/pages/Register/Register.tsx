@@ -93,8 +93,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
                 .catch((error) => {
                     Alert.alert(error.message);
                 });
-        }
-        else {
+        } else {
             Alert.alert('Nhập chính xác thông tin.');
         }
     };
@@ -105,6 +104,10 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
 
     const handleToLogin = () => {
         navigation.navigate('Login');
+    };
+
+    const handleClick = () => {
+        navigation.navigate('Recipe');
     };
 
     if (!fontLoaded) {
@@ -143,10 +146,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
                     ) : (
                         ''
                     )}
-                    {email.length > 0 && !validEmail ? 
-                        <Text style={styles.error}>Email này không hợp lệ.</Text> 
-                        : ''
-                    }
+                    {email.length > 0 && !validEmail ? <Text style={styles.error}>Email này không hợp lệ.</Text> : ''}
                     <TextInput
                         style={styles.input}
                         placeholder="Mật khẩu"
@@ -194,7 +194,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.textRegister}>Đăng ký</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleClick}>
                     <Text style={styles.textSkip}>Bỏ qua</Text>
                 </TouchableOpacity>
             </View>

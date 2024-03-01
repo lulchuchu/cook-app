@@ -1,26 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import styles from './styles';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import Item1 from '../../components/SelectDiet/Item1';
+import Item2 from '../../components/SelectDiet/Item2';
 const message = require('../../../assets/images/message.png');
 
-const Diet: React.FC = () => {
+type Func = {
+    close: () => void;
+}
+
+const Diet: React.FC<Func> = ({close}) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
+        'Inconsolata': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
+
+    const [showItem1, setShowItem1] = useState(false);
+    const [showItem2, setShowItem2] = useState(false);
+
+    const handleClick = () => {
+        setShowItem1(true);
+    };
+
+    const handleNextLayout = () => {
+        setShowItem1(false);
+        setShowItem2(true);
+    }
 
     if (!fontLoaded) {
         return null;
     }
 
-    return (
+    return showItem1 || showItem2 ? (
+        showItem1 ? <Item1 func = {handleNextLayout} close = {close}/> : <Item2 close = {close}/>
+    ) : (
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity style={styles.iconClose}>
+                <TouchableOpacity style={styles.iconClose} onPress={close}>
                     <FontAwesomeIcon icon={faCircleXmark} size={26} color="#656361" />
                 </TouchableOpacity>
 
@@ -37,7 +57,7 @@ const Diet: React.FC = () => {
             </View>
 
             <View style={styles.ctnButton}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleClick}>
                     <Text style={styles.textBtn}>Bắt đầu</Text>
                 </TouchableOpacity>
             </View>

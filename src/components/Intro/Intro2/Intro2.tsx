@@ -14,9 +14,10 @@ interface Props {
     video: any;
     nextPage: () => void;
     navigation: any;
+    handleCancel: () => void;
 }
 
-const Intro2: React.FC<Props> = ({ numberPage, largeText, smallText, video, nextPage, navigation }) => {
+const Intro2: React.FC<Props> = ({ numberPage, largeText, smallText, video, nextPage, navigation, handleCancel }) => {
     const videoRef = useRef<Video>(null);
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../../assets/fonts/Inconsolata-Bold.ttf'),
@@ -36,9 +37,9 @@ const Intro2: React.FC<Props> = ({ numberPage, largeText, smallText, video, next
         <View style={styles.container}>
             <Video ref={videoRef} source={video} style={styles.backgroundVideo} isLooping shouldPlay />
 
-            <View style={styles.ctnSkip}>
+            <TouchableOpacity style={styles.ctnSkip} onPress={handleCancel}>
                 <Text style={styles.textSkip}>Bỏ qua</Text>
-            </View>
+            </TouchableOpacity>
 
             <View style={styles.title}>
                 <Text style={styles.appName}>kitchen stories</Text>

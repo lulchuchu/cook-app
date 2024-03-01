@@ -10,6 +10,7 @@ import OptionLogin from './src/layouts/OptionLogin/OptionLogin';
 import Home from './src/pages/Home/Home';
 import Setting from './src/pages/Setting/Setting';
 import RecipeScreen from './src/pages/Recipe/Recipe';
+import FormRating from './src/layouts/FormRating/FormRating';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -28,7 +29,7 @@ const App: React.FC = () => {
         <NavigationContainer>
             <StatusBar backgroundColor="#32363b" />
             <Stack.Navigator initialRouteName="Intro">
-                <Stack.Screen name="Intro" component={Intro} options={{ headerShown: false }} />
+                <Stack.Screen name="Intro" component={FormRating} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
                 <Stack.Screen name="OptionLogin" component={OptionLogin} options={{ headerShown: false }} />
