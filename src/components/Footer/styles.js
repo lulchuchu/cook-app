@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
         color: '#747678',
         marginTop: 4,
     },
+    textClick: {
+        fontFamily: 'Inconsolata-Bold',
+        color: '#da7e4f',
+        marginTop: 4,
+    },
 });
 
 export default styles;

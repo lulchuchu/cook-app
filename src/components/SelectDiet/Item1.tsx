@@ -12,9 +12,9 @@ const kidFood = require('../../../assets/images/baby.png');
 type Func = {
     func: () => void;
     close: () => void;
-}
+};
 
-const Item1: React.FC<Func> = ({func, close}) => {
+const Item1: React.FC<Func> = ({ func, close }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
     });

@@ -3,12 +3,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
     ScrollView,
     Image,
-    TextInput,
-    Switch,
-    Alert,
     TouchableOpacity,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';

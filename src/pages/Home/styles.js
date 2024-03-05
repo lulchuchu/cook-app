@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     marginTop: {
-        marginTop: 380,
+        marginTop: 390,
     },
     ctnSuggest: {
         flexDirection: 'row',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
     },
     headerSuggest: {
-        fontFamily: 'Inconsolata',
+        fontFamily: 'Inconsolata-Bold',
         fontSize: 20,
         marginBottom: 20,
     },
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40
+        marginTop: 40,
     },
     imgMess: {
         width: 100,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         fontSize: 16,
         marginTop: 8,
-        color: '#575450'
+        color: '#575450',
     },
     btnGetStart: {
         paddingHorizontal: 24,
@@ -153,14 +153,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#2c5d48',
         marginTop: 12,
         width: 220,
-        borderRadius: 24
+        borderRadius: 24,
     },
     textGetStart: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
         color: '#fff',
-        textAlign: 'center'
-    }
+        textAlign: 'center',
+    },
 });
 
 export default styles;

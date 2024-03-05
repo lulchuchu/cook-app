@@ -43,7 +43,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
         getLocalIpAddress();
     }, []);
 
-    Alert.alert(ipAddress);
+    // Alert.alert(ipAddress);
 
     const onChangName = (name: string) => {
         setName(name);
@@ -107,7 +107,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
     };
 
     const handleClick = () => {
-        navigation.navigate('Recipe');
+        navigation.navigate('Home');
     };
 
     if (!fontLoaded) {

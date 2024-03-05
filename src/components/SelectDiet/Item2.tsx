@@ -8,9 +8,9 @@ import styles from './styles';
 
 type Func = {
     close: () => void;
-}
+};
 
-const Item2: React.FC<Func> = ({close}) => {
+const Item2: React.FC<Func> = ({ close }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
     });
@@ -43,25 +43,25 @@ const Item2: React.FC<Func> = ({close}) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.itemCountry}>
-                        <Text style={styles.textCountry}>Việt Nam</Text>
+                        <Text style={styles.textCountry}>Trung Quốc</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.itemCountry}>
-                        <Text style={styles.textCountry}>Việt Nam</Text>
+                        <Text style={styles.textCountry}>Nhật Bản</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.itemRight}>
                     <TouchableOpacity style={styles.itemCountry}>
-                        <Text style={styles.textCountry}>Việt Nam</Text>
+                        <Text style={styles.textCountry}>Mỹ</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.itemCountry}>
-                        <Text style={styles.textCountry}>Việt Nam</Text>
+                        <Text style={styles.textCountry}>Hàn Quốc</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.itemCountry}>
-                        <Text style={styles.textCountry}>Việt Nam</Text>
+                        <Text style={styles.textCountry}>Thái Lan</Text>
                     </TouchableOpacity>
                 </View>
             </View>

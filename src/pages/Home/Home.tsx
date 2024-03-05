@@ -13,7 +13,7 @@ const imageMess = require('../../../assets/images/message.png');
 const chef = require('../../../assets/images/chef.png');
 import Footer from '../../components/Footer/Footer';
 import Diet from '../../layouts/SelectDiet/Diet';
-import RecipeCard from '../../components/RecipeCard/RecipeCard'; 
+import RecipeCard from '../../components/RecipeCard/RecipeCard';
 
 type Navigation = {
     navigation: StackNavigationProp<RootStackParamList>;
@@ -21,7 +21,7 @@ type Navigation = {
 const Home: React.FC<Navigation> = ({ navigation }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        'Inconsolata': require('../../../assets/fonts/Inconsolata-Light.ttf'),
+        Inconsolata: require('../../../assets/fonts/Inconsolata-Light.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
 
@@ -36,9 +36,7 @@ const Home: React.FC<Navigation> = ({ navigation }) => {
             <View style={styles.ctnImage}>
                 <Image source={background} resizeMode="cover" style={styles.image} />
             </View>
-            {showDiet ? 
-                <Diet close = {() => setShowDiet(false)}/> : ''
-            }
+            {showDiet ? <Diet close={() => setShowDiet(false)} /> : ''}
             <ScrollView
                 style={styles.body}
                 showsVerticalScrollIndicator={false}
@@ -70,20 +68,22 @@ const Home: React.FC<Navigation> = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
 
-                        <RecipeCard/>
-                        <View style = {styles.ctnRecipeSelect}>
-                            <View style = {{flexDirection: 'row', width: '100%'}}>
-                                <View style = {{width: '70%'}}>
-                                    <Text style = {styles.textHeader}>Công thức nấu ăn theo sở thích của bạn</Text>
-                                    <Text style = {styles.textInconsolata}>Nhận các công thức nấu ăn được cá nhân hóa của bạn trong 10 giây.</Text>
+                        <RecipeCard navigation={navigation}/>
+                        <View style={styles.ctnRecipeSelect}>
+                            <View style={{ flexDirection: 'row', width: '100%' }}>
+                                <View style={{ width: '70%' }}>
+                                    <Text style={styles.textHeader}>Công thức nấu ăn theo sở thích của bạn</Text>
+                                    <Text style={styles.textInconsolata}>
+                                        Nhận các công thức nấu ăn được cá nhân hóa của bạn trong 10 giây.
+                                    </Text>
                                 </View>
-                                <View style = {{width: '30%'}}>
-                                    <Image source={imageMess} resizeMode='cover' style = {styles.imgMess}/>
+                                <View style={{ width: '30%' }}>
+                                    <Image source={imageMess} resizeMode="cover" style={styles.imgMess} />
                                 </View>
                             </View>
 
-                            <TouchableOpacity style = {styles.btnGetStart} onPress={() => setShowDiet(true)}>
-                                <Text style = {styles.textGetStart}>Hãy bắt đầu từ đây</Text>
+                            <TouchableOpacity style={styles.btnGetStart} onPress={() => setShowDiet(true)}>
+                                <Text style={styles.textGetStart}>Hãy bắt đầu từ đây</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

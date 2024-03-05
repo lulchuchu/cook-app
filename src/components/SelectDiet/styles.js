@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         zIndex: 100,
         width: '100%',
-        height: '92%'
+        height: '92%',
     },
     ctnIcon: {
         width: '100%',
