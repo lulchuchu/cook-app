@@ -60,7 +60,7 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
 
     return !show ? (
         <View style={styles.container}>
-            <Video ref={videoRef} source={video} style={styles.backgroundVideo} isLooping shouldPlay/>
+            <Video ref={videoRef} source={video} style={styles.backgroundVideo} isLooping shouldPlay />
 
             <View style={styles.title}>
                 <Text style={styles.appName}>kitchen stories</Text>

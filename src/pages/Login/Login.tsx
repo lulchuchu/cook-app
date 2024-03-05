@@ -45,7 +45,7 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                     <Text style={styles.textRegister}>Đăng nhập</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Text style={styles.textSkip}>Bỏ qua</Text>
                     </TouchableOpacity>
                 </View>

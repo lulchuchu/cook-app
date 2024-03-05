@@ -1,0 +1,27 @@
+{
+    "ast": null,
+    "code": "var _jsxFileName = \"D:\\\\React Native\\\\MAD\\\\cook-app\\\\src\\\\pages\\\\Cart\\\\Cart.tsx\",\n  _this = this;\nimport React from \"react\";\nimport View from \"react-native-web/dist/exports/View\";\nimport { jsxDEV as _jsxDEV } from \"react/jsx-dev-runtime\";\nvar CartScreen = function CartScreen() {\n  return _jsxDEV(View, {}, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 6,\n    columnNumber: 9\n  }, _this);\n};\nexport default CartScreen;",
+    "map": {
+        "version": 3,
+        "names": [
+            "React",
+            "View",
+            "jsxDEV",
+            "_jsxDEV",
+            "CartScreen",
+            "fileName",
+            "_jsxFileName",
+            "lineNumber",
+            "columnNumber",
+            "_this"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Cart/Cart.tsx"],
+        "sourcesContent": [
+            "import React from \"react\";\r\nimport { View } from \"react-native\";\r\n\r\nconst CartScreen : React.FC = () => {\r\n    return (\r\n        <View></View>\r\n    );\r\n};\r\n\r\nexport default CartScreen;"
+        ],
+        "mappings": ";;AAAA,OAAOA,KAAK,MAAM,OAAO;AAAC,OAAAC,IAAA;AAAA,SAAAC,MAAA,IAAAC,OAAA;AAG1B,IAAMC,UAAqB,GAAG,SAAxBA,UAAqBA,CAAA,EAAS;EAChC,OACID,OAAA,CAACF,IAAI;IAAAI,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KAAO,CAAC;AAErB,CAAC;AAED,eAAeL,UAAU"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

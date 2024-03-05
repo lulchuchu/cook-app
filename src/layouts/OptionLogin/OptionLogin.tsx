@@ -72,7 +72,7 @@ const OptionLogin: React.FC<Navigation> = ({ navigation }) => {
                 </View>
             </ImageBackground>
             <View style={styles.header}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                     <Text style={styles.textSkip}>Bỏ qua</Text>
                 </TouchableOpacity>
             </View>

@@ -10,7 +10,7 @@ import OptionLogin from './src/layouts/OptionLogin/OptionLogin';
 import Home from './src/pages/Home/Home';
 import Setting from './src/pages/Setting/Setting';
 import RecipeScreen from './src/pages/Recipe/Recipe';
-import FormRating from './src/layouts/FormRating/FormRating';
+import CartScreen from './src/pages/Cart/Cart';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -20,6 +20,7 @@ export type RootStackParamList = {
     Home: undefined;
     Setting: undefined;
     Recipe: undefined;
+    Cart: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -29,13 +30,14 @@ const App: React.FC = () => {
         <NavigationContainer>
             <StatusBar backgroundColor="#32363b" />
             <Stack.Navigator initialRouteName="Intro">
-                <Stack.Screen name="Intro" component={FormRating} options={{ headerShown: false }} />
+                <Stack.Screen name="Intro" component={Intro} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
                 <Stack.Screen name="OptionLogin" component={OptionLogin} options={{ headerShown: false }} />
                 <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-                <Stack.Screen name="Setting" component={Setting} options={{ headerShown: false }} />
                 <Stack.Screen name="Recipe" component={RecipeScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Cart" component={CartScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Setting" component={Setting} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         left: 10,
-        zIndex: 15
+        zIndex: 15,
     },
     buttonBack: {
-        paddingHorizontal: 8, 
+        paddingHorizontal: 8,
         paddingVertical: 8,
         backgroundColor: '#fff',
         borderRadius: 50,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.2,
         shadowRadius: 4,
-        zIndex: 100
+        zIndex: 100,
     },
     ctnSocial: {
         flexDirection: 'row',
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     addressWork: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
-        color: '#686868'
+        color: '#686868',
     },
     ctnDesRecipe: {
         paddingHorizontal: 16,
@@ -223,17 +223,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 28
+        marginTop: 28,
     },
     buttonAddToCart: {
-        flexDirection: "row",
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 20,
         width: 220,
         paddingVertical: 12,
         borderRadius: 24,
-        backgroundColor: '#2c5d48'
+        backgroundColor: '#2c5d48',
     },
     textUtensils: {
         fontFamily: 'Inconsolata-Medium',
@@ -290,11 +290,11 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 16,
         flexDirection: 'row',
-        width: '100%'
+        width: '100%',
     },
     userComment: {
         width: '10%',
-        marginRight: 16
+        marginRight: 16,
     },
     imgUserCmt: {
         width: 46,
@@ -310,14 +310,14 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         borderRadius: 20,
         borderColor: '#ccc',
-        borderWidth: 1
+        borderWidth: 1,
     },
     textCmt: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 16,
         padding: 8,
         height: 60,
-        lineHeight: 24
+        lineHeight: 24,
     },
     buttonSend: {
         padding: 8,
@@ -326,12 +326,12 @@ const styles = StyleSheet.create({
         width: 72,
         position: 'absolute',
         bottom: 12,
-        right: 12
+        right: 12,
     },
     focusInput: {
         borderColor: 'blue',
         borderWidth: 0.5,
-        borderRadius: 10
+        borderRadius: 10,
     },
     ctnButtonCook: {
         position: 'absolute',
@@ -339,21 +339,21 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
-        zIndex: 100
+        zIndex: 100,
     },
     buttonStartCook: {
         paddingHorizontal: 20,
         width: 220,
         paddingVertical: 12,
         borderRadius: 24,
-        backgroundColor: '#2c5d48'
+        backgroundColor: '#2c5d48',
     },
     textCooking: {
         fontFamily: 'Inconsolata-Medium',
-        fontSize:18,
+        fontSize: 18,
         color: '#fff',
         textAlign: 'center',
-    }
+    },
 });
 
 export default styles;

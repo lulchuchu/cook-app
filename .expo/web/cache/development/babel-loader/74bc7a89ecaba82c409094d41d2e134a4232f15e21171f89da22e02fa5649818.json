@@ -1,1 +1,45 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nimport Dimensions from \"react-native-web/dist/exports/Dimensions\";\nvar styles = StyleSheet.create({\n  itemRecipe: {\n    width: 300,\n    marginRight: 20\n  },\n  imgRecipe: {\n    width: '100%',\n    height: 300,\n    borderRadius: 18\n  },\n  nameRecipe: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 18,\n    marginVertical: 16\n  },\n  ctnChef: {\n    flexDirection: 'row',\n    alignItems: 'center'\n  },\n  imgChef: {\n    width: 28,\n    height: 28,\n    borderRadius: 50,\n    marginRight: 12,\n    borderColor: '#ccc',\n    borderWidth: 0.2\n  },\n  nameChef: {\n    fontFamily: 'Inconsolata-Medium',\n    color: '#da7e4f',\n    fontSize: 17\n  },\n  ctnHeart: {\n    position: 'absolute',\n    bottom: 10,\n    right: 10,\n    backgroundColor: '#fff',\n    paddingVertical: 4,\n    paddingHorizontal: 8\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","itemRecipe","width","marginRight","imgRecipe","height","borderRadius","nameRecipe","fontFamily","fontSize","marginVertical","ctnChef","flexDirection","alignItems","imgChef","borderColor","borderWidth","nameChef","color","ctnHeart","position","bottom","right","backgroundColor","paddingVertical","paddingHorizontal"],"sources":["D:/React Native/MAD/cook-app/src/components/RecipeCard/styles.js"],"sourcesContent":["import { StyleSheet, Dimensions } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    itemRecipe: {\r\n        width: 300,\r\n        marginRight: 20\r\n    },\r\n    imgRecipe: {\r\n        width: '100%',\r\n        height: 300,\r\n        borderRadius: 18,\r\n    },\r\n    nameRecipe: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 18,\r\n        marginVertical: 16,\r\n    },\r\n    ctnChef: {\r\n        flexDirection: 'row',\r\n        alignItems: 'center',\r\n    },\r\n    imgChef: {\r\n        width: 28,\r\n        height: 28,\r\n        borderRadius: 50,\r\n        marginRight: 12,\r\n        borderColor: '#ccc',\r\n        borderWidth: 0.2,\r\n    },\r\n    nameChef: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        color: '#da7e4f',\r\n        fontSize: 17,\r\n    },\r\n    ctnHeart: {\r\n        position: 'absolute',\r\n        bottom: 10,\r\n        right: 10,\r\n        backgroundColor: '#fff',\r\n        paddingVertical: 4,\r\n        paddingHorizontal: 8\r\n    }\r\n});\r\n\r\nexport default styles;"],"mappings":";;AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,UAAU,EAAE;IACRC,KAAK,EAAE,GAAG;IACVC,WAAW,EAAE;EACjB,CAAC;EACDC,SAAS,EAAE;IACPF,KAAK,EAAE,MAAM;IACbG,MAAM,EAAE,GAAG;IACXC,YAAY,EAAE;EAClB,CAAC;EACDC,UAAU,EAAE;IACRC,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZC,cAAc,EAAE;EACpB,CAAC;EACDC,OAAO,EAAE;IACLC,aAAa,EAAE,KAAK;IACpBC,UAAU,EAAE;EAChB,CAAC;EACDC,OAAO,EAAE;IACLZ,KAAK,EAAE,EAAE;IACTG,MAAM,EAAE,EAAE;IACVC,YAAY,EAAE,EAAE;IAChBH,WAAW,EAAE,EAAE;IACfY,WAAW,EAAE,MAAM;IACnBC,WAAW,EAAE;EACjB,CAAC;EACDC,QAAQ,EAAE;IACNT,UAAU,EAAE,oBAAoB;IAChCU,KAAK,EAAE,SAAS;IAChBT,QAAQ,EAAE;EACd,CAAC;EACDU,QAAQ,EAAE;IACNC,QAAQ,EAAE,UAAU;IACpBC,MAAM,EAAE,EAAE;IACVC,KAAK,EAAE,EAAE;IACTC,eAAe,EAAE,MAAM;IACvBC,eAAe,EAAE,CAAC;IAClBC,iBAAiB,EAAE;EACvB;AACJ,CAAC,CAAC;AAEF,eAAe3B,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nimport Dimensions from \"react-native-web/dist/exports/Dimensions\";\nvar styles = StyleSheet.create({\n  itemRecipe: {\n    width: 300,\n    marginRight: 20\n  },\n  imgRecipe: {\n    width: '100%',\n    height: 300,\n    borderRadius: 18\n  },\n  nameRecipe: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 18,\n    marginVertical: 16\n  },\n  ctnChef: {\n    flexDirection: 'row',\n    alignItems: 'center'\n  },\n  imgChef: {\n    width: 28,\n    height: 28,\n    borderRadius: 50,\n    marginRight: 12,\n    borderColor: '#ccc',\n    borderWidth: 0.2\n  },\n  nameChef: {\n    fontFamily: 'Inconsolata-Medium',\n    color: '#da7e4f',\n    fontSize: 17\n  },\n  ctnHeart: {\n    position: 'absolute',\n    bottom: 10,\n    right: 10,\n    backgroundColor: '#fff',\n    paddingVertical: 4,\n    paddingHorizontal: 8\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "itemRecipe",
+            "width",
+            "marginRight",
+            "imgRecipe",
+            "height",
+            "borderRadius",
+            "nameRecipe",
+            "fontFamily",
+            "fontSize",
+            "marginVertical",
+            "ctnChef",
+            "flexDirection",
+            "alignItems",
+            "imgChef",
+            "borderColor",
+            "borderWidth",
+            "nameChef",
+            "color",
+            "ctnHeart",
+            "position",
+            "bottom",
+            "right",
+            "backgroundColor",
+            "paddingVertical",
+            "paddingHorizontal"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/RecipeCard/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet, Dimensions } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    itemRecipe: {\r\n        width: 300,\r\n        marginRight: 20\r\n    },\r\n    imgRecipe: {\r\n        width: '100%',\r\n        height: 300,\r\n        borderRadius: 18,\r\n    },\r\n    nameRecipe: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 18,\r\n        marginVertical: 16,\r\n    },\r\n    ctnChef: {\r\n        flexDirection: 'row',\r\n        alignItems: 'center',\r\n    },\r\n    imgChef: {\r\n        width: 28,\r\n        height: 28,\r\n        borderRadius: 50,\r\n        marginRight: 12,\r\n        borderColor: '#ccc',\r\n        borderWidth: 0.2,\r\n    },\r\n    nameChef: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        color: '#da7e4f',\r\n        fontSize: 17,\r\n    },\r\n    ctnHeart: {\r\n        position: 'absolute',\r\n        bottom: 10,\r\n        right: 10,\r\n        backgroundColor: '#fff',\r\n        paddingVertical: 4,\r\n        paddingHorizontal: 8\r\n    }\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";;AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,UAAU,EAAE;IACRC,KAAK,EAAE,GAAG;IACVC,WAAW,EAAE;EACjB,CAAC;EACDC,SAAS,EAAE;IACPF,KAAK,EAAE,MAAM;IACbG,MAAM,EAAE,GAAG;IACXC,YAAY,EAAE;EAClB,CAAC;EACDC,UAAU,EAAE;IACRC,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZC,cAAc,EAAE;EACpB,CAAC;EACDC,OAAO,EAAE;IACLC,aAAa,EAAE,KAAK;IACpBC,UAAU,EAAE;EAChB,CAAC;EACDC,OAAO,EAAE;IACLZ,KAAK,EAAE,EAAE;IACTG,MAAM,EAAE,EAAE;IACVC,YAAY,EAAE,EAAE;IAChBH,WAAW,EAAE,EAAE;IACfY,WAAW,EAAE,MAAM;IACnBC,WAAW,EAAE;EACjB,CAAC;EACDC,QAAQ,EAAE;IACNT,UAAU,EAAE,oBAAoB;IAChCU,KAAK,EAAE,SAAS;IAChBT,QAAQ,EAAE;EACd,CAAC;EACDU,QAAQ,EAAE;IACNC,QAAQ,EAAE,UAAU;IACpBC,MAAM,EAAE,EAAE;IACVC,KAAK,EAAE,EAAE;IACTC,eAAe,EAAE,MAAM;IACvBC,eAAe,EAAE,CAAC;IAClBC,iBAAiB,EAAE;EACvB;AACJ,CAAC,CAAC;AAEF,eAAe3B,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

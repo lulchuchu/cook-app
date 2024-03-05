@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
     itemRecipe: {
@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 12
+        borderRadius: 12,
     },
     textHeart: {
         fontFamily: 'Inconsolata',
-        fontSize: 18, marginLeft: 8
-    }
+        fontSize: 18,
+        marginLeft: 8,
+    },
 });
 
 export default styles;
