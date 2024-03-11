@@ -89,7 +89,7 @@ const Home: React.FC<Navigation> = ({ navigation }) => {
                     </View>
                 </View>
             </ScrollView>
-            <Footer navigation={navigation} />
+            <Footer navigation={navigation} address='Home'/>
         </View>
     );
 };
