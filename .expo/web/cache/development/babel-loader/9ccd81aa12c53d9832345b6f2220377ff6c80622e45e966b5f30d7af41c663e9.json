@@ -1,1 +1,50 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    position: 'relative',\n    width: '100%',\n    backgroundColor: '#fff',\n    top: 0\n  },\n  header: {\n    flexDirection: 'row',\n    marginTop: 40,\n    paddingHorizontal: 16,\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  ctnSearch: {\n    flexDirection: 'row',\n    alignItems: 'center',\n    width: '85%',\n    paddingHorizontal: 20,\n    paddingVertical: 6,\n    backgroundColor: '#f2f4f5',\n    borderRadius: 12\n  },\n  input: {\n    fontFamily: 'Inconsolata-Medium',\n    borderColor: 'transparent',\n    borderWidth: 0,\n    paddingVertical: 8,\n    paddingHorizontal: 8,\n    fontSize: 18,\n    marginLeft: 4,\n    width: '100%'\n  },\n  ctnText: {\n    paddingVertical: 20,\n    borderBottomColor: '#ccc',\n    borderBottomWidth: 1\n  },\n  textIn: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 24,\n    textAlign: 'center'\n  },\n  ctnContent: {\n    paddingHorizontal: 16,\n    marginTop: 16,\n    flexDirection: 'column',\n    justifyContent: 'center',\n    alignItems: 'center'\n  },\n  emtyCart: {\n    width: '60%',\n    height: 200\n  },\n  textNotice: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 18,\n    textAlign: 'center',\n    width: '50%'\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","container","flex","position","width","backgroundColor","top","header","flexDirection","marginTop","paddingHorizontal","justifyContent","alignItems","ctnSearch","paddingVertical","borderRadius","input","fontFamily","borderColor","borderWidth","fontSize","marginLeft","ctnText","borderBottomColor","borderBottomWidth","textIn","textAlign","ctnContent","emtyCart","height","textNotice"],"sources":["D:/React Native/MAD/cook-app/src/pages/Cart/styles.js"],"sourcesContent":["import { StyleSheet } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n        position: 'relative',\n        width: '100%',\n        backgroundColor: '#fff',\n        top: 0\n    },\n    header: {\n        flexDirection: 'row',\n        marginTop: 40,\n        paddingHorizontal: 16,\n        justifyContent: 'space-between',\n        alignItems: 'center',\n    },\n    ctnSearch: {\n        flexDirection: 'row',\n        alignItems: 'center',\n        width: '85%',\n        paddingHorizontal: 20,\n        paddingVertical: 6,\n        backgroundColor: '#f2f4f5',\n        borderRadius: 12\n    },\n    input: {\n        fontFamily: 'Inconsolata-Medium',\n        borderColor: 'transparent',\n        borderWidth: 0,\n        paddingVertical: 8,\n        paddingHorizontal: 8,\n        fontSize: 18,\n        marginLeft: 4,\n        width: '100%'\n    },\n    ctnText: {\n        paddingVertical: 20,\n        borderBottomColor: '#ccc',\n        borderBottomWidth: 1\n    },\n    textIn: {\n        fontFamily: 'Inconsolata-Bold',\n        fontSize: 24,\n        textAlign: 'center',\n    },\n    ctnContent: {\n        paddingHorizontal: 16,\n        marginTop: 16,\n        flexDirection: 'column',\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    emtyCart: {\n        width: '60%',\n        height: 200\n    },\n    textNotice: {\n        fontFamily: 'Inconsolata-Medium',\n        fontSize: 18,\n        textAlign: 'center',\n        width: '50%'\n    }\n});\n\nexport default styles;\n"],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE,CAAC;IACPC,QAAQ,EAAE,UAAU;IACpBC,KAAK,EAAE,MAAM;IACbC,eAAe,EAAE,MAAM;IACvBC,GAAG,EAAE;EACT,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,KAAK;IACpBC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE,EAAE;IACrBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPL,aAAa,EAAE,KAAK;IACpBI,UAAU,EAAE,QAAQ;IACpBR,KAAK,EAAE,KAAK;IACZM,iBAAiB,EAAE,EAAE;IACrBI,eAAe,EAAE,CAAC;IAClBT,eAAe,EAAE,SAAS;IAC1BU,YAAY,EAAE;EAClB,CAAC;EACDC,KAAK,EAAE;IACHC,UAAU,EAAE,oBAAoB;IAChCC,WAAW,EAAE,aAAa;IAC1BC,WAAW,EAAE,CAAC;IACdL,eAAe,EAAE,CAAC;IAClBJ,iBAAiB,EAAE,CAAC;IACpBU,QAAQ,EAAE,EAAE;IACZC,UAAU,EAAE,CAAC;IACbjB,KAAK,EAAE;EACX,CAAC;EACDkB,OAAO,EAAE;IACLR,eAAe,EAAE,EAAE;IACnBS,iBAAiB,EAAE,MAAM;IACzBC,iBAAiB,EAAE;EACvB,CAAC;EACDC,MAAM,EAAE;IACJR,UAAU,EAAE,kBAAkB;IAC9BG,QAAQ,EAAE,EAAE;IACZM,SAAS,EAAE;EACf,CAAC;EACDC,UAAU,EAAE;IACRjB,iBAAiB,EAAE,EAAE;IACrBD,SAAS,EAAE,EAAE;IACbD,aAAa,EAAE,QAAQ;IACvBG,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE;EAChB,CAAC;EACDgB,QAAQ,EAAE;IACNxB,KAAK,EAAE,KAAK;IACZyB,MAAM,EAAE;EACZ,CAAC;EACDC,UAAU,EAAE;IACRb,UAAU,EAAE,oBAAoB;IAChCG,QAAQ,EAAE,EAAE;IACZM,SAAS,EAAE,QAAQ;IACnBtB,KAAK,EAAE;EACX;AACJ,CAAC,CAAC;AAEF,eAAeN,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    position: 'relative',\n    width: '100%',\n    backgroundColor: '#fff',\n    top: 0\n  },\n  header: {\n    flexDirection: 'row',\n    marginTop: 40,\n    paddingHorizontal: 16,\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  ctnSearch: {\n    flexDirection: 'row',\n    alignItems: 'center',\n    width: '85%',\n    paddingHorizontal: 20,\n    paddingVertical: 6,\n    backgroundColor: '#f2f4f5',\n    borderRadius: 12\n  },\n  input: {\n    fontFamily: 'Inconsolata-Medium',\n    borderColor: 'transparent',\n    borderWidth: 0,\n    paddingVertical: 8,\n    paddingHorizontal: 8,\n    fontSize: 18,\n    marginLeft: 4,\n    width: '100%'\n  },\n  ctnText: {\n    paddingVertical: 20,\n    borderBottomColor: '#ccc',\n    borderBottomWidth: 1\n  },\n  textIn: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 24,\n    textAlign: 'center'\n  },\n  ctnContent: {\n    paddingHorizontal: 16,\n    marginTop: 16,\n    flexDirection: 'column',\n    justifyContent: 'center',\n    alignItems: 'center'\n  },\n  emtyCart: {\n    width: '60%',\n    height: 200\n  },\n  textNotice: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 18,\n    textAlign: 'center',\n    width: '50%'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "flex",
+            "position",
+            "width",
+            "backgroundColor",
+            "top",
+            "header",
+            "flexDirection",
+            "marginTop",
+            "paddingHorizontal",
+            "justifyContent",
+            "alignItems",
+            "ctnSearch",
+            "paddingVertical",
+            "borderRadius",
+            "input",
+            "fontFamily",
+            "borderColor",
+            "borderWidth",
+            "fontSize",
+            "marginLeft",
+            "ctnText",
+            "borderBottomColor",
+            "borderBottomWidth",
+            "textIn",
+            "textAlign",
+            "ctnContent",
+            "emtyCart",
+            "height",
+            "textNotice"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Cart/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n        position: 'relative',\n        width: '100%',\n        backgroundColor: '#fff',\n        top: 0\n    },\n    header: {\n        flexDirection: 'row',\n        marginTop: 40,\n        paddingHorizontal: 16,\n        justifyContent: 'space-between',\n        alignItems: 'center',\n    },\n    ctnSearch: {\n        flexDirection: 'row',\n        alignItems: 'center',\n        width: '85%',\n        paddingHorizontal: 20,\n        paddingVertical: 6,\n        backgroundColor: '#f2f4f5',\n        borderRadius: 12\n    },\n    input: {\n        fontFamily: 'Inconsolata-Medium',\n        borderColor: 'transparent',\n        borderWidth: 0,\n        paddingVertical: 8,\n        paddingHorizontal: 8,\n        fontSize: 18,\n        marginLeft: 4,\n        width: '100%'\n    },\n    ctnText: {\n        paddingVertical: 20,\n        borderBottomColor: '#ccc',\n        borderBottomWidth: 1\n    },\n    textIn: {\n        fontFamily: 'Inconsolata-Bold',\n        fontSize: 24,\n        textAlign: 'center',\n    },\n    ctnContent: {\n        paddingHorizontal: 16,\n        marginTop: 16,\n        flexDirection: 'column',\n        justifyContent: 'center',\n        alignItems: 'center',\n    },\n    emtyCart: {\n        width: '60%',\n        height: 200\n    },\n    textNotice: {\n        fontFamily: 'Inconsolata-Medium',\n        fontSize: 18,\n        textAlign: 'center',\n        width: '50%'\n    }\n});\n\nexport default styles;\n"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE,CAAC;IACPC,QAAQ,EAAE,UAAU;IACpBC,KAAK,EAAE,MAAM;IACbC,eAAe,EAAE,MAAM;IACvBC,GAAG,EAAE;EACT,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,KAAK;IACpBC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE,EAAE;IACrBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPL,aAAa,EAAE,KAAK;IACpBI,UAAU,EAAE,QAAQ;IACpBR,KAAK,EAAE,KAAK;IACZM,iBAAiB,EAAE,EAAE;IACrBI,eAAe,EAAE,CAAC;IAClBT,eAAe,EAAE,SAAS;IAC1BU,YAAY,EAAE;EAClB,CAAC;EACDC,KAAK,EAAE;IACHC,UAAU,EAAE,oBAAoB;IAChCC,WAAW,EAAE,aAAa;IAC1BC,WAAW,EAAE,CAAC;IACdL,eAAe,EAAE,CAAC;IAClBJ,iBAAiB,EAAE,CAAC;IACpBU,QAAQ,EAAE,EAAE;IACZC,UAAU,EAAE,CAAC;IACbjB,KAAK,EAAE;EACX,CAAC;EACDkB,OAAO,EAAE;IACLR,eAAe,EAAE,EAAE;IACnBS,iBAAiB,EAAE,MAAM;IACzBC,iBAAiB,EAAE;EACvB,CAAC;EACDC,MAAM,EAAE;IACJR,UAAU,EAAE,kBAAkB;IAC9BG,QAAQ,EAAE,EAAE;IACZM,SAAS,EAAE;EACf,CAAC;EACDC,UAAU,EAAE;IACRjB,iBAAiB,EAAE,EAAE;IACrBD,SAAS,EAAE,EAAE;IACbD,aAAa,EAAE,QAAQ;IACvBG,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE;EAChB,CAAC;EACDgB,QAAQ,EAAE;IACNxB,KAAK,EAAE,KAAK;IACZyB,MAAM,EAAE;EACZ,CAAC;EACDC,UAAU,EAAE;IACRb,UAAU,EAAE,oBAAoB;IAChCG,QAAQ,EAAE,EAAE;IACZM,SAAS,EAAE,QAAQ;IACnBtB,KAAK,EAAE;EACX;AACJ,CAAC,CAAC;AAEF,eAAeN,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

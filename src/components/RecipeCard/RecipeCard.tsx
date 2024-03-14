@@ -13,10 +13,10 @@ interface Item {
 }
 
 type Navigation = {
-    navigation: any
-}
+    navigation: any;
+};
 
-const RecipeCard: React.FC<Navigation> = ({navigation}) => {
+const RecipeCard: React.FC<Navigation> = ({ navigation }) => {
     const [data, setData] = useState<Item[]>([
         { uri: require('../../../assets/images/chef.png') },
         { uri: require('../../../assets/images/chef.png') },
@@ -31,7 +31,7 @@ const RecipeCard: React.FC<Navigation> = ({navigation}) => {
 
     const renderCard = ({ item }: { item: Item }) => {
         return (
-            <TouchableOpacity style={styles.itemRecipe} onPress = {() => navigation.navigate("Recipe")}>
+            <TouchableOpacity style={styles.itemRecipe} onPress={() => navigation.navigate('Recipe')}>
                 <Image source={background} style={styles.imgRecipe} resizeMode="cover" />
                 <Text style={styles.nameRecipe}>Phở Việt Nam</Text>
                 <View style={styles.ctnChef}>

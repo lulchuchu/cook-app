@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";  
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     containerCart: {
@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         backgroundColor: '#fff',
-        borderRadius: 16
+        borderRadius: 16,
     },
     item1: {
         width: '25%',
@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
     img: {
         width: '80%',
         height: 100,
-        borderRadius: 10
+        borderRadius: 10,
     },
     item2: {
         width: '53%',
-        paddingRight: 16
+        paddingRight: 16,
     },
     textName: {
         fontFamily: 'Inconsolata-Bold',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     textCancel: {
         fontFamily: 'Inconsolata-Bold',
         color: '#d75348',
-        fontSize: 16
+        fontSize: 16,
     },
     item3: {
         width: '22%',
@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     textPrice: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: 18,
-        color: '#da7e4f'
+        color: '#da7e4f',
     },
     imgShiper: {
         width: 24,
-        height: 24
-    }
+        height: 24,
+    },
 });
 
 export default styles;

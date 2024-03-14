@@ -1,30 +1,41 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        position: 'relative',
-        width: '100%',
         backgroundColor: '#f6f6f6',
-        top: 0
     },
     header: {
         flexDirection: 'row',
+        alignItems: 'center',
         paddingTop: 40,
         paddingHorizontal: 16,
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        backgroundColor: '#f6f6f6',
+        width: '100%',
+        position: 'absolute',
+        top: 0,
+        zIndex: 20,
+        paddingBottom: 12,
+        // shadowColor: '#000',
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 2,
+        // },
+        // shadowOpacity: 0.2,
+        // shadowRadius: 4,
     },
     ctnSearch: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '90%',
+        justifyContent: 'space-between',
         paddingHorizontal: 20,
+        marginRight: 12,
+        width: '90%',
         paddingVertical: 6,
         backgroundColor: '#fff',
         borderRadius: 12,
         borderColor: '#ccc',
-        borderWidth: 0.5
+        borderWidth: 0.5,
     },
     input: {
         fontFamily: 'Inconsolata-Medium',
@@ -45,8 +56,15 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     ctnBody: {
-        paddingBottom: 40
-    }
+        position: 'absolute',
+        zIndex: 10,
+        width: '100%',
+        height: '100%',
+        // paddingBottom: 80,
+    },
+    marginTop: {
+        marginTop: 92,
+    },
 });
 
 export default styles;

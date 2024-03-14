@@ -18,7 +18,6 @@ type Navigation = {
 };
 
 const CartScreen: React.FC<Navigation> = ({ navigation }) => {
-
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -32,31 +31,26 @@ const CartScreen: React.FC<Navigation> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-
-            <View style = {styles.header}>
-                <View style = {styles.ctnSearch}>
+            <View style={styles.header}>
+                <View style={styles.ctnSearch}>
                     <TouchableOpacity>
-                        <FontAwesomeIcon icon = {faMagnifyingGlass} size={20} color='#7d7d80'/>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} size={20} color="#7d7d80" />
                     </TouchableOpacity>
-                    <TextInput 
-                        placeholder='Tìm kiếm'
-                        placeholderTextColor='#7d7d80'
-                        style = {styles.input}
-                    />
+                    <TextInput placeholder="Tìm kiếm" placeholderTextColor="#7d7d80" style={styles.input} />
                 </View>
 
                 <View>
                     <TouchableOpacity>
-                        <FontAwesomeIcon icon = {faSliders} size={26} color='#5a5a5a'/>
+                        <FontAwesomeIcon icon={faSliders} size={26} color="#5a5a5a" />
                     </TouchableOpacity>
                 </View>
             </View>
 
-            <View style = {styles.ctnText}>
-                <Text style = {styles.textIn}>Kitchen Stories</Text>
+            <View style={styles.ctnText}>
+                <Text style={styles.textIn}>Kitchen Stories</Text>
             </View>
 
-            <View style = {styles.ctnContent}>
+            <View style={styles.ctnContent}>
                 {/* <Image source={emtyCart} resizeMode='contain' style = {styles.emtyCart}/>
                 <Text style = {styles.textNotice}>Bạn chưa có nguyên liệu nào cần mua trong giỏ hàng!</Text>
                 <TouchableOpacity style = {styles.btn}>
@@ -64,15 +58,12 @@ const CartScreen: React.FC<Navigation> = ({ navigation }) => {
                 </TouchableOpacity> */}
 
                 <TouchableOpacity onPress={() => setShowCheckOut(true)}>
-                    <CartItem checkout = {() => setShowCheckOut(true)}/>
+                    <CartItem checkout={() => setShowCheckOut(true)} />
                 </TouchableOpacity>
             </View>
 
-            {showCheckOut ?
-                <FormCheckOut cancel = {() => setShowCheckOut(false)}/>
-                : ''
-            }
-            <Footer navigation={navigation} address={"Cart"}/>
+            {showCheckOut ? <FormCheckOut cancel={() => setShowCheckOut(false)} /> : ''}
+            <Footer navigation={navigation} address={'Cart'} />
         </View>
     );
 };

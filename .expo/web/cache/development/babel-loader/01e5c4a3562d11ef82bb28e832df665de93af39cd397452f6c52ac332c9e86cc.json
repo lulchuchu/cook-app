@@ -1,1 +1,51 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  ctn: {\n    position: 'absolute',\n    zIndex: 150,\n    backgroundColor: 'rgb(0, 0, 0, 0.4)',\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    width: '100%',\n    top: 0,\n    bottom: 0\n  },\n  container: {\n    backgroundColor: '#fff',\n    paddingHorizontal: 20,\n    paddingVertical: 20,\n    borderRadius: 8,\n    width: 320,\n    shadowColor: '#000',\n    shadowOffset: {\n      width: 0,\n      height: 1\n    },\n    shadowOpacity: 0.1,\n    shadowRadius: 4\n  },\n  header: {\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center',\n    marginBottom: 20\n  },\n  textHeader: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 20\n  },\n  textConfirm: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 18,\n    lineHeight: 24,\n    textAlign: 'center'\n  },\n  btnConfirm: {\n    backgroundColor: '#00ab56',\n    paddingHorizontal: 20,\n    paddingVertical: 10,\n    borderRadius: 8,\n    flexDirection: 'row',\n    justifyContent: 'center',\n    alignItems: 'center'\n  },\n  textBtn: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 16,\n    color: '#fff'\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","ctn","position","zIndex","backgroundColor","flex","justifyContent","alignItems","width","top","bottom","container","paddingHorizontal","paddingVertical","borderRadius","shadowColor","shadowOffset","height","shadowOpacity","shadowRadius","header","flexDirection","marginBottom","textHeader","fontFamily","fontSize","textConfirm","lineHeight","textAlign","btnConfirm","textBtn","color"],"sources":["D:/React Native/MAD/cook-app/src/components/FomConfirm/style.js"],"sourcesContent":["import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    ctn: {\r\n        position: 'absolute',\r\n        zIndex: 150,\r\n        backgroundColor: 'rgb(0, 0, 0, 0.4)',\r\n        flex: 1,\r\n        justifyContent: 'center',\r\n        alignItems: 'center',\r\n        width: '100%',\r\n        top: 0,\r\n        bottom: 0\r\n    },\r\n    container: {\r\n        backgroundColor: '#fff',\r\n        paddingHorizontal: 20,\r\n        paddingVertical: 20,\r\n        borderRadius: 8,\r\n        width: 320,\r\n        shadowColor: '#000',\r\n        shadowOffset: {\r\n            width: 0,\r\n            height: 1,\r\n        },\r\n        shadowOpacity: 0.1,\r\n        shadowRadius: 4,\r\n    },\r\n    header: {\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center',\r\n        marginBottom: 20\r\n    },\r\n    textHeader: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 20\r\n    },\r\n    textConfirm: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 18,\r\n        lineHeight: 24,\r\n        textAlign: 'center'\r\n    },\r\n    btnConfirm: {\r\n        backgroundColor: '#00ab56',\r\n        paddingHorizontal: 20,\r\n        paddingVertical: 10,\r\n        borderRadius: 8,\r\n        flexDirection: 'row',\r\n        justifyContent: 'center',\r\n        alignItems: 'center',\r\n    },\r\n    textBtn: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 16,\r\n        color: '#fff'\r\n    },\r\n});\r\n\r\nexport default styles;"],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,GAAG,EAAE;IACDC,QAAQ,EAAE,UAAU;IACpBC,MAAM,EAAE,GAAG;IACXC,eAAe,EAAE,mBAAmB;IACpCC,IAAI,EAAE,CAAC;IACPC,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE,QAAQ;IACpBC,KAAK,EAAE,MAAM;IACbC,GAAG,EAAE,CAAC;IACNC,MAAM,EAAE;EACZ,CAAC;EACDC,SAAS,EAAE;IACPP,eAAe,EAAE,MAAM;IACvBQ,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,YAAY,EAAE,CAAC;IACfN,KAAK,EAAE,GAAG;IACVO,WAAW,EAAE,MAAM;IACnBC,YAAY,EAAE;MACVR,KAAK,EAAE,CAAC;MACRS,MAAM,EAAE;IACZ,CAAC;IACDC,aAAa,EAAE,GAAG;IAClBC,YAAY,EAAE;EAClB,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,KAAK;IACpBf,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE,QAAQ;IACpBe,YAAY,EAAE;EAClB,CAAC;EACDC,UAAU,EAAE;IACRC,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE;EACd,CAAC;EACDC,WAAW,EAAE;IACTF,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZE,UAAU,EAAE,EAAE;IACdC,SAAS,EAAE;EACf,CAAC;EACDC,UAAU,EAAE;IACRzB,eAAe,EAAE,SAAS;IAC1BQ,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,YAAY,EAAE,CAAC;IACfO,aAAa,EAAE,KAAK;IACpBf,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE;EAChB,CAAC;EACDuB,OAAO,EAAE;IACLN,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZM,KAAK,EAAE;EACX;AACJ,CAAC,CAAC;AAEF,eAAejC,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  ctn: {\n    position: 'absolute',\n    zIndex: 150,\n    backgroundColor: 'rgb(0, 0, 0, 0.4)',\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    width: '100%',\n    top: 0,\n    bottom: 0\n  },\n  container: {\n    backgroundColor: '#fff',\n    paddingHorizontal: 20,\n    paddingVertical: 20,\n    borderRadius: 8,\n    width: 320,\n    shadowColor: '#000',\n    shadowOffset: {\n      width: 0,\n      height: 1\n    },\n    shadowOpacity: 0.1,\n    shadowRadius: 4\n  },\n  header: {\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center',\n    marginBottom: 20\n  },\n  textHeader: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 20\n  },\n  textConfirm: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 18,\n    lineHeight: 24,\n    textAlign: 'center'\n  },\n  btnConfirm: {\n    backgroundColor: '#00ab56',\n    paddingHorizontal: 20,\n    paddingVertical: 10,\n    borderRadius: 8,\n    flexDirection: 'row',\n    justifyContent: 'center',\n    alignItems: 'center'\n  },\n  textBtn: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 16,\n    color: '#fff'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "ctn",
+            "position",
+            "zIndex",
+            "backgroundColor",
+            "flex",
+            "justifyContent",
+            "alignItems",
+            "width",
+            "top",
+            "bottom",
+            "container",
+            "paddingHorizontal",
+            "paddingVertical",
+            "borderRadius",
+            "shadowColor",
+            "shadowOffset",
+            "height",
+            "shadowOpacity",
+            "shadowRadius",
+            "header",
+            "flexDirection",
+            "marginBottom",
+            "textHeader",
+            "fontFamily",
+            "fontSize",
+            "textConfirm",
+            "lineHeight",
+            "textAlign",
+            "btnConfirm",
+            "textBtn",
+            "color"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/FomConfirm/style.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    ctn: {\r\n        position: 'absolute',\r\n        zIndex: 150,\r\n        backgroundColor: 'rgb(0, 0, 0, 0.4)',\r\n        flex: 1,\r\n        justifyContent: 'center',\r\n        alignItems: 'center',\r\n        width: '100%',\r\n        top: 0,\r\n        bottom: 0\r\n    },\r\n    container: {\r\n        backgroundColor: '#fff',\r\n        paddingHorizontal: 20,\r\n        paddingVertical: 20,\r\n        borderRadius: 8,\r\n        width: 320,\r\n        shadowColor: '#000',\r\n        shadowOffset: {\r\n            width: 0,\r\n            height: 1,\r\n        },\r\n        shadowOpacity: 0.1,\r\n        shadowRadius: 4,\r\n    },\r\n    header: {\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center',\r\n        marginBottom: 20\r\n    },\r\n    textHeader: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 20\r\n    },\r\n    textConfirm: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 18,\r\n        lineHeight: 24,\r\n        textAlign: 'center'\r\n    },\r\n    btnConfirm: {\r\n        backgroundColor: '#00ab56',\r\n        paddingHorizontal: 20,\r\n        paddingVertical: 10,\r\n        borderRadius: 8,\r\n        flexDirection: 'row',\r\n        justifyContent: 'center',\r\n        alignItems: 'center',\r\n    },\r\n    textBtn: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 16,\r\n        color: '#fff'\r\n    },\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,GAAG,EAAE;IACDC,QAAQ,EAAE,UAAU;IACpBC,MAAM,EAAE,GAAG;IACXC,eAAe,EAAE,mBAAmB;IACpCC,IAAI,EAAE,CAAC;IACPC,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE,QAAQ;IACpBC,KAAK,EAAE,MAAM;IACbC,GAAG,EAAE,CAAC;IACNC,MAAM,EAAE;EACZ,CAAC;EACDC,SAAS,EAAE;IACPP,eAAe,EAAE,MAAM;IACvBQ,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,YAAY,EAAE,CAAC;IACfN,KAAK,EAAE,GAAG;IACVO,WAAW,EAAE,MAAM;IACnBC,YAAY,EAAE;MACVR,KAAK,EAAE,CAAC;MACRS,MAAM,EAAE;IACZ,CAAC;IACDC,aAAa,EAAE,GAAG;IAClBC,YAAY,EAAE;EAClB,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,KAAK;IACpBf,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE,QAAQ;IACpBe,YAAY,EAAE;EAClB,CAAC;EACDC,UAAU,EAAE;IACRC,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE;EACd,CAAC;EACDC,WAAW,EAAE;IACTF,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZE,UAAU,EAAE,EAAE;IACdC,SAAS,EAAE;EACf,CAAC;EACDC,UAAU,EAAE;IACRzB,eAAe,EAAE,SAAS;IAC1BQ,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,YAAY,EAAE,CAAC;IACfO,aAAa,EAAE,KAAK;IACpBf,cAAc,EAAE,QAAQ;IACxBC,UAAU,EAAE;EAChB,CAAC;EACDuB,OAAO,EAAE;IACLN,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZM,KAAK,EAAE;EACX;AACJ,CAAC,CAAC;AAEF,eAAejC,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

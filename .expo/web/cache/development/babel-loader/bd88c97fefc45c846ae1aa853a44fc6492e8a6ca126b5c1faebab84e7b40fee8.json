@@ -1,1 +1,35 @@
-{"ast":null,"code":"var _jsxFileName = \"D:\\\\React Native\\\\MAD\\\\cook-app\\\\src\\\\pages\\\\Cart\\\\Cart.tsx\",\n  _this = this;\nimport React from 'react';\nimport View from \"react-native-web/dist/exports/View\";\nimport styles from \"./styles\";\nimport Footer from \"../../components/Footer/Footer\";\nimport { jsxDEV as _jsxDEV } from \"react/jsx-dev-runtime\";\nvar CartScreen = function CartScreen(_ref) {\n  var navigation = _ref.navigation;\n  return _jsxDEV(View, {\n    style: styles.container,\n    children: _jsxDEV(Footer, {\n      navigation: navigation,\n      address: \"Cart\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 16,\n      columnNumber: 13\n    }, _this)\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 15,\n    columnNumber: 9\n  }, _this);\n};\nexport default CartScreen;","map":{"version":3,"names":["React","View","styles","Footer","jsxDEV","_jsxDEV","CartScreen","_ref","navigation","style","container","children","address","fileName","_jsxFileName","lineNumber","columnNumber","_this"],"sources":["D:/React Native/MAD/cook-app/src/pages/Cart/Cart.tsx"],"sourcesContent":["import React from 'react';\nimport { View } from 'react-native';\nimport { StackNavigationProp } from '@react-navigation/stack';\nimport { RootStackParamList } from '../../../App';\n\nimport styles from './styles';\nimport Footer from '../../components/Footer/Footer';\n\ntype Navigation = {\n    navigation: StackNavigationProp<RootStackParamList>;\n};\n\nconst CartScreen: React.FC<Navigation> = ({ navigation }) => {\n    return (\n        <View style={styles.container}>\n            <Footer navigation={navigation} address={\"Cart\"}/>\n        </View>\n    );\n};\n\nexport default CartScreen;\n"],"mappings":";;AAAA,OAAOA,KAAK,MAAM,OAAO;AAAC,OAAAC,IAAA;AAK1B,OAAOC,MAAM;AACb,OAAOC,MAAM;AAAuC,SAAAC,MAAA,IAAAC,OAAA;AAMpD,IAAMC,UAAgC,GAAG,SAAnCA,UAAgCA,CAAAC,IAAA,EAAuB;EAAA,IAAjBC,UAAU,GAAAD,IAAA,CAAVC,UAAU;EAClD,OACIH,OAAA,CAACJ,IAAI;IAACQ,KAAK,EAAEP,MAAM,CAACQ,SAAU;IAAAC,QAAA,EAC1BN,OAAA,CAACF,MAAM;MAACK,UAAU,EAAEA,UAAW;MAACI,OAAO,EAAE;IAAO;MAAAC,QAAA,EAAAC,YAAA;MAAAC,UAAA;MAAAC,YAAA;IAAA,GAAAC,KAAC;EAAC;IAAAJ,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KAChD,CAAC;AAEf,CAAC;AAED,eAAeX,UAAU"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "var _jsxFileName = \"D:\\\\React Native\\\\MAD\\\\cook-app\\\\src\\\\pages\\\\Cart\\\\Cart.tsx\",\n  _this = this;\nimport React from 'react';\nimport View from \"react-native-web/dist/exports/View\";\nimport styles from \"./styles\";\nimport Footer from \"../../components/Footer/Footer\";\nimport { jsxDEV as _jsxDEV } from \"react/jsx-dev-runtime\";\nvar CartScreen = function CartScreen(_ref) {\n  var navigation = _ref.navigation;\n  return _jsxDEV(View, {\n    style: styles.container,\n    children: _jsxDEV(Footer, {\n      navigation: navigation,\n      address: \"Cart\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 16,\n      columnNumber: 13\n    }, _this)\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 15,\n    columnNumber: 9\n  }, _this);\n};\nexport default CartScreen;",
+    "map": {
+        "version": 3,
+        "names": [
+            "React",
+            "View",
+            "styles",
+            "Footer",
+            "jsxDEV",
+            "_jsxDEV",
+            "CartScreen",
+            "_ref",
+            "navigation",
+            "style",
+            "container",
+            "children",
+            "address",
+            "fileName",
+            "_jsxFileName",
+            "lineNumber",
+            "columnNumber",
+            "_this"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Cart/Cart.tsx"],
+        "sourcesContent": [
+            "import React from 'react';\nimport { View } from 'react-native';\nimport { StackNavigationProp } from '@react-navigation/stack';\nimport { RootStackParamList } from '../../../App';\n\nimport styles from './styles';\nimport Footer from '../../components/Footer/Footer';\n\ntype Navigation = {\n    navigation: StackNavigationProp<RootStackParamList>;\n};\n\nconst CartScreen: React.FC<Navigation> = ({ navigation }) => {\n    return (\n        <View style={styles.container}>\n            <Footer navigation={navigation} address={\"Cart\"}/>\n        </View>\n    );\n};\n\nexport default CartScreen;\n"
+        ],
+        "mappings": ";;AAAA,OAAOA,KAAK,MAAM,OAAO;AAAC,OAAAC,IAAA;AAK1B,OAAOC,MAAM;AACb,OAAOC,MAAM;AAAuC,SAAAC,MAAA,IAAAC,OAAA;AAMpD,IAAMC,UAAgC,GAAG,SAAnCA,UAAgCA,CAAAC,IAAA,EAAuB;EAAA,IAAjBC,UAAU,GAAAD,IAAA,CAAVC,UAAU;EAClD,OACIH,OAAA,CAACJ,IAAI;IAACQ,KAAK,EAAEP,MAAM,CAACQ,SAAU;IAAAC,QAAA,EAC1BN,OAAA,CAACF,MAAM;MAACK,UAAU,EAAEA,UAAW;MAACI,OAAO,EAAE;IAAO;MAAAC,QAAA,EAAAC,YAAA;MAAAC,UAAA;MAAAC,YAAA;IAAA,GAAAC,KAAC;EAAC;IAAAJ,QAAA,EAAAC,YAAA;IAAAC,UAAA;IAAAC,YAAA;EAAA,GAAAC,KAChD,CAAC;AAEf,CAAC;AAED,eAAeX,UAAU"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

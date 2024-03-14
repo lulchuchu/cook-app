@@ -1,1 +1,39 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    position: 'relative',\n    width: '100%',\n    backgroundColor: '#fff',\n    top: 0\n  },\n  header: {\n    flexDirection: 'row',\n    marginTop: 40,\n    paddingHorizontal: 16,\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  imgFilter: {\n    width: 32,\n    height: 32\n  },\n  ctnSearch: {\n    flexDirection: 'row',\n    alignItems: 'center',\n    width: '90%',\n    paddingHorizontal: 20,\n    paddingVertical: 14,\n    backgroundColor: '#f2f4f5',\n    borderRadius: 12\n  },\n  input: {\n    fontFamily: 'Inconsolata-Medium'\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","container","flex","position","width","backgroundColor","top","header","flexDirection","marginTop","paddingHorizontal","justifyContent","alignItems","imgFilter","height","ctnSearch","paddingVertical","borderRadius","input","fontFamily"],"sources":["D:/React Native/MAD/cook-app/src/pages/Cart/styles.js"],"sourcesContent":["import { StyleSheet } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n        position: 'relative',\n        width: '100%',\n        backgroundColor: '#fff',\n        top: 0\n    },\n    header: {\n        flexDirection: 'row',\n        marginTop: 40,\n        paddingHorizontal: 16,\n        justifyContent: 'space-between',\n        alignItems: 'center',\n    },\n    imgFilter: {\n        width: 32,\n        height: 32\n    },\n    ctnSearch: {\n        flexDirection: 'row',\n        alignItems: 'center',\n        width: '90%',\n        paddingHorizontal: 20,\n        paddingVertical: 14,\n        backgroundColor: '#f2f4f5',\n        borderRadius: 12\n    },\n    input: {\n        fontFamily: 'Inconsolata-Medium'\n    }\n});\n\nexport default styles;\n"],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE,CAAC;IACPC,QAAQ,EAAE,UAAU;IACpBC,KAAK,EAAE,MAAM;IACbC,eAAe,EAAE,MAAM;IACvBC,GAAG,EAAE;EACT,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,KAAK;IACpBC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE,EAAE;IACrBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPT,KAAK,EAAE,EAAE;IACTU,MAAM,EAAE;EACZ,CAAC;EACDC,SAAS,EAAE;IACPP,aAAa,EAAE,KAAK;IACpBI,UAAU,EAAE,QAAQ;IACpBR,KAAK,EAAE,KAAK;IACZM,iBAAiB,EAAE,EAAE;IACrBM,eAAe,EAAE,EAAE;IACnBX,eAAe,EAAE,SAAS;IAC1BY,YAAY,EAAE;EAClB,CAAC;EACDC,KAAK,EAAE;IACHC,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAerB,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    position: 'relative',\n    width: '100%',\n    backgroundColor: '#fff',\n    top: 0\n  },\n  header: {\n    flexDirection: 'row',\n    marginTop: 40,\n    paddingHorizontal: 16,\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  imgFilter: {\n    width: 32,\n    height: 32\n  },\n  ctnSearch: {\n    flexDirection: 'row',\n    alignItems: 'center',\n    width: '90%',\n    paddingHorizontal: 20,\n    paddingVertical: 14,\n    backgroundColor: '#f2f4f5',\n    borderRadius: 12\n  },\n  input: {\n    fontFamily: 'Inconsolata-Medium'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "flex",
+            "position",
+            "width",
+            "backgroundColor",
+            "top",
+            "header",
+            "flexDirection",
+            "marginTop",
+            "paddingHorizontal",
+            "justifyContent",
+            "alignItems",
+            "imgFilter",
+            "height",
+            "ctnSearch",
+            "paddingVertical",
+            "borderRadius",
+            "input",
+            "fontFamily"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Cart/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from 'react-native';\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n        position: 'relative',\n        width: '100%',\n        backgroundColor: '#fff',\n        top: 0\n    },\n    header: {\n        flexDirection: 'row',\n        marginTop: 40,\n        paddingHorizontal: 16,\n        justifyContent: 'space-between',\n        alignItems: 'center',\n    },\n    imgFilter: {\n        width: 32,\n        height: 32\n    },\n    ctnSearch: {\n        flexDirection: 'row',\n        alignItems: 'center',\n        width: '90%',\n        paddingHorizontal: 20,\n        paddingVertical: 14,\n        backgroundColor: '#f2f4f5',\n        borderRadius: 12\n    },\n    input: {\n        fontFamily: 'Inconsolata-Medium'\n    }\n});\n\nexport default styles;\n"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE,CAAC;IACPC,QAAQ,EAAE,UAAU;IACpBC,KAAK,EAAE,MAAM;IACbC,eAAe,EAAE,MAAM;IACvBC,GAAG,EAAE;EACT,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,KAAK;IACpBC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE,EAAE;IACrBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPT,KAAK,EAAE,EAAE;IACTU,MAAM,EAAE;EACZ,CAAC;EACDC,SAAS,EAAE;IACPP,aAAa,EAAE,KAAK;IACpBI,UAAU,EAAE,QAAQ;IACpBR,KAAK,EAAE,KAAK;IACZM,iBAAiB,EAAE,EAAE;IACrBM,eAAe,EAAE,EAAE;IACnBX,eAAe,EAAE,SAAS;IAC1BY,YAAY,EAAE;EAClB,CAAC;EACDC,KAAK,EAAE;IACHC,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAerB,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

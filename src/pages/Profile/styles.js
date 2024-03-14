@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         position: 'relative',
         top: 0,
-        width: '100%'
+        width: '100%',
     },
     header: {
         marginTop: 40,
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 30
+        fontSize: 30,
     },
     ctnProfile: {
         flexDirection: 'row',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 16
+        marginRight: 16,
     },
     ctnInfo: {
         flexDirection: 'column',
@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
     },
     textName: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 20
+        fontSize: 20,
     },
     textRole: {
         fontFamily: 'Inconsolata-Medium',
         color: '#686868',
         fontSize: 16,
-        marginVertical: 12
+        marginVertical: 12,
     },
     btnEdit: {
         paddingVertical: 8,
@@ -73,37 +73,36 @@ const styles = StyleSheet.create({
     itemType: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: Dimensions.get("window").width / 3,
+        width: Dimensions.get('window').width / 3,
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
         justifyContent: 'center',
-        paddingVertical: 16
+        paddingVertical: 16,
     },
     itemClick: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: Dimensions.get("window").width / 3,
+        width: Dimensions.get('window').width / 3,
         borderBottomColor: '#da7e4f',
         borderBottomWidth: 2,
         justifyContent: 'center',
-        paddingVertical: 16
+        paddingVertical: 16,
     },
     textType: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
-        marginLeft: 8
+        marginLeft: 8,
     },
     textTypeClick: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
         marginLeft: 8,
-        color: '#da7e4f'
+        color: '#da7e4f',
     },
     ctnContent: {
         paddingHorizontal: 16,
         paddingVertical: 40,
     },
-   
 });
 
 export default styles;

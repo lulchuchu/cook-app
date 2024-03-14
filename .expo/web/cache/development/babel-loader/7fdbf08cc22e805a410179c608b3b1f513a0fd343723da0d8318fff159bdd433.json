@@ -1,1 +1,16 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1\n  },\n  header: {\n    marginTop: 40,\n    paddingHorizontal: 16\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","container","flex","header","marginTop","paddingHorizontal"],"sources":["D:/React Native/MAD/cook-app/src/pages/Profile/styles.js"],"sourcesContent":["import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        flex: 1\r\n    },\r\n    header: {\r\n        marginTop: 40,\r\n        paddingHorizontal: 16\r\n    }\r\n});\r\n\r\nexport default styles;"],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE;EACV,CAAC;EACDC,MAAM,EAAE;IACJC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE;EACvB;AACJ,CAAC,CAAC;AAEF,eAAeP,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1\n  },\n  header: {\n    marginTop: 40,\n    paddingHorizontal: 16\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": ["styles", "StyleSheet", "create", "container", "flex", "header", "marginTop", "paddingHorizontal"],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Profile/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        flex: 1\r\n    },\r\n    header: {\r\n        marginTop: 40,\r\n        paddingHorizontal: 16\r\n    }\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE;EACV,CAAC;EACDC,MAAM,EAAE;IACJC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE;EACvB;AACJ,CAAC,CAAC;AAEF,eAAeP,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

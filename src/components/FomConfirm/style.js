@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     ctn: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         top: 0,
-        bottom: 0
+        bottom: 0,
     },
     container: {
         backgroundColor: '#fff',
@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 20,
     },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 22
+        fontSize: 22,
     },
     textConfirm: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
         lineHeight: 24,
         textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 20,
     },
     btnConfirm: {
         backgroundColor: '#00ab56',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     textBtn: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
-        color: '#fff'
+        color: '#fff',
     },
 });
 
