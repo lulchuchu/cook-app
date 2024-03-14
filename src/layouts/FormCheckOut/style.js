@@ -1,15 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         position: 'absolute',
         top: 0,
-        left: 0,
-        right: 0,
+        width: '100%',
         bottom: 0,
         zIndex: 100,
-        backgroundColor: '#f6f6f6'
+        backgroundColor: '#f6f6f6',
     },
     header: {
         position: 'absolute',
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingBottom: 16,
         height: 80,
-        zIndex: 110,
+        zIndex: 10,
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
         flexDirection: 'row',
@@ -37,15 +35,14 @@ const styles = StyleSheet.create({
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: 22,
-        color: '#fff'
+        color: '#fff',
     },
     btnBack: {
         paddingHorizontal: 4,
-        paddingVertical: 4
+        paddingVertical: 4,
     },
     ctnBody: {
         paddingHorizontal: 16,
-        width: '100%',
         paddingTop: 110,
         paddingBottom: 80
     },
@@ -53,7 +50,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata-Bold',
         fontSize: 16,
         color: '#747474',
-        marginBottom: 12
+        marginBottom: 12,
     },
     ctnItemIngre: {
         backgroundColor: '#fff',
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 12
+        marginBottom: 12,
     },
     nameIngre: {
         fontFamily: 'Inconsolata-Bold',
@@ -75,16 +72,16 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     mb20: {
-        marginBottom: 20
+        marginBottom: 20,
     },
     mb32: {
-        marginBottom: 32
+        marginBottom: 32,
     },
     ctnInforCus: {
         paddingHorizontal: 12,
         paddingVertical: 12,
         backgroundColor: '#fff',
-        borderRadius: 16
+        borderRadius: 16,
     },
     name: {
         fontFamily: 'Inconsolata-Bold',
@@ -94,22 +91,23 @@ const styles = StyleSheet.create({
     flexRow: {
         flexDirection: 'row',
         marginBottom: 8,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     address: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 16,
         color: '#787878',
-        marginLeft: 12
+        marginLeft: 12,
     },
     textIn: {
         fontFamily: 'Inconsolata-Medium',
-        fontSize: 16
+        fontSize: 16,
     },
     ctnFooter: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         position: 'absolute',
+        zIndex: 10,
         bottom: 0,
         width: '100%',
         paddingHorizontal: 16,
@@ -135,14 +133,14 @@ const styles = StyleSheet.create({
     textBtn: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 16,
-        color: '#fff'
+        color: '#fff',
     },
     textMoney: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: 20,
         textAlign: 'center',
         color: '#d65246',
-        marginTop: 4
+        marginTop: 4,
     },
     ctnModal: {
         position: 'absolute',
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         top: 0,
-        bottom: 0
+        bottom: 0,
     },
 });
 

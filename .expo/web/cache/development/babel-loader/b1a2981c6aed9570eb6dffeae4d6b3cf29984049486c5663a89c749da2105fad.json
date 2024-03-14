@@ -1,1 +1,32 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  containerCart: {\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  item1: {\n    width: '25%'\n  },\n  img: {\n    width: '90%',\n    height: 100,\n    borderRadius: 16\n  },\n  item2: {\n    width: '55%'\n  },\n  item3: {\n    width: '20%'\n  },\n  imgShiper: {\n    width: 24,\n    height: 24\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","containerCart","flexDirection","justifyContent","alignItems","item1","width","img","height","borderRadius","item2","item3","imgShiper"],"sources":["D:/React Native/MAD/cook-app/src/components/CartItem/style.js"],"sourcesContent":["import { StyleSheet } from \"react-native\";  \r\n\r\nconst styles = StyleSheet.create({\r\n    containerCart: {\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center'\r\n    },\r\n    item1: {\r\n        width: '25%',\r\n    },\r\n    img: {\r\n        width: '90%',\r\n        height: 100,\r\n        borderRadius: 16\r\n    },\r\n    item2: {\r\n        width: '55%'\r\n    },\r\n    item3: {\r\n        width: '20%'\r\n    },\r\n    imgShiper: {\r\n        width: 24,\r\n        height: 24\r\n    }\r\n});\r\n\r\nexport default styles;"],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,aAAa,EAAE;IACXC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,KAAK,EAAE;IACHC,KAAK,EAAE;EACX,CAAC;EACDC,GAAG,EAAE;IACDD,KAAK,EAAE,KAAK;IACZE,MAAM,EAAE,GAAG;IACXC,YAAY,EAAE;EAClB,CAAC;EACDC,KAAK,EAAE;IACHJ,KAAK,EAAE;EACX,CAAC;EACDK,KAAK,EAAE;IACHL,KAAK,EAAE;EACX,CAAC;EACDM,SAAS,EAAE;IACPN,KAAK,EAAE,EAAE;IACTE,MAAM,EAAE;EACZ;AACJ,CAAC,CAAC;AAEF,eAAeV,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  containerCart: {\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  item1: {\n    width: '25%'\n  },\n  img: {\n    width: '90%',\n    height: 100,\n    borderRadius: 16\n  },\n  item2: {\n    width: '55%'\n  },\n  item3: {\n    width: '20%'\n  },\n  imgShiper: {\n    width: 24,\n    height: 24\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "containerCart",
+            "flexDirection",
+            "justifyContent",
+            "alignItems",
+            "item1",
+            "width",
+            "img",
+            "height",
+            "borderRadius",
+            "item2",
+            "item3",
+            "imgShiper"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/CartItem/style.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";  \r\n\r\nconst styles = StyleSheet.create({\r\n    containerCart: {\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center'\r\n    },\r\n    item1: {\r\n        width: '25%',\r\n    },\r\n    img: {\r\n        width: '90%',\r\n        height: 100,\r\n        borderRadius: 16\r\n    },\r\n    item2: {\r\n        width: '55%'\r\n    },\r\n    item3: {\r\n        width: '20%'\r\n    },\r\n    imgShiper: {\r\n        width: 24,\r\n        height: 24\r\n    }\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,aAAa,EAAE;IACXC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,KAAK,EAAE;IACHC,KAAK,EAAE;EACX,CAAC;EACDC,GAAG,EAAE;IACDD,KAAK,EAAE,KAAK;IACZE,MAAM,EAAE,GAAG;IACXC,YAAY,EAAE;EAClB,CAAC;EACDC,KAAK,EAAE;IACHJ,KAAK,EAAE;EACX,CAAC;EACDK,KAAK,EAAE;IACHL,KAAK,EAAE;EACX,CAAC;EACDM,SAAS,EAAE;IACPN,KAAK,EAAE,EAAE;IACTE,MAAM,EAAE;EACZ;AACJ,CAAC,CAAC;AAEF,eAAeV,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

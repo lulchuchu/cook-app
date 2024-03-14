@@ -1,1 +1,28 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1\n  },\n  header: {\n    marginTop: 40,\n    paddingHorizontal: 16,\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","container","flex","header","marginTop","paddingHorizontal","flexDirection","justifyContent","alignItems"],"sources":["D:/React Native/MAD/cook-app/src/pages/Profile/styles.js"],"sourcesContent":["import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        flex: 1\r\n    },\r\n    header: {\r\n        marginTop: 40,\r\n        paddingHorizontal: 16,\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center'\r\n    }\r\n});\r\n\r\nexport default styles;"],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE;EACV,CAAC;EACDC,MAAM,EAAE;IACJC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE,EAAE;IACrBC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAeV,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1\n  },\n  header: {\n    marginTop: 40,\n    paddingHorizontal: 16,\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "flex",
+            "header",
+            "marginTop",
+            "paddingHorizontal",
+            "flexDirection",
+            "justifyContent",
+            "alignItems"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Profile/styles.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        flex: 1\r\n    },\r\n    header: {\r\n        marginTop: 40,\r\n        paddingHorizontal: 16,\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center'\r\n    }\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE;EACV,CAAC;EACDC,MAAM,EAAE;IACJC,SAAS,EAAE,EAAE;IACbC,iBAAiB,EAAE,EAAE;IACrBC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAeV,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

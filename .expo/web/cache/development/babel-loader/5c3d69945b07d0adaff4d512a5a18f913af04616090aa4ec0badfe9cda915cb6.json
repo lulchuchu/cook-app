@@ -1,0 +1,48 @@
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#f6f6f6',\n    position: 'relative'\n  },\n  header: {\n    flexDirection: 'column',\n    paddingTop: 40,\n    paddingHorizontal: 16,\n    width: '100%'\n  },\n  ctnSearch: {\n    flexDirection: 'row',\n    alignItems: 'center',\n    justifyContent: 'space-between',\n    paddingHorizontal: 20,\n    marginRight: 12,\n    width: '90%',\n    paddingVertical: 6,\n    backgroundColor: '#fff',\n    borderRadius: 12,\n    borderColor: '#ccc',\n    borderWidth: 0.5\n  },\n  input: {\n    fontFamily: 'Inconsolata-Medium',\n    borderColor: 'transparent',\n    borderWidth: 0,\n    paddingVertical: 8,\n    paddingHorizontal: 8,\n    fontSize: 18,\n    marginLeft: 4,\n    width: '100%'\n  },\n  ctnText: {\n    paddingVertical: 20\n  },\n  textIn: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 24,\n    textAlign: 'center'\n  },\n  ctnBody: {\n    position: 'absolute',\n    zIndex: 10,\n    width: '100%',\n    height: '100%',\n    marginTop: 92\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "flex",
+            "backgroundColor",
+            "position",
+            "header",
+            "flexDirection",
+            "paddingTop",
+            "paddingHorizontal",
+            "width",
+            "ctnSearch",
+            "alignItems",
+            "justifyContent",
+            "marginRight",
+            "paddingVertical",
+            "borderRadius",
+            "borderColor",
+            "borderWidth",
+            "input",
+            "fontFamily",
+            "fontSize",
+            "marginLeft",
+            "ctnText",
+            "textIn",
+            "textAlign",
+            "ctnBody",
+            "zIndex",
+            "height",
+            "marginTop"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/pages/Community/style.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        flex: 1,\r\n        backgroundColor: '#f6f6f6',\r\n        position: 'relative',\r\n    },\r\n    header: {\r\n        flexDirection: 'column',\r\n        paddingTop: 40,\r\n        paddingHorizontal: 16,\r\n        width: '100%',\r\n    },\r\n    ctnSearch: {\r\n        flexDirection: 'row',\r\n        alignItems: 'center',\r\n        justifyContent: 'space-between',\r\n        paddingHorizontal: 20,\r\n        marginRight: 12,\r\n        width: '90%',\r\n        paddingVertical: 6,\r\n        backgroundColor: '#fff',\r\n        borderRadius: 12,\r\n        borderColor: '#ccc',\r\n        borderWidth: 0.5\r\n    },\r\n    input: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        borderColor: 'transparent',\r\n        borderWidth: 0,\r\n        paddingVertical: 8,\r\n        paddingHorizontal: 8,\r\n        fontSize: 18,\r\n        marginLeft: 4,\r\n        width: '100%',\r\n    },\r\n    ctnText: {\r\n        paddingVertical: 20,\r\n    },\r\n    textIn: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 24,\r\n        textAlign: 'center',\r\n    },\r\n    ctnBody: {\r\n        position: 'absolute',\r\n        zIndex: 10,\r\n        width: '100%',\r\n        height: '100%',\r\n        marginTop: 92,\r\n    }\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,IAAI,EAAE,CAAC;IACPC,eAAe,EAAE,SAAS;IAC1BC,QAAQ,EAAE;EACd,CAAC;EACDC,MAAM,EAAE;IACJC,aAAa,EAAE,QAAQ;IACvBC,UAAU,EAAE,EAAE;IACdC,iBAAiB,EAAE,EAAE;IACrBC,KAAK,EAAE;EACX,CAAC;EACDC,SAAS,EAAE;IACPJ,aAAa,EAAE,KAAK;IACpBK,UAAU,EAAE,QAAQ;IACpBC,cAAc,EAAE,eAAe;IAC/BJ,iBAAiB,EAAE,EAAE;IACrBK,WAAW,EAAE,EAAE;IACfJ,KAAK,EAAE,KAAK;IACZK,eAAe,EAAE,CAAC;IAClBX,eAAe,EAAE,MAAM;IACvBY,YAAY,EAAE,EAAE;IAChBC,WAAW,EAAE,MAAM;IACnBC,WAAW,EAAE;EACjB,CAAC;EACDC,KAAK,EAAE;IACHC,UAAU,EAAE,oBAAoB;IAChCH,WAAW,EAAE,aAAa;IAC1BC,WAAW,EAAE,CAAC;IACdH,eAAe,EAAE,CAAC;IAClBN,iBAAiB,EAAE,CAAC;IACpBY,QAAQ,EAAE,EAAE;IACZC,UAAU,EAAE,CAAC;IACbZ,KAAK,EAAE;EACX,CAAC;EACDa,OAAO,EAAE;IACLR,eAAe,EAAE;EACrB,CAAC;EACDS,MAAM,EAAE;IACJJ,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE,EAAE;IACZI,SAAS,EAAE;EACf,CAAC;EACDC,OAAO,EAAE;IACLrB,QAAQ,EAAE,UAAU;IACpBsB,MAAM,EAAE,EAAE;IACVjB,KAAK,EAAE,MAAM;IACbkB,MAAM,EAAE,MAAM;IACdC,SAAS,EAAE;EACf;AACJ,CAAC,CAAC;AAEF,eAAe9B,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

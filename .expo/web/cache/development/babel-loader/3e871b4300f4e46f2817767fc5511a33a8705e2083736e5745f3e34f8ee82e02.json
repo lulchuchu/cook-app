@@ -1,1 +1,36 @@
-{"ast":null,"code":"import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    borderTopColor: '#c9cdd0',\n    borderTopWidth: 8,\n    width: '100%'\n  },\n  ctnHeader: {\n    paddingHorizontal: 16,\n    paddingVertical: 20,\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  imageUser: {\n    width: 40,\n    height: 40,\n    borderRadius: 50,\n    borderColor: '#c54e22',\n    borderWidth: 0.5\n  },\n  flexRow: {\n    flexDirection: 'row',\n    alignItems: 'center'\n  }\n});\nexport default styles;","map":{"version":3,"names":["styles","StyleSheet","create","container","borderTopColor","borderTopWidth","width","ctnHeader","paddingHorizontal","paddingVertical","flexDirection","justifyContent","alignItems","imageUser","height","borderRadius","borderColor","borderWidth","flexRow"],"sources":["D:/React Native/MAD/cook-app/src/components/PostItem/style.js"],"sourcesContent":["import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        borderTopColor: '#c9cdd0',\r\n        borderTopWidth: 8,\r\n        width: '100%'\r\n    },\r\n    ctnHeader: {\r\n        paddingHorizontal: 16,\r\n        paddingVertical: 20,\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center',\r\n    },\r\n    imageUser: {\r\n        width: 40,\r\n        height: 40,\r\n        borderRadius: 50,\r\n        borderColor: '#c54e22',\r\n        borderWidth: 0.5\r\n    },\r\n    flexRow: {\r\n        flexDirection: 'row',\r\n        alignItems: 'center',\r\n    }\r\n});\r\n\r\nexport default styles; "],"mappings":";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,cAAc,EAAE,SAAS;IACzBC,cAAc,EAAE,CAAC;IACjBC,KAAK,EAAE;EACX,CAAC;EACDC,SAAS,EAAE;IACPC,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPP,KAAK,EAAE,EAAE;IACTQ,MAAM,EAAE,EAAE;IACVC,YAAY,EAAE,EAAE;IAChBC,WAAW,EAAE,SAAS;IACtBC,WAAW,EAAE;EACjB,CAAC;EACDC,OAAO,EAAE;IACLR,aAAa,EAAE,KAAK;IACpBE,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAeZ,MAAM"},"metadata":{},"sourceType":"module","externalDependencies":[]}
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    borderTopColor: '#c9cdd0',\n    borderTopWidth: 8,\n    width: '100%'\n  },\n  ctnHeader: {\n    paddingHorizontal: 16,\n    paddingVertical: 20,\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center'\n  },\n  imageUser: {\n    width: 40,\n    height: 40,\n    borderRadius: 50,\n    borderColor: '#c54e22',\n    borderWidth: 0.5\n  },\n  flexRow: {\n    flexDirection: 'row',\n    alignItems: 'center'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "borderTopColor",
+            "borderTopWidth",
+            "width",
+            "ctnHeader",
+            "paddingHorizontal",
+            "paddingVertical",
+            "flexDirection",
+            "justifyContent",
+            "alignItems",
+            "imageUser",
+            "height",
+            "borderRadius",
+            "borderColor",
+            "borderWidth",
+            "flexRow"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/PostItem/style.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        borderTopColor: '#c9cdd0',\r\n        borderTopWidth: 8,\r\n        width: '100%'\r\n    },\r\n    ctnHeader: {\r\n        paddingHorizontal: 16,\r\n        paddingVertical: 20,\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center',\r\n    },\r\n    imageUser: {\r\n        width: 40,\r\n        height: 40,\r\n        borderRadius: 50,\r\n        borderColor: '#c54e22',\r\n        borderWidth: 0.5\r\n    },\r\n    flexRow: {\r\n        flexDirection: 'row',\r\n        alignItems: 'center',\r\n    }\r\n});\r\n\r\nexport default styles; "
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,cAAc,EAAE,SAAS;IACzBC,cAAc,EAAE,CAAC;IACjBC,KAAK,EAAE;EACX,CAAC;EACDC,SAAS,EAAE;IACPC,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPP,KAAK,EAAE,EAAE;IACTQ,MAAM,EAAE,EAAE;IACVC,YAAY,EAAE,EAAE;IAChBC,WAAW,EAAE,SAAS;IACtBC,WAAW,EAAE;EACjB,CAAC;EACDC,OAAO,EAAE;IACLR,aAAa,EAAE,KAAK;IACpBE,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAeZ,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

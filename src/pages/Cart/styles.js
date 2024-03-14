@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: '100%',
         backgroundColor: '#f6f6f6',
-        top: 0
+        top: 0,
     },
     header: {
         flexDirection: 'row',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 6,
         backgroundColor: '#fff',
-        borderRadius: 12
+        borderRadius: 12,
     },
     input: {
         fontFamily: 'Inconsolata-Medium',
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         fontSize: 18,
         marginLeft: 4,
-        width: '100%'
+        width: '100%',
     },
     ctnText: {
         paddingVertical: 20,
         borderBottomColor: '#ccc',
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
     },
     textIn: {
         fontFamily: 'Inconsolata-Bold',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     emtyCart: {
         width: '60%',
-        height: 200
+        height: 200,
     },
     textNotice: {
         fontFamily: 'Inconsolata-Medium',
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         width: '80%',
         lineHeight: 26,
-        marginTop: 12
+        marginTop: 12,
     },
     btn: {
         paddingVertical: 12,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: '#0a9b70',
         width: 200,
-        marginTop: 24
+        marginTop: 24,
     },
     textBtn: {
         fontFamily: 'Inconsolata-Bold',

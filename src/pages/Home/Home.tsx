@@ -68,7 +68,7 @@ const Home: React.FC<Navigation> = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
 
-                        <RecipeCard navigation={navigation}/>
+                        <RecipeCard navigation={navigation} />
                         <View style={styles.ctnRecipeSelect}>
                             <View style={{ flexDirection: 'row', width: '100%' }}>
                                 <View style={{ width: '70%' }}>
@@ -89,7 +89,7 @@ const Home: React.FC<Navigation> = ({ navigation }) => {
                     </View>
                 </View>
             </ScrollView>
-            <Footer navigation={navigation} address='Home'/>
+            <Footer navigation={navigation} address="Home" />
         </View>
     );
 };
