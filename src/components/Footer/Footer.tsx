@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo} from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { faHouse, faMagnifyingGlass, faCartShopping, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -58,3 +58,42 @@ const Footer: React.FC<Navigation> = ({ navigation, address}) => {
 };
 
 export default Footer;
+// import React, { useMemo } from 'react';
+// import { Text, View, TouchableOpacity } from 'react-native';
+
+// import { faUser } from '@fortawesome/free-regular-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
+
+// import styles from './styles';
+// import { faHouse, faMagnifyingGlass, faCartShopping, faUsers } from '@fortawesome/free-solid-svg-icons';
+// // import { faHome, faSearch, faCommunity, faCart, faProfile } from '@fortawesome/free-solid-svg-icons';
+
+// const Footer: React.FC<{ address: string }> = ({ address }) => {
+//     const handleItemClick = (newAddress: string) => {
+//     };
+
+//     const renderFooterItem = (icon: any, label: string, targetAddress: string) => {
+//         const isActive = address === targetAddress;
+
+//         return (
+//             <TouchableOpacity style={styles.item} onPress={() => handleItemClick(targetAddress)}>
+//                 <FontAwesomeIcon size={20} icon={icon} color={isActive ? '#da7e4f' : '#747678'} />
+//                 <Text style={isActive ? styles.textClick : styles.text}>{label}</Text>
+//             </TouchableOpacity>
+//         );
+//     };
+
+//     return useMemo(() => (
+//         <View style={styles.container}>
+//             {renderFooterItem(faHouse, 'Home', 'Home')}
+//             {renderFooterItem(faMagnifyingGlass, 'Search', 'Search')}
+//             {renderFooterItem(faUsers, 'Community', 'Community')}
+//             {renderFooterItem(faCartShopping, 'Cart', 'Cart')}
+//             {renderFooterItem(faUser, 'Profile', 'Profile')}
+//         </View>
+//     ), [address]);
+// };
+
+// export default Footer;
+

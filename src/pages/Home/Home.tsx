@@ -14,6 +14,7 @@ const chef = require('../../../assets/images/chef.png');
 import Footer from '../../components/Footer/Footer';
 import Diet from '../../layouts/SelectDiet/Diet';
 import RecipeCard from '../../components/RecipeCard/RecipeCard';
+const MemoizedFooter = React.memo(Footer);
 
 type Navigation = {
     navigation: StackNavigationProp<RootStackParamList>;
