@@ -32,7 +32,7 @@ const App: React.FC = () => {
         <NavigationContainer>
             <StatusBar backgroundColor="#32363b" />
             <Stack.Navigator initialRouteName="Intro">
-                <Stack.Screen name="Intro" component={Community} options={{ headerShown: false }} />
+                <Stack.Screen name="Intro" component={Intro} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
                 <Stack.Screen name="OptionLogin" component={OptionLogin} options={{ headerShown: false }} />

@@ -1,0 +1,45 @@
+{
+    "ast": null,
+    "code": "import _asyncToGenerator from \"@babel/runtime/helpers/asyncToGenerator\";\nimport PermissionsAndroid from \"react-native-web/dist/exports/PermissionsAndroid\";\nimport NativeRNShare from \"../../codegenSpec/NativeRNShare\";\nimport { getAndroidVersion } from \"./platform\";\nexport function checkAndroidPermissionsForUrls(_x) {\n  return _checkAndroidPermissionsForUrls.apply(this, arguments);\n}\nfunction _checkAndroidPermissionsForUrls() {\n  _checkAndroidPermissionsForUrls = _asyncToGenerator(function* (urls) {\n    if ((yield Promise.all(urls.map(function (url) {\n      return NativeRNShare.isBase64File(url);\n    }))).includes(true)) {\n      yield checkExternalStoragePermission();\n    }\n  });\n  return _checkAndroidPermissionsForUrls.apply(this, arguments);\n}\nfunction checkExternalStoragePermission() {\n  return _checkExternalStoragePermission.apply(this, arguments);\n}\nfunction _checkExternalStoragePermission() {\n  _checkExternalStoragePermission = _asyncToGenerator(function* () {\n    var WRITE_EXTERNAL_STORAGE = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;\n    var granted = yield PermissionsAndroid.check(WRITE_EXTERNAL_STORAGE);\n    if (!granted) {\n      if (!isAndroidVersionAtLeastKitKat()) {\n        var result = yield PermissionsAndroid.request(WRITE_EXTERNAL_STORAGE);\n        if (result !== PermissionsAndroid.RESULTS.GRANTED) {\n          throw new Error('Write Permission not available');\n        }\n      }\n    }\n  });\n  return _checkExternalStoragePermission.apply(this, arguments);\n}\nfunction isAndroidVersionAtLeastKitKat() {\n  return getAndroidVersion() >= 19;\n}",
+    "map": {
+        "version": 3,
+        "names": [
+            "NativeRNShare",
+            "getAndroidVersion",
+            "checkAndroidPermissionsForUrls",
+            "_x",
+            "_checkAndroidPermissionsForUrls",
+            "apply",
+            "arguments",
+            "_asyncToGenerator",
+            "urls",
+            "Promise",
+            "all",
+            "map",
+            "url",
+            "isBase64File",
+            "includes",
+            "checkExternalStoragePermission",
+            "_checkExternalStoragePermission",
+            "WRITE_EXTERNAL_STORAGE",
+            "PermissionsAndroid",
+            "PERMISSIONS",
+            "granted",
+            "check",
+            "isAndroidVersionAtLeastKitKat",
+            "result",
+            "request",
+            "RESULTS",
+            "GRANTED",
+            "Error"
+        ],
+        "sources": ["D:\\React Native\\MAD\\cook-app\\node_modules\\react-native-share\\src\\helpers\\android.ts"],
+        "sourcesContent": [
+            "import { PermissionsAndroid } from 'react-native';\n\nimport NativeRNShare from '../../codegenSpec/NativeRNShare';\nimport { getAndroidVersion } from './platform';\n\nexport async function checkAndroidPermissionsForUrls(urls: string[]) {\n  // Reference: https://github.com/react-native-share/react-native-share/pull/871\n  if ((await Promise.all(urls.map((url) => NativeRNShare.isBase64File(url)))).includes(true)) {\n    await checkExternalStoragePermission();\n  }\n}\n\nasync function checkExternalStoragePermission() {\n  const { WRITE_EXTERNAL_STORAGE } = PermissionsAndroid.PERMISSIONS;\n\n  const granted = await PermissionsAndroid.check(WRITE_EXTERNAL_STORAGE);\n\n  if (!granted) {\n    if (!isAndroidVersionAtLeastKitKat()) {\n      const result = await PermissionsAndroid.request(WRITE_EXTERNAL_STORAGE);\n      if (result !== PermissionsAndroid.RESULTS.GRANTED) {\n        throw new Error('Write Permission not available');\n      }\n    }\n  }\n}\n\nfunction isAndroidVersionAtLeastKitKat() {\n  return getAndroidVersion() >= 19;\n}\n"
+        ],
+        "mappings": ";;AAEA,OAAOA,aAAa;AACpB,SAASC,iBAAiB;AAE1B,gBAAsBC,8BAA8BA,CAAAC,EAAA;EAAA,OAAAC,+BAAA,CAAAC,KAAA,OAAAC,SAAA;AAAA;AAKpD,SAAAF,gCAAA;EAAAA,+BAAA,GAAAG,iBAAA,CALO,WAA8CC,IAAc,EAAE;IAEnE,IAAI,OAAOC,OAAO,CAACC,GAAG,CAACF,IAAI,CAACG,GAAG,CAAE,UAAAC,GAAG;MAAA,OAAKZ,aAAa,CAACa,YAAY,CAACD,GAAG,CAAC;IAAA,EAAC,CAAC,EAAEE,QAAQ,CAAC,IAAI,CAAC,EAAE;MAC1F,MAAMC,8BAA8B,CAAC,CAAC;IACxC;EACF;EAAA,OAAAX,+BAAA,CAAAC,KAAA,OAAAC,SAAA;AAAA;AAAA,SAEeS,8BAA8BA,CAAA;EAAA,OAAAC,+BAAA,CAAAX,KAAA,OAAAC,SAAA;AAAA;AAAA,SAAAU,gCAAA;EAAAA,+BAAA,GAAAT,iBAAA,CAA7C,aAAgD;IAC9C,IAAQU,sBAAA,GAA2BC,kBAAkB,CAACC,WAAW,CAAzDF,sBAAA;IAER,IAAMG,OAAO,SAASF,kBAAkB,CAACG,KAAK,CAACJ,sBAAsB,CAAC;IAEtE,IAAI,CAACG,OAAO,EAAE;MACZ,IAAI,CAACE,6BAA6B,CAAC,CAAC,EAAE;QACpC,IAAMC,MAAM,SAASL,kBAAkB,CAACM,OAAO,CAACP,sBAAsB,CAAC;QACvE,IAAIM,MAAM,KAAKL,kBAAkB,CAACO,OAAO,CAACC,OAAO,EAAE;UACjD,MAAM,IAAIC,KAAK,CAAC,gCAAgC,CAAC;QACnD;MACF;IACF;EACF;EAAA,OAAAX,+BAAA,CAAAX,KAAA,OAAAC,SAAA;AAAA;AAEA,SAASgB,6BAA6BA,CAAA,EAAG;EACvC,OAAOrB,iBAAiB,CAAC,CAAC,IAAI,EAAE;AAClC"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

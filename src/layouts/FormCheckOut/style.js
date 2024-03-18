@@ -3,9 +3,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: 0,
         width: '100%',
-        bottom: 0,
+        height: '100%',
         zIndex: 100,
         backgroundColor: '#f6f6f6',
     },
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
     ctnBody: {
         paddingHorizontal: 16,
         paddingTop: 110,
-        paddingBottom: 80
+        paddingBottom: 80,
     },
     textTitle: {
         fontFamily: 'Inconsolata-Bold',

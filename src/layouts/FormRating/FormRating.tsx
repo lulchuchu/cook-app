@@ -16,6 +16,15 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc }) => {
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata_Condensed-Medium.ttf'),
     });
     const [isFocused, setIsFocused] = useState(false);
+    const [rating, setRating] = useState(0);
+
+    const handleRating = (value: number) => {
+        if (value === 1 && rating === 1) {
+            setRating(0);
+        } else {
+            setRating(value);
+        }
+    };
 
     const handleFocus = () => {
         setIsFocused(true);
@@ -38,8 +47,8 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc }) => {
 
                 <Text style={styles.textHeader}>Đánh giá</Text>
 
-                <TouchableOpacity style={styles.btnCancel}>
-                    <Text style={[styles.textIn, { color: '#686868' }]}>Gửi</Text>
+                <TouchableOpacity style={styles.btnCancel} onPress={rating > 0 ? cancelFunc : () => {}}>
+                    <Text style={[styles.textIn, { color: rating > 0 ? '#fc642d' : '#686868' }]}>Gửi</Text>
                 </TouchableOpacity>
             </View>
 
@@ -47,10 +56,10 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc }) => {
 
             <View style={styles.ctnRating}>
                 {[1, 2, 3, 4, 5].map((value) => (
-                    <TouchableOpacity key={value}>
+                    <TouchableOpacity key={value} onPress={() => handleRating(value)}>
                         <Text
                             style={{
-                                color: 'gray',
+                                color: rating >= value ? 'gold' : 'gray',
                                 fontSize: 28,
                                 marginHorizontal: 6,
                             }}

@@ -1,0 +1,46 @@
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    backgroundColor: '#fff',\n    width: '100%',\n    paddingHorizontal: 16,\n    paddingVertical: 20,\n    borderTopLeftRadius: 32,\n    borderTopRightRadius: 32\n  },\n  button: {\n    paddingHorizontal: 20,\n    paddingVertical: 10,\n    borderColor: '#0a9b70',\n    borderWidth: 1,\n    borderRadius: 20,\n    width: 200\n  },\n  ctnButton: {\n    position: 'absolute',\n    zIndex: 10,\n    flexDirection: 'row',\n    justifyContent: 'center',\n    bottom: 28,\n    width: '100%'\n  },\n  textInBold: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 24\n  },\n  textBtn: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 19,\n    textAlign: 'center',\n    color: '#0a9b70'\n  },\n  textDes: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 16,\n    width: '80%',\n    marginTop: 8,\n    lineHeight: 24,\n    color: '#0a9b70'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "backgroundColor",
+            "width",
+            "paddingHorizontal",
+            "paddingVertical",
+            "borderTopLeftRadius",
+            "borderTopRightRadius",
+            "button",
+            "borderColor",
+            "borderWidth",
+            "borderRadius",
+            "ctnButton",
+            "position",
+            "zIndex",
+            "flexDirection",
+            "justifyContent",
+            "bottom",
+            "textInBold",
+            "fontFamily",
+            "fontSize",
+            "textBtn",
+            "textAlign",
+            "color",
+            "textDes",
+            "marginTop",
+            "lineHeight"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/layouts/SaveCookBook/style.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        backgroundColor: '#fff',\r\n        width: '100%',\r\n        paddingHorizontal: 16,\r\n        paddingVertical: 20,\r\n        borderTopLeftRadius: 32,\r\n        borderTopRightRadius: 32,\r\n    },\r\n    button: {\r\n        paddingHorizontal: 20,\r\n        paddingVertical: 10,\r\n        borderColor: '#0a9b70',\r\n        borderWidth: 1,\r\n        borderRadius: 20,\r\n        width: 200\r\n    },\r\n    ctnButton: {\r\n        position: 'absolute',\r\n        zIndex: 10,\r\n        flexDirection: 'row',\r\n        justifyContent: 'center',\r\n        bottom: 28,\r\n        width: '100%'\r\n    },\r\n    textInBold: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 24\r\n    },\r\n    textBtn: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 19,\r\n        textAlign: 'center',\r\n        color: '#0a9b70'\r\n    },\r\n    textDes: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 16,\r\n        width: '80%',\r\n        marginTop: 8,\r\n        lineHeight: 24,\r\n        color: '#0a9b70',\r\n    },\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,eAAe,EAAE,MAAM;IACvBC,KAAK,EAAE,MAAM;IACbC,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBC,mBAAmB,EAAE,EAAE;IACvBC,oBAAoB,EAAE;EAC1B,CAAC;EACDC,MAAM,EAAE;IACJJ,iBAAiB,EAAE,EAAE;IACrBC,eAAe,EAAE,EAAE;IACnBI,WAAW,EAAE,SAAS;IACtBC,WAAW,EAAE,CAAC;IACdC,YAAY,EAAE,EAAE;IAChBR,KAAK,EAAE;EACX,CAAC;EACDS,SAAS,EAAE;IACPC,QAAQ,EAAE,UAAU;IACpBC,MAAM,EAAE,EAAE;IACVC,aAAa,EAAE,KAAK;IACpBC,cAAc,EAAE,QAAQ;IACxBC,MAAM,EAAE,EAAE;IACVd,KAAK,EAAE;EACX,CAAC;EACDe,UAAU,EAAE;IACRC,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE;EACd,CAAC;EACDC,OAAO,EAAE;IACLF,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZE,SAAS,EAAE,QAAQ;IACnBC,KAAK,EAAE;EACX,CAAC;EACDC,OAAO,EAAE;IACLL,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE,EAAE;IACZjB,KAAK,EAAE,KAAK;IACZsB,SAAS,EAAE,CAAC;IACZC,UAAU,EAAE,EAAE;IACdH,KAAK,EAAE;EACX;AACJ,CAAC,CAAC;AAEF,eAAezB,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

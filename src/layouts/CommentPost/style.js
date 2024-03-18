@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         zIndex: 100,
         backgroundColor: '#fff',
-        paddingTop: 20
+        paddingTop: 20,
     },
     ctnHeader: {
         paddingHorizontal: 16,
@@ -18,9 +18,33 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+    ctnHeaderScroll: {
+        position: 'absolute',
+        backgroundColor: '#fff',
+        zIndex: 110,
+        top: 0,
+        width: '100%',
+        paddingHorizontal: 16,
+        paddingTop: 16,
+        paddingBottom: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+    },
+    textAccount: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 16,
+    },
     ctnBack: {
         padding: 4,
-        marginRight: 12
+        marginRight: 12,
     },
     imageUser: {
         width: 44,
@@ -76,7 +100,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderBottomWidth: 0.7,
         borderTopColor: '#ccc',
-        borderTopWidth: 0.7
+        borderTopWidth: 0.7,
     },
     textInteract: {
         fontFamily: 'Inconsolata-Bold',
@@ -86,7 +110,7 @@ const styles = StyleSheet.create({
     },
     ctnComment: {
         paddingBottom: 80,
-        marginTop: 20
+        marginTop: 20,
     },
     ctnInputComment: {
         position: 'absolute',
@@ -118,7 +142,7 @@ const styles = StyleSheet.create({
         width: '85%',
         backgroundColor: '#f0f2f5',
         borderRadius: 20,
-        color: '#212121'
+        color: '#212121',
     },
 });
 

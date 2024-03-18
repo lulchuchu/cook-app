@@ -1,0 +1,81 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        zIndex: 100,
+        backgroundColor: '#fff',
+        paddingTop: 20,
+    },
+    ctnHeader: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        paddingHorizontal: 16,
+        paddingTop: 40,
+        paddingBottom: 12,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        shadowColor: '#000',
+        backgroundColor: '#fff',
+        shadowOffset: {
+            width: 0,
+            height: 0.5,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+    },
+    textHeader: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 22,
+    },
+    ctnBack: {
+        padding: 4,
+        marginRight: 12,
+    },
+    ctnComment: {
+        paddingBottom: 80,
+        marginTop: 80,
+        width: '100%',
+        paddingHorizontal: 16,
+    },
+    ctnInputComment: {
+        position: 'absolute',
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        alignItems: 'center',
+        zIndex: 10,
+        bottom: 0,
+        width: '100%',
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+    },
+    input: {
+        fontFamily: 'Inconsolata-Medium',
+        borderColor: 'transparent',
+        borderWidth: 0,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        fontSize: 18,
+        marginLeft: 4,
+        width: '80%',
+        backgroundColor: '#f0f2f5',
+        borderRadius: 20,
+        color: '#212121',
+        marginLeft: 12,
+    },
+});
+
+export default styles;

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -8,18 +8,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     ctnImg: {
-        marginRight: 12
+        marginRight: 12,
     },
     imgUser: {
         width: 40,
         height: 40,
-        borderRadius: 50
+        borderRadius: 50,
     },
     ctnInfor: {
         backgroundColor: '#f0f2f5',
         paddingHorizontal: 12,
         paddingVertical: 12,
-        borderRadius: 20
+        borderRadius: 20,
     },
     name: {
         fontFamily: 'Inconsolata-Bold',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     content: {
         fontFamily: 'Inconsolata-Medium',
-        fontSize: 16
+        fontSize: 16,
     },
     ctnInteract: {
         flexDirection: 'row',
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 200,
         paddingHorizontal: 12,
-        marginTop: 8
-    }
+        marginTop: 8,
+    },
 });
 
 export default styles;

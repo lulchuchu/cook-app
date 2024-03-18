@@ -354,6 +354,45 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
     },
+    containerSaveBook: {
+        flex: 1,
+        top: 0,
+        bottom: 0,
+        width: '100%',
+        position: 'absolute',
+        justifyContent: 'flex-end',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        flexDirection: 'column',
+        zIndex: 200,
+    },
+    overlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
+    ctnNotice: {
+        position: 'absolute',
+        top: 20,
+        width: '100%',
+        zIndex: 220,
+        padding: 16,
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    notice: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        width: 260,
+        backgroundColor: '#f7dad596',
+        borderRadius: 8,
+    },
+    textNotice: {
+        fontFamily: 'Inconsolata-Medium',
+        fontSize: 18,
+        textAlign: 'center',
+    },
 });
 
 export default styles;

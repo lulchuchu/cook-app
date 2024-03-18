@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useFonts } from 'expo-font';
-import { View, ScrollView, Image, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, ScrollView, Share, Image, Text, TouchableOpacity, TouchableWithoutFeedback, Modal } from 'react-native';
 import {
     faShareNodes,
     faChevronDown,
@@ -10,16 +10,19 @@ import {
     faChevronUp,
     faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import { faHeart, faStar, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faStar, faBookmark, faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
+import {faHeart as heart} from "@fortawesome/free-solid-svg-icons";
 
 import styles from './style';
 const imageIntro = require('../../../assets/images/R1016-final-photo-1.jpg');
 const ingredient = require('../../../assets/images/ingredients.png');
 const cook = require('../../../assets/images/pan.png');
 import FormRating from '../../layouts/FormRating/FormRating';
+import ComentRecipe from '../../layouts/CommentRecipe/CommentRecipe';
+import SaveCookBook from '../../layouts/SaveCookBook/SaveCookBook';
 
 type Navigation = {
     navigation: StackNavigationProp<RootStackParamList>;
@@ -34,6 +37,7 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
     });
 
     const quantityIngredients = ['200 g', '4', '200 g', '1', '1', '¼ tsp', '100 g'];
+    const quantityIngredient2 = ['400 g', '6', '300 g', '2', '2', '¼ tsp', '200 g'];
     const ingredients = [
         'dừa vụn không đường',
         'lòng trắng trứng',
@@ -50,14 +54,31 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
     const [yScroll, setY] = useState(0);
     const [showButtonCook, setShowCook] = useState(false);
     const [showFormRating, setShowForm] = useState(false);
+    const [showComment, setShowCmt] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [notice, showNotice] = useState(false);
+    const [quantityIngre, setQunatity] = useState(20);
+    const [initTime, setInittime] = useState(300);
+    const [start, setStart] = useState(false);
+    const [isLike, setLike] = useState(false);
+    const [numberLike, setNumberLike] = useState(812);
 
-    const renderQuantity = quantityIngredients.map((quantity: string, index: number) => {
-        return (
-            <Text key={index} style={styles.textIngredients}>
-                {quantity}
-            </Text>
-        );
-    });
+    const renderQuantity =
+        quantityIngre > 20
+            ? quantityIngredient2.map((quantity: string, index: number) => {
+                  return (
+                      <Text key={index} style={styles.textIngredients}>
+                          {quantity}
+                      </Text>
+                  );
+              })
+            : quantityIngredients.map((quantity: string, index: number) => {
+                  return (
+                      <Text key={index} style={styles.textIngredients}>
+                          {quantity}
+                      </Text>
+                  );
+              });
 
     const renderIngredients = ingredients.map((ingredient: string, index: number) => {
         return (
@@ -80,8 +101,70 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
         }
     };
 
+    const handleSharing = async () => {
+        try {
+            const result = await Share.share({
+                message: 'Công thức này rất tuyệt: Bánh hạnh nhân dừa',
+            });
+
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    console.log('shared with activity type of: ', result.activityType);
+                } else {
+                    console.log('Shared');
+                }
+            } else if (result.action === Share.dismissedAction) {
+                console.log('Shared dis');
+            }
+        } catch (error) {
+            console.log('Shared error: ', error);
+        }
+    };
+
     const handleBack = () => {
         navigation.navigate('Home');
+    };
+
+    const formatTime = (time: number): string => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    };
+
+    const [intervalId, setIntervalId] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (start) {
+            const id = setInterval(() => {
+                setInittime((prevCountdown) => prevCountdown - 1);
+            }, 1000);
+            setIntervalId(id);
+        } else {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        }
+        return () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
+    }, [start]);
+
+    const handleLike = () => {
+        setLike(!isLike);
+        if (isLike) {
+            setNumberLike(numberLike-1);
+        }
+        else {
+            setNumberLike(numberLike+1);
+        }
+    }
+
+    if (notice) {
+        setTimeout(() => {
+            showNotice(false);
+        }, 2000);
     };
 
     if (!fontLoaded) {
@@ -98,11 +181,11 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
 
                     {yScroll >= 518 ? (
                         <View style={styles.ctnSocial}>
-                            <TouchableOpacity style={styles.btnSocial}>
-                                <FontAwesomeIcon size={24} icon={faHeart} />
+                            <TouchableOpacity style={styles.btnSocial} onPress={handleLike}>
+                                <FontAwesomeIcon size={24} icon={isLike ? heart : faHeart} color={isLike ? 'red' : '#212121'}/>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.btnSocial}>
+                            <TouchableOpacity style={styles.btnSocial} onPress={() => setShowModal(true)}>
                                 <FontAwesomeIcon size={24} icon={faBookmark} />
                             </TouchableOpacity>
 
@@ -119,6 +202,31 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     <TouchableOpacity style={styles.buttonBack} onPress={handleBack}>
                         <FontAwesomeIcon icon={faChevronLeft} size={24} />
                     </TouchableOpacity>
+                </View>
+            )}
+
+            {showComment ? <ComentRecipe cancel={() => setShowCmt(false)} /> : ''}
+
+            {showModal && (
+                <View style={styles.containerSaveBook}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={showModal}
+                        onRequestClose={() => setShowModal(false)}
+                    >
+                        <TouchableWithoutFeedback onPress={() => setShowModal(false)} style={styles.overlay}>
+                            <View style={styles.overlay} />
+                        </TouchableWithoutFeedback>
+                        <SaveCookBook showNotice={() => showNotice(true)} />
+                    </Modal>
+                    {notice ? (
+                        <View style={styles.ctnNotice}>
+                            <View style={styles.notice}>
+                                <Text style={styles.textNotice}>Bạn đã lưu thành công!</Text>
+                            </View>
+                        </View>
+                    ) : null}
                 </View>
             )}
 
@@ -163,17 +271,17 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     </TouchableOpacity>
 
                     <View style={styles.ctnSocial}>
-                        <TouchableOpacity style={styles.btnSocial}>
-                            <FontAwesomeIcon size={24} icon={faHeart} />
-                            <Text style={styles.textSocial}>999</Text>
+                        <TouchableOpacity style={styles.btnSocial} onPress={handleLike}>
+                            <FontAwesomeIcon size={24} icon={isLike ? heart : faHeart} color={isLike ? 'red' : '#212121'}/>
+                            <Text style={styles.textSocial}>{numberLike}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.btnSocial}>
+                        <TouchableOpacity style={styles.btnSocial} onPress={() => setShowModal(true)}>
                             <FontAwesomeIcon size={24} icon={faBookmark} />
                             <Text style={styles.textSocial}>Lưu</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.btnSocial}>
+                        <TouchableOpacity style={styles.btnSocial} onPress={handleSharing}>
                             <FontAwesomeIcon size={24} icon={faShareNodes} color="#444" />
                             <Text style={styles.textSocial}>Chia sẻ</Text>
                         </TouchableOpacity>
@@ -223,7 +331,7 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                 <View style={styles.ctnReviews}>
                     <View style={styles.headingReview}>
                         <Text style={styles.textHeadingReview}>Đánh giá</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => setShowCmt(true)}>
                             <Text style={[styles.textShowMore, { fontSize: 20, fontFamily: 'Inconsolata-Medium' }]}>
                                 Đọc
                             </Text>
@@ -239,13 +347,13 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     <Text style={styles.textHeadingReview}>Nguyên liệu</Text>
 
                     <View style={styles.ctnAdjust}>
-                        <Text style={styles.numberAdjust}>20 chiếc</Text>
+                        <Text style={styles.numberAdjust}>{quantityIngre} chiếc</Text>
                         <View style={styles.adjustQuantity}>
-                            <TouchableOpacity style={styles.btnAdjust}>
+                            <TouchableOpacity style={styles.btnAdjust} onPress={() => setQunatity(quantityIngre - 10)}>
                                 <FontAwesomeIcon icon={faMinus} />
                             </TouchableOpacity>
-                            <Text style={styles.textAdjust}>20</Text>
-                            <TouchableOpacity style={styles.btnAdjust}>
+                            <Text style={styles.textAdjust}>{quantityIngre}</Text>
+                            <TouchableOpacity style={styles.btnAdjust} onPress={() => setQunatity(quantityIngre + 10)}>
                                 <FontAwesomeIcon icon={faPlus} />
                             </TouchableOpacity>
                         </View>
@@ -296,7 +404,26 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     </View>
 
                     <View style={styles.ctnCookStep}>
-                        <Text style={styles.textStep}>Bước 1/3</Text>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text style={styles.textStep}>Bước 1/3</Text>
+                            <View
+                                style={{
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faClock} size={20} style={{ marginBottom: 10 }} />
+                                <Text style={[styles.textStep, { color: '#da7e4f', marginLeft: 6 }]}>
+                                    {formatTime(initTime)}
+                                </Text>
+                            </View>
+                        </View>
                         <Image source={imageIntro} resizeMode="cover" style={styles.imgStep} />
                         <View style={{ flexDirection: 'row', marginBottom: 16 }}>
                             <Image style={styles.imgIcon} source={ingredient} />
@@ -370,7 +497,7 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
 
             {showButtonCook ? (
                 <View style={styles.ctnButtonCook}>
-                    <TouchableOpacity style={styles.buttonStartCook}>
+                    <TouchableOpacity style={styles.buttonStartCook} onPress={() => setStart(!start)}>
                         <Text style={styles.textCooking}>Bắt đầu nấu!</Text>
                     </TouchableOpacity>
                 </View>

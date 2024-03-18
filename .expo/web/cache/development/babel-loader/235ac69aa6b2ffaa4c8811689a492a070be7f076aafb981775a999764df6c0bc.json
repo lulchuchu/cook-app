@@ -1,0 +1,50 @@
+{
+    "ast": null,
+    "code": "import * as React from 'react';\nimport StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nimport Text from \"react-native-web/dist/exports/Text\";\nimport TouchableOpacity from \"react-native-web/dist/exports/TouchableOpacity\";\nimport Image from \"react-native-web/dist/exports/Image\";\nvar Button = function Button(_ref) {\n  var buttonStyle = _ref.buttonStyle,\n    onPress = _ref.onPress,\n    iconSrc = _ref.iconSrc,\n    textStyle = _ref.textStyle,\n    children = _ref.children;\n  return React.createElement(TouchableOpacity, {\n    activeOpacity: 0.5,\n    style: [styles.button, buttonStyle],\n    onPress: onPress\n  }, React.createElement(Image, {\n    style: styles.icon,\n    source: iconSrc\n  }), React.createElement(Text, {\n    style: [styles.buttonText, textStyle]\n  }, children));\n};\nexport default Button;\nvar styles = StyleSheet.create({\n  button: {\n    backgroundColor: 'white',\n    flexDirection: 'row',\n    height: 50,\n    padding: 10\n  },\n  buttonText: {\n    color: '#2c2c2c',\n    fontSize: 16,\n    fontWeight: 'bold',\n    textAlign: 'left',\n    textAlignVertical: 'center'\n  },\n  icon: {\n    height: 28,\n    marginLeft: 10,\n    marginRight: 30,\n    width: 28\n  }\n});",
+    "map": {
+        "version": 3,
+        "names": [
+            "React",
+            "StyleSheet",
+            "Text",
+            "TouchableOpacity",
+            "Image",
+            "Button",
+            "_ref",
+            "buttonStyle",
+            "onPress",
+            "iconSrc",
+            "textStyle",
+            "children",
+            "createElement",
+            "activeOpacity",
+            "style",
+            "styles",
+            "button",
+            "icon",
+            "source",
+            "buttonText",
+            "create",
+            "backgroundColor",
+            "flexDirection",
+            "height",
+            "padding",
+            "color",
+            "fontSize",
+            "fontWeight",
+            "textAlign",
+            "textAlignVertical",
+            "marginLeft",
+            "marginRight",
+            "width"
+        ],
+        "sources": ["D:\\React Native\\MAD\\cook-app\\node_modules\\react-native-share\\src\\components\\Button.tsx"],
+        "sourcesContent": [
+            "import * as React from 'react';\nimport {\n  StyleSheet,\n  Text,\n  TouchableOpacity,\n  Image,\n  ImageSourcePropType,\n  StyleProp,\n  TextStyle,\n  ViewStyle,\n} from 'react-native';\n\nexport interface ButtonProps {\n  onPress: () => void;\n  iconSrc: ImageSourcePropType;\n  buttonStyle?: StyleProp<ViewStyle>;\n  textStyle?: StyleProp<TextStyle>;\n  children: React.ReactNode;\n}\n\nconst Button: React.FC<ButtonProps> = ({\n  buttonStyle,\n  onPress,\n  iconSrc,\n  textStyle,\n  children,\n}: ButtonProps) => (\n  <TouchableOpacity activeOpacity={0.5} style={[styles.button, buttonStyle]} onPress={onPress}>\n    <Image style={styles.icon} source={iconSrc} />\n    <Text style={[styles.buttonText, textStyle]}>{children}</Text>\n  </TouchableOpacity>\n);\n\nexport default Button;\n\nconst styles = StyleSheet.create({\n  button: {\n    backgroundColor: 'white',\n    flexDirection: 'row',\n    height: 50,\n    padding: 10,\n  },\n  buttonText: {\n    color: '#2c2c2c',\n    fontSize: 16,\n    fontWeight: 'bold',\n    textAlign: 'left',\n    textAlignVertical: 'center',\n  },\n  icon: {\n    height: 28,\n    marginLeft: 10,\n    marginRight: 30,\n    width: 28,\n  },\n});\n"
+        ],
+        "mappings": "AAAA,OAAO,KAAKA,KAAK,MAAM,OAAO;AAAA,OAAAC,UAAA;AAAA,OAAAC,IAAA;AAAA,OAAAC,gBAAA;AAAA,OAAAC,KAAA;AAoB9B,IAAMC,MAA6B,GAAG,SAAhCA,MAA6BA,CAAAC,IAAA;EAAA,IACjCC,WAAW,GAAAD,IAAA,CAAXC,WAAW;IACXC,OAAO,GAAAF,IAAA,CAAPE,OAAO;IACPC,OAAO,GAAAH,IAAA,CAAPG,OAAO;IACPC,SAAS,GAAAJ,IAAA,CAATI,SAAS;IACTC,QAAA,GAAAL,IAAA,CAAAK,QAAA;EAAA,OAEAX,KAAA,CAAAY,aAAA,CAACT,gBAAgB;IAACU,aAAa,EAAE,GAAI;IAACC,KAAK,EAAE,CAACC,MAAM,CAACC,MAAM,EAAET,WAAW,CAAE;IAACC,OAAO,EAAEA;EAAQ,GAC1FR,KAAA,CAAAY,aAAA,CAACR,KAAK;IAACU,KAAK,EAAEC,MAAM,CAACE,IAAK;IAACC,MAAM,EAAET;EAAQ,CAAE,CAAC,EAC9CT,KAAA,CAAAY,aAAA,CAACV,IAAI;IAACY,KAAK,EAAE,CAACC,MAAM,CAACI,UAAU,EAAET,SAAS;EAAE,GAAEC,QAAe,CAC7C,CACnB;AAAA;AAED,eAAeN,MAAM;AAErB,IAAMU,MAAM,GAAGd,UAAU,CAACmB,MAAM,CAAC;EAC/BJ,MAAM,EAAE;IACNK,eAAe,EAAE,OAAO;IACxBC,aAAa,EAAE,KAAK;IACpBC,MAAM,EAAE,EAAE;IACVC,OAAO,EAAE;EACX,CAAC;EACDL,UAAU,EAAE;IACVM,KAAK,EAAE,SAAS;IAChBC,QAAQ,EAAE,EAAE;IACZC,UAAU,EAAE,MAAM;IAClBC,SAAS,EAAE,MAAM;IACjBC,iBAAiB,EAAE;EACrB,CAAC;EACDZ,IAAI,EAAE;IACJM,MAAM,EAAE,EAAE;IACVO,UAAU,EAAE,EAAE;IACdC,WAAW,EAAE,EAAE;IACfC,KAAK,EAAE;EACT;AACF,CAAC,CAAC"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

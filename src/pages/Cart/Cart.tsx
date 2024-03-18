@@ -62,7 +62,7 @@ const CartScreen: React.FC<Navigation> = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
 
-            {showCheckOut ? <FormCheckOut cancel={() => setShowCheckOut(false)} /> : ''}
+            {showCheckOut && <FormCheckOut cancel={() => setShowCheckOut(false)} />}
             <Footer navigation={navigation} address={'Cart'} />
         </View>
     );
