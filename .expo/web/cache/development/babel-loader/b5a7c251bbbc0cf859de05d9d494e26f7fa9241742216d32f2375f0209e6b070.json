@@ -1,0 +1,32 @@
+{
+    "ast": null,
+    "code": "import _objectDestructuringEmpty from \"@babel/runtime/helpers/objectDestructuringEmpty\";\nimport { isIOS } from \"./platform\";\nexport function normalizeShareOpenOptions(_ref) {\n  var _options$failOnCancel;\n  var options = Object.assign({}, (_objectDestructuringEmpty(_ref), _ref));\n  if (isIOS()) {\n    if (options.url && !options.urls) {\n      options.urls = [options.url];\n      delete options.url;\n      if (options.filename && !options.filenames) {\n        options.filenames = [options.filename];\n      }\n    }\n  }\n  options.failOnCancel = (_options$failOnCancel = options.failOnCancel) != null ? _options$failOnCancel : true;\n  return options;\n}\nexport function normalizeSingleShareOptions(_ref2) {\n  var options = Object.assign({}, (_objectDestructuringEmpty(_ref2), _ref2));\n  if (options.url) options.urls = [options.url];\n  return options;\n}",
+    "map": {
+        "version": 3,
+        "names": [
+            "isIOS",
+            "normalizeShareOpenOptions",
+            "_ref",
+            "_options$failOnCancel",
+            "options",
+            "Object",
+            "assign",
+            "_objectDestructuringEmpty",
+            "url",
+            "urls",
+            "filename",
+            "filenames",
+            "failOnCancel",
+            "normalizeSingleShareOptions",
+            "_ref2"
+        ],
+        "sources": ["D:\\React Native\\MAD\\cook-app\\node_modules\\react-native-share\\src\\helpers\\options.ts"],
+        "sourcesContent": [
+            "import { ShareOptions, ShareSingleOptions } from '../types';\nimport { isIOS } from './platform';\n\nexport function normalizeShareOpenOptions({ ...options }: ShareOptions) {\n  if (isIOS()) {\n    // Backward compatibility with { Share } from react-native\n    if (options.url && !options.urls) {\n      options.urls = [options.url];\n      delete options.url;\n\n      // Reference: https://github.com/react-native-share/react-native-share/pull/1396/files#diff-2d42a82ccc4ec42d9bfea630535ec2b757bd7a90b96d33d5d5433da17f4bdf79R208\n      if (options.filename && !options.filenames) {\n        options.filenames = [options.filename];\n      }\n    }\n  }\n\n  options.failOnCancel = options.failOnCancel ?? true;\n\n  return options;\n}\n\nexport function normalizeSingleShareOptions({ ...options }: ShareSingleOptions) {\n  if (options.url) options.urls = [options.url];\n  return options;\n}\n"
+        ],
+        "mappings": ";AACA,SAASA,KAAK;AAEd,OAAO,SAASC,yBAAyBA,CAAAC,IAAA,EAA+B;EAAA,IAAAC,qBAAA;EAAA,IAAzBC,OAAA,GAAAC,MAAA,CAAAC,MAAA,MAAAC,yBAAA,CAAAL,IAAA,GAAAA,IAAA;EAC7C,IAAIF,KAAK,CAAC,CAAC,EAAE;IAEX,IAAII,OAAO,CAACI,GAAG,IAAI,CAACJ,OAAO,CAACK,IAAI,EAAE;MAChCL,OAAO,CAACK,IAAI,GAAG,CAACL,OAAO,CAACI,GAAG,CAAC;MAC5B,OAAOJ,OAAO,CAACI,GAAG;MAGlB,IAAIJ,OAAO,CAACM,QAAQ,IAAI,CAACN,OAAO,CAACO,SAAS,EAAE;QAC1CP,OAAO,CAACO,SAAS,GAAG,CAACP,OAAO,CAACM,QAAQ,CAAC;MACxC;IACF;EACF;EAEAN,OAAO,CAACQ,YAAY,IAAAT,qBAAA,GAAGC,OAAO,CAACQ,YAAY,YAAAT,qBAAA,GAAI,IAAI;EAEnD,OAAOC,OAAO;AAChB;AAEA,OAAO,SAASS,2BAA2BA,CAAAC,KAAA,EAAqC;EAAA,IAA/BV,OAAA,GAAAC,MAAA,CAAAC,MAAA,MAAAC,yBAAA,CAAAO,KAAA,GAAAA,KAAA;EAC/C,IAAIV,OAAO,CAACI,GAAG,EAAEJ,OAAO,CAACK,IAAI,GAAG,CAACL,OAAO,CAACI,GAAG,CAAC;EAC7C,OAAOJ,OAAO;AAChB"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

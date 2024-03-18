@@ -9,9 +9,9 @@ const userImage = require('../../../assets/images/user.png');
 
 type Func = {
     cancel: () => void;
-}
+};
 
-const CreatePost: React.FC<Func> = ({cancel}) => {
+const CreatePost: React.FC<Func> = ({ cancel }) => {
     const textInputRef = useRef<TextInput>(null);
     // const [heightKeyBoard, setHeightKeyboard] = useState(0);
     const [fontLoaded] = useFonts({
@@ -28,7 +28,7 @@ const CreatePost: React.FC<Func> = ({cancel}) => {
         //       setHeightKeyboard(event.endCoordinates.height);
         //     }
         //   );
-      
+
         //   // Clean up listeners on component unmount
         //   return () => {
         //     keyboardDidShowListener.remove();

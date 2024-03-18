@@ -1,0 +1,40 @@
+{
+    "ast": null,
+    "code": "import _slicedToArray from \"@babel/runtime/helpers/slicedToArray\";\nimport * as React from 'react';\nimport Animated from \"react-native-web/dist/exports/Animated\";\nvar DEFAULT_BOTTOM = -300;\nvar DEFAULT_ANIMATE_TIME = 300;\nvar Sheet = function Sheet(_ref) {\n  var visible = _ref.visible,\n    children = _ref.children;\n  var _React$useState = React.useState(new Animated.Value(DEFAULT_BOTTOM)),\n    _React$useState2 = _slicedToArray(_React$useState, 1),\n    bottom = _React$useState2[0];\n  React.useEffect(function () {\n    return Animated.timing(bottom, {\n      toValue: visible ? 0 : DEFAULT_BOTTOM,\n      duration: DEFAULT_ANIMATE_TIME,\n      useNativeDriver: false\n    }).start();\n  }, [visible, bottom]);\n  return React.createElement(Animated.View, {\n    style: {\n      bottom: bottom\n    }\n  }, children);\n};\nexport default Sheet;",
+    "map": {
+        "version": 3,
+        "names": [
+            "React",
+            "Animated",
+            "DEFAULT_BOTTOM",
+            "DEFAULT_ANIMATE_TIME",
+            "Sheet",
+            "_ref",
+            "visible",
+            "children",
+            "_React$useState",
+            "useState",
+            "Value",
+            "_React$useState2",
+            "_slicedToArray",
+            "bottom",
+            "useEffect",
+            "timing",
+            "toValue",
+            "duration",
+            "useNativeDriver",
+            "start",
+            "createElement",
+            "View",
+            "style"
+        ],
+        "sources": ["D:\\React Native\\MAD\\cook-app\\node_modules\\react-native-share\\src\\components\\Sheet.tsx"],
+        "sourcesContent": [
+            "import * as React from 'react';\nimport { Animated } from 'react-native';\n\nconst DEFAULT_BOTTOM = -300;\nconst DEFAULT_ANIMATE_TIME = 300;\n\nexport interface SheetProps {\n  visible: boolean;\n}\n\nconst Sheet: React.FC<React.PropsWithChildren<SheetProps>> = ({ visible, children }) => {\n  const [bottom] = React.useState(new Animated.Value(DEFAULT_BOTTOM));\n\n  React.useEffect(() => {\n    return Animated.timing(bottom, {\n      toValue: visible ? 0 : DEFAULT_BOTTOM,\n      duration: DEFAULT_ANIMATE_TIME,\n      useNativeDriver: false,\n    }).start();\n  }, [visible, bottom]);\n\n  return <Animated.View style={{ bottom }}>{children}</Animated.View>;\n};\n\nexport default Sheet;\n"
+        ],
+        "mappings": ";AAAA,OAAO,KAAKA,KAAK,MAAM,OAAO;AAAA,OAAAC,QAAA;AAG9B,IAAMC,cAAc,GAAG,CAAC,GAAG;AAC3B,IAAMC,oBAAoB,GAAG,GAAG;AAMhC,IAAMC,KAAoD,GAAG,SAAvDA,KAAoDA,CAAAC,IAAA,EAA8B;EAAA,IAAxBC,OAAO,GAAAD,IAAA,CAAPC,OAAO;IAAEC,QAAA,GAAAF,IAAA,CAAAE,QAAA;EACvE,IAAAC,eAAA,GAAiBR,KAAK,CAACS,QAAQ,CAAC,IAAIR,QAAQ,CAACS,KAAK,CAACR,cAAc,CAAC,CAAC;IAAAS,gBAAA,GAAAC,cAAA,CAAAJ,eAAA;IAA5DK,MAAM,GAAAF,gBAAA;EAEbX,KAAK,CAACc,SAAS,CAAC,YAAM;IACpB,OAAOb,QAAQ,CAACc,MAAM,CAACF,MAAM,EAAE;MAC7BG,OAAO,EAAEV,OAAO,GAAG,CAAC,GAAGJ,cAAc;MACrCe,QAAQ,EAAEd,oBAAoB;MAC9Be,eAAe,EAAE;IACnB,CAAC,CAAC,CAACC,KAAK,CAAC,CAAC;EACZ,CAAC,EAAE,CAACb,OAAO,EAAEO,MAAM,CAAC,CAAC;EAErB,OAAOb,KAAA,CAAAoB,aAAA,CAACnB,QAAQ,CAACoB,IAAI;IAACC,KAAK,EAAE;MAAET,MAAA,EAAAA;IAAO;EAAE,GAAEN,QAAwB,CAAC;AACrE,CAAC;AAED,eAAeH,KAAK"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

@@ -29,7 +29,7 @@ const Home: React.FC<Navigation> = ({ navigation }) => {
 
     if (!fontLoaded) {
         return null;
-    }
+    };
 
     return (
         <View style={styles.container}>

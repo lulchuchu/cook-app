@@ -31,18 +31,19 @@ const Community: React.FC<Navigation> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {modalVisible ? 
+            {modalVisible ? (
                 <Modal
-                    animationType='slide'
-                    transparent = {true}
+                    animationType="slide"
+                    transparent={true}
                     onRequestClose={() => {
                         setModalVisible(false);
                     }}
                 >
-                    <CreatePost cancel = {() => setModalVisible(false)}/>
+                    <CreatePost cancel={() => setModalVisible(false)} />
                 </Modal>
-                : ''
-            }
+            ) : (
+                ''
+            )}
             <View style={styles.header}>
                 <View style={styles.ctnSearch}>
                     <TouchableOpacity>
@@ -67,16 +68,13 @@ const Community: React.FC<Navigation> = ({ navigation }) => {
                 <View style={styles.ctnText}>
                     <Text style={styles.textIn}>Cộng đồng</Text>
                 </View>
-                <PostItem func = {() => setShowPost(true)}/>
-                <PostItem func = {() => setShowPost(true)}/>
-                <View style = {{height: 60}}></View>
+                <PostItem func={() => setShowPost(true)} />
+                <PostItem func={() => setShowPost(true)} />
+                <View style={{ height: 60 }}></View>
             </ScrollView>
 
             <Footer navigation={navigation} address={'Community'} />
-            {showPost ? 
-                <CommentPost func = {() => setShowPost(false)}/>
-                : ''
-            }
+            {showPost ? <CommentPost func={() => setShowPost(false)} /> : ''}
         </View>
     );
 };

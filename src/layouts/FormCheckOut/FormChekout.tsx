@@ -22,7 +22,7 @@ const FormCheckOut: React.FC<Func> = ({ cancel }) => {
 
     if (!fontLoaded) {
         return null;
-    };
+    }
 
     return (
         <View style={styles.container}>
@@ -35,87 +35,88 @@ const FormCheckOut: React.FC<Func> = ({ cancel }) => {
                 <View></View>
             </View>
 
-            <ScrollView 
-                style = {styles.ctnBody}
+            <ScrollView
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}
                 bounces={false}
             >
-                <View style={styles.mb20}>
-                    <Text style={styles.textTitle}>Nguyên liệu</Text>
-                    <View style={styles.ctnItemIngre}>
-                        <View>
-                            <Text style={styles.nameIngre}>Socola</Text>
-                            <Text style={styles.textQuantity}>Số lượng: 100g</Text>
+                <View style={styles.ctnBody}>
+                    <View style={styles.mb20}>
+                        <Text style={styles.textTitle}>Nguyên liệu</Text>
+                        <View style={styles.ctnItemIngre}>
+                            <View>
+                                <Text style={styles.nameIngre}>Socola</Text>
+                                <Text style={styles.textQuantity}>Số lượng: 100g</Text>
+                            </View>
+                            <View>
+                                <Checkbox value={true} />
+                            </View>
                         </View>
-                        <View>
-                            <Checkbox value={true} />
+
+                        <View style={styles.ctnItemIngre}>
+                            <View>
+                                <Text style={styles.nameIngre}>Trứng</Text>
+                                <Text style={styles.textQuantity}>Số lượng: 4 quả</Text>
+                            </View>
+                            <View>
+                                <Checkbox value={true} />
+                            </View>
+                        </View>
+
+                        <View style={styles.ctnItemIngre}>
+                            <View>
+                                <Text style={styles.nameIngre}>Trứng</Text>
+                                <Text style={styles.textQuantity}>Số lượng: 4 quả</Text>
+                            </View>
+                            <View>
+                                <Checkbox value={true} />
+                            </View>
+                        </View>
+
+                        <View style={styles.ctnItemIngre}>
+                            <View>
+                                <Text style={styles.nameIngre}>Trứng</Text>
+                                <Text style={styles.textQuantity}>Số lượng: 4 quả</Text>
+                            </View>
+                            <View>
+                                <Checkbox value={true} />
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.mb32}>
+                        <Text style={styles.textTitle}>Thông tin người nhận</Text>
+                        <View style={styles.ctnInforCus}>
+                            <View style={styles.flexRow}>
+                                <Text style={styles.textIn}>Tên: </Text>
+                                <Text style={styles.name}>Nguyễn Văn A</Text>
+                            </View>
+                            <View style={styles.flexRow}>
+                                <FontAwesomeIcon icon={faSquarePhone} size={20} color="#61b2e3" />
+                                <Text style={styles.address}>0987654321</Text>
+                            </View>
+                            <View style={styles.flexRow}>
+                                <FontAwesomeIcon icon={faHouse} size={20} color="#00ab56" />
+                                <Text style={styles.address}>Nguyễn Trãi - Hà Nội</Text>
+                            </View>
                         </View>
                     </View>
 
-                    <View style={styles.ctnItemIngre}>
-                        <View>
-                            <Text style={styles.nameIngre}>Trứng</Text>
-                            <Text style={styles.textQuantity}>Số lượng: 4 quả</Text>
-                        </View>
-                        <View>
-                            <Checkbox value={true} />
-                        </View>
-                    </View>
+                    <View style={styles.mb32}>
+                        <Text style={styles.textTitle}>Thông tin giao hàng</Text>
+                        <View style={styles.ctnInforCus}>
+                            <View style={styles.flexRow}>
+                                <Text style={styles.textIn}>Nhân viên: </Text>
+                                <Text style={styles.name}>Nguyễn Văn B</Text>
+                            </View>
+                            <View style={styles.flexRow}>
+                                <FontAwesomeIcon icon={faSquarePhone} size={20} color="#61b2e3" />
+                                <Text style={styles.address}>0981234567</Text>
+                            </View>
 
-                    <View style={styles.ctnItemIngre}>
-                        <View>
-                            <Text style={styles.nameIngre}>Trứng</Text>
-                            <Text style={styles.textQuantity}>Số lượng: 4 quả</Text>
-                        </View>
-                        <View>
-                            <Checkbox value={true} />
-                        </View>
-                    </View>
-
-                    <View style={styles.ctnItemIngre}>
-                        <View>
-                            <Text style={styles.nameIngre}>Trứng</Text>
-                            <Text style={styles.textQuantity}>Số lượng: 4 quả</Text>
-                        </View>
-                        <View>
-                            <Checkbox value={true} />
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.mb32}>
-                    <Text style={styles.textTitle}>Thông tin người nhận</Text>
-                    <View style={styles.ctnInforCus}>
-                        <View style={styles.flexRow}>
-                            <Text style={styles.textIn}>Tên: </Text>
-                            <Text style={styles.name}>Nguyễn Văn A</Text>
-                        </View>
-                        <View style={styles.flexRow}>
-                            <FontAwesomeIcon icon={faSquarePhone} size={20} color="#61b2e3" />
-                            <Text style={styles.address}>0987654321</Text>
-                        </View>
-                        <View style={styles.flexRow}>
-                            <FontAwesomeIcon icon={faHouse} size={20} color="#00ab56" />
-                            <Text style={styles.address}>Nguyễn Trãi - Hà Nội</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.mb32}>
-                    <Text style={styles.textTitle}>Thông tin giao hàng</Text>
-                    <View style={styles.ctnInforCus}>
-                        <View style={styles.flexRow}>
-                            <Text style={styles.textIn}>Nhân viên: </Text>
-                            <Text style={styles.name}>Nguyễn Văn B</Text>
-                        </View>
-                        <View style={styles.flexRow}>
-                            <FontAwesomeIcon icon={faSquarePhone} size={20} color="#61b2e3" />
-                            <Text style={styles.address}>0981234567</Text>
-                        </View>
-
-                        <View style={styles.flexRow}>
-                            <FontAwesomeIcon icon={faClock} size={20} color="#61b2e3" />
-                            <Text style={styles.address}>20 phút</Text>
+                            <View style={styles.flexRow}>
+                                <FontAwesomeIcon icon={faClock} size={20} color="#61b2e3" />
+                                <Text style={styles.address}>20 phút</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -131,7 +132,7 @@ const FormCheckOut: React.FC<Func> = ({ cancel }) => {
                 </TouchableOpacity>
             </View>
 
-            {modalVisible ? (
+            {modalVisible &&
                 <View style={styles.ctnModal}>
                     <Modal
                         animationType="fade"
@@ -152,9 +153,7 @@ const FormCheckOut: React.FC<Func> = ({ cancel }) => {
                         </View>
                     </Modal>
                 </View>
-            ) : (
-                ''
-            )}
+            }
         </View>
     );
 };

@@ -1,0 +1,31 @@
+{
+    "ast": null,
+    "code": "import _asyncToGenerator from \"@babel/runtime/helpers/asyncToGenerator\";\nimport { checkAndroidPermissionsForUrls } from \"./android\";\nimport { isAndroid } from \"./platform\";\nexport default function checkPermissions(_x) {\n  return _checkPermissions.apply(this, arguments);\n}\nfunction _checkPermissions() {\n  _checkPermissions = _asyncToGenerator(function* (_ref) {\n    var url = _ref.url,\n      urls = _ref.urls;\n    if (isAndroid()) {\n      if (url || urls) {\n        var normalizedUrls = urls != null ? urls : url ? [url] : [];\n        yield checkAndroidPermissionsForUrls(normalizedUrls);\n      }\n    }\n  });\n  return _checkPermissions.apply(this, arguments);\n}",
+    "map": {
+        "version": 3,
+        "names": [
+            "checkAndroidPermissionsForUrls",
+            "isAndroid",
+            "checkPermissions",
+            "_x",
+            "_checkPermissions",
+            "apply",
+            "arguments",
+            "_asyncToGenerator",
+            "_ref",
+            "url",
+            "urls",
+            "normalizedUrls"
+        ],
+        "sources": [
+            "D:\\React Native\\MAD\\cook-app\\node_modules\\react-native-share\\src\\helpers\\checkPermissions.ts"
+        ],
+        "sourcesContent": [
+            "import { ShareOptions } from '../types';\nimport { checkAndroidPermissionsForUrls } from './android';\nimport { isAndroid } from './platform';\n\n/** Check if the passed in options require platform permission. If an error isn't thrown, no permission is required */\nexport default async function checkPermissions({ url, urls }: Pick<ShareOptions, 'url' | 'urls'>) {\n  if (isAndroid()) {\n    if (url || urls) {\n      const normalizedUrls = urls ?? (url ? [url] : []);\n      await checkAndroidPermissionsForUrls(normalizedUrls);\n    }\n  }\n}\n"
+        ],
+        "mappings": ";AACA,SAASA,8BAA8B;AACvC,SAASC,SAAS;AAGlB,wBAA8BC,gBAAgBA,CAAAC,EAAA;EAAA,OAAAC,iBAAA,CAAAC,KAAA,OAAAC,SAAA;AAAA;AAO9C,SAAAF,kBAAA;EAAAA,iBAAA,GAAAG,iBAAA,CAPe,WAAAC,IAAA,EAAmF;IAAA,IAAjDC,GAAG,GAAAD,IAAA,CAAHC,GAAG;MAAEC,IAAA,GAAAF,IAAA,CAAAE,IAAA;IACpD,IAAIT,SAAS,CAAC,CAAC,EAAE;MACf,IAAIQ,GAAG,IAAIC,IAAI,EAAE;QACf,IAAMC,cAAc,GAAGD,IAAI,WAAJA,IAAI,GAAKD,GAAG,GAAG,CAACA,GAAG,CAAC,GAAG,EAAG;QACjD,MAAMT,8BAA8B,CAACW,cAAc,CAAC;MACtD;IACF;EACF;EAAA,OAAAP,iBAAA,CAAAC,KAAA,OAAAC,SAAA;AAAA"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

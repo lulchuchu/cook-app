@@ -1,0 +1,46 @@
+{
+    "ast": null,
+    "code": "import StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nvar styles = StyleSheet.create({\n  container: {\n    width: '100%',\n    paddingVertical: 8,\n    flexDirection: 'row',\n    marginBottom: 32\n  },\n  itemLeft: {\n    width: '15%'\n  },\n  iteRight: {\n    width: '85%'\n  },\n  ctnInfor: {\n    marginBottom: 20,\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    width: '100%',\n    alignItems: 'center'\n  },\n  name: {\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 18,\n    marginBottom: 6\n  },\n  time: {\n    fontFamily: 'Inconsolata-Bold',\n    color: '#65676b'\n  },\n  ctnContent: {\n    marginBottom: 20\n  },\n  content: {\n    fontFamily: 'Inconsolata-Medium',\n    fontSize: 17,\n    width: '80%',\n    lineHeight: 24\n  },\n  imgCmt: {\n    height: 200,\n    width: '100%',\n    borderRadius: 16,\n    marginTop: 16\n  },\n  ctnInteract: {\n    flexDirection: 'row',\n    justifyContent: 'space-between',\n    alignItems: 'center',\n    width: 140\n  },\n  numberLike: {\n    color: '#65676b',\n    fontFamily: 'Inconsolata-Bold',\n    fontSize: 16,\n    marginLeft: 4\n  },\n  ctnRating: {\n    flexDirection: 'row',\n    alignItems: 'center'\n  }\n});\nexport default styles;",
+    "map": {
+        "version": 3,
+        "names": [
+            "styles",
+            "StyleSheet",
+            "create",
+            "container",
+            "width",
+            "paddingVertical",
+            "flexDirection",
+            "marginBottom",
+            "itemLeft",
+            "iteRight",
+            "ctnInfor",
+            "justifyContent",
+            "alignItems",
+            "name",
+            "fontFamily",
+            "fontSize",
+            "time",
+            "color",
+            "ctnContent",
+            "content",
+            "lineHeight",
+            "imgCmt",
+            "height",
+            "borderRadius",
+            "marginTop",
+            "ctnInteract",
+            "numberLike",
+            "marginLeft",
+            "ctnRating"
+        ],
+        "sources": ["D:/React Native/MAD/cook-app/src/components/CommentRecipe/style.js"],
+        "sourcesContent": [
+            "import { StyleSheet } from \"react-native\";\r\n\r\nconst styles = StyleSheet.create({\r\n    container: {\r\n        width: '100%',\r\n        paddingVertical: 8,\r\n        flexDirection: 'row',\r\n        // justifyContent: 'space-between',\r\n        marginBottom: 32\r\n    },\r\n    itemLeft: {\r\n        width: '15%'\r\n    },\r\n    iteRight: {\r\n        width: '85%'\r\n    },\r\n    ctnInfor: {\r\n        marginBottom: 20,\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        width: '100%',\r\n        alignItems: 'center'\r\n    },\r\n    name: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 18,\r\n        marginBottom: 6\r\n    },\r\n    time: {\r\n        fontFamily: 'Inconsolata-Bold',\r\n        color: '#65676b'\r\n    },\r\n    ctnContent: {\r\n        marginBottom: 20,\r\n    },\r\n    content: {\r\n        fontFamily: 'Inconsolata-Medium',\r\n        fontSize: 17,\r\n        width: '80%',\r\n        lineHeight: 24,\r\n    },\r\n    imgCmt: {\r\n        height: 200,\r\n        width: '100%',\r\n        borderRadius: 16,\r\n        marginTop: 16\r\n    },\r\n    ctnInteract: {\r\n        flexDirection: 'row',\r\n        justifyContent: 'space-between',\r\n        alignItems: 'center',\r\n        width: 140,\r\n    },\r\n    numberLike: {\r\n        color: '#65676b',\r\n        fontFamily: 'Inconsolata-Bold',\r\n        fontSize: 16,\r\n        marginLeft: 4\r\n    },\r\n    ctnRating: {\r\n        flexDirection: 'row',\r\n        alignItems: 'center',\r\n    },\r\n});\r\n\r\nexport default styles;"
+        ],
+        "mappings": ";AAEA,IAAMA,MAAM,GAAGC,UAAU,CAACC,MAAM,CAAC;EAC7BC,SAAS,EAAE;IACPC,KAAK,EAAE,MAAM;IACbC,eAAe,EAAE,CAAC;IAClBC,aAAa,EAAE,KAAK;IAEpBC,YAAY,EAAE;EAClB,CAAC;EACDC,QAAQ,EAAE;IACNJ,KAAK,EAAE;EACX,CAAC;EACDK,QAAQ,EAAE;IACNL,KAAK,EAAE;EACX,CAAC;EACDM,QAAQ,EAAE;IACNH,YAAY,EAAE,EAAE;IAChBD,aAAa,EAAE,KAAK;IACpBK,cAAc,EAAE,eAAe;IAC/BP,KAAK,EAAE,MAAM;IACbQ,UAAU,EAAE;EAChB,CAAC;EACDC,IAAI,EAAE;IACFC,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE,EAAE;IACZR,YAAY,EAAE;EAClB,CAAC;EACDS,IAAI,EAAE;IACFF,UAAU,EAAE,kBAAkB;IAC9BG,KAAK,EAAE;EACX,CAAC;EACDC,UAAU,EAAE;IACRX,YAAY,EAAE;EAClB,CAAC;EACDY,OAAO,EAAE;IACLL,UAAU,EAAE,oBAAoB;IAChCC,QAAQ,EAAE,EAAE;IACZX,KAAK,EAAE,KAAK;IACZgB,UAAU,EAAE;EAChB,CAAC;EACDC,MAAM,EAAE;IACJC,MAAM,EAAE,GAAG;IACXlB,KAAK,EAAE,MAAM;IACbmB,YAAY,EAAE,EAAE;IAChBC,SAAS,EAAE;EACf,CAAC;EACDC,WAAW,EAAE;IACTnB,aAAa,EAAE,KAAK;IACpBK,cAAc,EAAE,eAAe;IAC/BC,UAAU,EAAE,QAAQ;IACpBR,KAAK,EAAE;EACX,CAAC;EACDsB,UAAU,EAAE;IACRT,KAAK,EAAE,SAAS;IAChBH,UAAU,EAAE,kBAAkB;IAC9BC,QAAQ,EAAE,EAAE;IACZY,UAAU,EAAE;EAChB,CAAC;EACDC,SAAS,EAAE;IACPtB,aAAa,EAAE,KAAK;IACpBM,UAAU,EAAE;EAChB;AACJ,CAAC,CAAC;AAEF,eAAeZ,MAAM"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

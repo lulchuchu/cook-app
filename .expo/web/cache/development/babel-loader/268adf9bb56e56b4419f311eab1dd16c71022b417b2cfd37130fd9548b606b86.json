@@ -1,0 +1,53 @@
+{
+    "ast": null,
+    "code": "import * as React from 'react';\nimport View from \"react-native-web/dist/exports/View\";\nimport TouchableOpacity from \"react-native-web/dist/exports/TouchableOpacity\";\nimport BackHandler from \"react-native-web/dist/exports/BackHandler\";\nimport StyleSheet from \"react-native-web/dist/exports/StyleSheet\";\nimport Overlay from \"./Overlay\";\nimport Sheet from \"./Sheet\";\nvar ShareSheet = function ShareSheet(_ref) {\n  var _ref$style = _ref.style,\n    style = _ref$style === void 0 ? {} : _ref$style,\n    _ref$overlayStyle = _ref.overlayStyle,\n    overlayStyle = _ref$overlayStyle === void 0 ? {} : _ref$overlayStyle,\n    visible = _ref.visible,\n    onCancel = _ref.onCancel,\n    children = _ref.children;\n  var backButtonHandler = React.useCallback(function () {\n    if (visible) {\n      onCancel();\n      return true;\n    }\n    return false;\n  }, [visible, onCancel]);\n  React.useEffect(function () {\n    BackHandler.addEventListener('hardwareBackPress', backButtonHandler);\n    return function () {\n      BackHandler.removeEventListener('hardwareBackPress', backButtonHandler);\n    };\n  }, [backButtonHandler]);\n  return React.createElement(Overlay, {\n    visible: visible\n  }, React.createElement(View, {\n    style: [styles.actionSheetContainer, overlayStyle]\n  }, React.createElement(TouchableOpacity, {\n    style: styles.button,\n    onPress: onCancel\n  }), React.createElement(Sheet, {\n    visible: visible\n  }, React.createElement(View, {\n    style: [styles.buttonContainer, style]\n  }, children))));\n};\nvar styles = StyleSheet.create({\n  actionSheetContainer: {\n    backgroundColor: 'rgba(0, 0, 0, 0.5)',\n    flex: 1,\n    justifyContent: 'flex-end',\n    paddingBottom: 0,\n    paddingTop: 10\n  },\n  buttonContainer: {\n    backgroundColor: 'white',\n    overflow: 'hidden',\n    paddingBottom: 5,\n    paddingTop: 5\n  },\n  button: {\n    flex: 1\n  }\n});\nexport default ShareSheet;",
+    "map": {
+        "version": 3,
+        "names": [
+            "React",
+            "View",
+            "TouchableOpacity",
+            "BackHandler",
+            "StyleSheet",
+            "Overlay",
+            "Sheet",
+            "ShareSheet",
+            "_ref",
+            "_ref$style",
+            "style",
+            "_ref$overlayStyle",
+            "overlayStyle",
+            "visible",
+            "onCancel",
+            "children",
+            "backButtonHandler",
+            "useCallback",
+            "useEffect",
+            "addEventListener",
+            "removeEventListener",
+            "createElement",
+            "styles",
+            "actionSheetContainer",
+            "button",
+            "onPress",
+            "buttonContainer",
+            "create",
+            "backgroundColor",
+            "flex",
+            "justifyContent",
+            "paddingBottom",
+            "paddingTop",
+            "overflow"
+        ],
+        "sources": [
+            "D:\\React Native\\MAD\\cook-app\\node_modules\\react-native-share\\src\\components\\ShareSheet.tsx"
+        ],
+        "sourcesContent": [
+            "import * as React from 'react';\nimport {\n  View,\n  TouchableOpacity,\n  BackHandler,\n  ViewStyle,\n  StyleProp,\n  StyleSheet,\n} from 'react-native';\n\nimport Overlay from './Overlay';\nimport Sheet from './Sheet';\n\nexport interface ShareSheetProps {\n  visible: boolean;\n  onCancel: () => void;\n  style?: StyleProp<ViewStyle>;\n  overlayStyle?: StyleProp<ViewStyle>;\n}\n\nconst ShareSheet: React.FC<React.PropsWithChildren<ShareSheetProps>> = ({\n  style = {},\n  overlayStyle = {},\n  visible,\n  onCancel,\n  children,\n}) => {\n  const backButtonHandler = React.useCallback(() => {\n    if (visible) {\n      onCancel();\n      return true;\n    }\n    return false;\n  }, [visible, onCancel]);\n\n  React.useEffect(() => {\n    BackHandler.addEventListener('hardwareBackPress', backButtonHandler);\n    return () => {\n      BackHandler.removeEventListener('hardwareBackPress', backButtonHandler);\n    };\n  }, [backButtonHandler]);\n\n  return (\n    <Overlay visible={visible}>\n      <View style={[styles.actionSheetContainer, overlayStyle]}>\n        <TouchableOpacity style={styles.button} onPress={onCancel} />\n        <Sheet visible={visible}>\n          <View style={[styles.buttonContainer, style]}>{children}</View>\n        </Sheet>\n      </View>\n    </Overlay>\n  );\n};\n\nconst styles = StyleSheet.create({\n  actionSheetContainer: {\n    backgroundColor: 'rgba(0, 0, 0, 0.5)',\n    flex: 1,\n    justifyContent: 'flex-end',\n    paddingBottom: 0,\n    paddingTop: 10,\n  },\n  buttonContainer: {\n    backgroundColor: 'white',\n    overflow: 'hidden',\n    paddingBottom: 5,\n    paddingTop: 5,\n  },\n  button: {\n    flex: 1,\n  },\n});\n\nexport default ShareSheet;\n"
+        ],
+        "mappings": "AAAA,OAAO,KAAKA,KAAK,MAAM,OAAO;AAAA,OAAAC,IAAA;AAAA,OAAAC,gBAAA;AAAA,OAAAC,WAAA;AAAA,OAAAC,UAAA;AAU9B,OAAOC,OAAO;AACd,OAAOC,KAAK;AASZ,IAAMC,UAA8D,GAAG,SAAjEA,UAA8DA,CAAAC,IAAA,EAM9D;EAAA,IAAAC,UAAA,GAAAD,IAAA,CALJE,KAAK;IAALA,KAAK,GAAAD,UAAA,cAAG,CAAC,CAAC,GAAAA,UAAA;IAAAE,iBAAA,GAAAH,IAAA,CACVI,YAAY;IAAZA,YAAY,GAAAD,iBAAA,cAAG,CAAC,CAAC,GAAAA,iBAAA;IACjBE,OAAO,GAAAL,IAAA,CAAPK,OAAO;IACPC,QAAQ,GAAAN,IAAA,CAARM,QAAQ;IACRC,QAAA,GAAAP,IAAA,CAAAO,QAAA;EAEA,IAAMC,iBAAiB,GAAGhB,KAAK,CAACiB,WAAW,CAAC,YAAM;IAChD,IAAIJ,OAAO,EAAE;MACXC,QAAQ,CAAC,CAAC;MACV,OAAO,IAAI;IACb;IACA,OAAO,KAAK;EACd,CAAC,EAAE,CAACD,OAAO,EAAEC,QAAQ,CAAC,CAAC;EAEvBd,KAAK,CAACkB,SAAS,CAAC,YAAM;IACpBf,WAAW,CAACgB,gBAAgB,CAAC,mBAAmB,EAAEH,iBAAiB,CAAC;IACpE,OAAO,YAAM;MACXb,WAAW,CAACiB,mBAAmB,CAAC,mBAAmB,EAAEJ,iBAAiB,CAAC;IACzE,CAAC;EACH,CAAC,EAAE,CAACA,iBAAiB,CAAC,CAAC;EAEvB,OACEhB,KAAA,CAAAqB,aAAA,CAAChB,OAAO;IAACQ,OAAO,EAAEA;EAAQ,GACxBb,KAAA,CAAAqB,aAAA,CAACpB,IAAI;IAACS,KAAK,EAAE,CAACY,MAAM,CAACC,oBAAoB,EAAEX,YAAY;EAAE,GACvDZ,KAAA,CAAAqB,aAAA,CAACnB,gBAAgB;IAACQ,KAAK,EAAEY,MAAM,CAACE,MAAO;IAACC,OAAO,EAAEX;EAAS,CAAE,CAAC,EAC7Dd,KAAA,CAAAqB,aAAA,CAACf,KAAK;IAACO,OAAO,EAAEA;EAAQ,GACtBb,KAAA,CAAAqB,aAAA,CAACpB,IAAI;IAACS,KAAK,EAAE,CAACY,MAAM,CAACI,eAAe,EAAEhB,KAAK;EAAE,GAAEK,QAAe,CACzD,CACH,CACC,CAAC;AAEd,CAAC;AAED,IAAMO,MAAM,GAAGlB,UAAU,CAACuB,MAAM,CAAC;EAC/BJ,oBAAoB,EAAE;IACpBK,eAAe,EAAE,oBAAoB;IACrCC,IAAI,EAAE,CAAC;IACPC,cAAc,EAAE,UAAU;IAC1BC,aAAa,EAAE,CAAC;IAChBC,UAAU,EAAE;EACd,CAAC;EACDN,eAAe,EAAE;IACfE,eAAe,EAAE,OAAO;IACxBK,QAAQ,EAAE,QAAQ;IAClBF,aAAa,EAAE,CAAC;IAChBC,UAAU,EAAE;EACd,CAAC;EACDR,MAAM,EAAE;IACNK,IAAI,EAAE;EACR;AACF,CAAC,CAAC;AAEF,eAAetB,UAAU"
+    },
+    "metadata": {},
+    "sourceType": "module",
+    "externalDependencies": []
+}

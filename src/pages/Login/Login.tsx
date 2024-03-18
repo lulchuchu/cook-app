@@ -19,6 +19,7 @@ type Navigation = {
 const Login: React.FC<Navigation> = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -30,6 +31,8 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
     const handleToRegister = () => {
         navigation.navigate('Register');
     };
+
+    const handleLogin = () => {};
 
     if (!fontLoaded) {
         return null;
@@ -92,9 +95,11 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
                             </View>
                         </View>
 
-                        {/* <TouchableOpacity style={styles.btnLogin}>
-                            <Text style={styles.textBtnLogin} onPress={handleLogin}>{loading ? 'Đang đăng nhập...' : 'Đăng nhập'}</Text>
-                        </TouchableOpacity> */}
+                        <TouchableOpacity style={styles.btnLogin}>
+                            <Text style={styles.textBtnLogin} onPress={handleLogin}>
+                                {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+                            </Text>
+                        </TouchableOpacity>
 
                         <View style={styles.resetPass}>
                             <Text style={styles.textReset}>Bạn quên mật khẩu?</Text>
