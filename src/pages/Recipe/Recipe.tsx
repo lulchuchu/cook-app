@@ -1,6 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useFonts } from 'expo-font';
-import { View, ScrollView, Share, Image, Text, TouchableOpacity, TouchableWithoutFeedback, Modal } from 'react-native';
+import {
+    View,
+    ScrollView,
+    Share,
+    Image,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Modal,
+    Alert,
+    Dimensions,
+} from 'react-native';
 import {
     faShareNodes,
     faChevronDown,
@@ -9,45 +20,129 @@ import {
     faMinus,
     faChevronUp,
     faChevronLeft,
+    faPlay,
+    faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faStar, faBookmark, faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
-import {faHeart as heart} from "@fortawesome/free-solid-svg-icons";
+import { RouteProp } from '@react-navigation/native';
+import axios from 'axios';
+import { Video } from 'expo-av';
+import { faHeart as heart } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './style';
-const imageIntro = require('../../../assets/images/R1016-final-photo-1.jpg');
+const imageIntro = require('../../../assets/images/chef.png');
 const ingredient = require('../../../assets/images/ingredients.png');
 const cook = require('../../../assets/images/pan.png');
 import FormRating from '../../layouts/FormRating/FormRating';
 import ComentRecipe from '../../layouts/CommentRecipe/CommentRecipe';
 import SaveCookBook from '../../layouts/SaveCookBook/SaveCookBook';
+import CookRecipe from '../../layouts/CookRecipe/CookRecipe';
+import Notice from 'components/NoticeForm/Notice';
 
-type Navigation = {
+type Route = RouteProp<RootStackParamList, 'Recipe'>;
+
+interface RecipeProps {
     navigation: StackNavigationProp<RootStackParamList>;
+    route: Route;
+}
+
+interface User {
+    _id: string;
+    email: string;
+    username: string;
+    img: string;
+    tel: string;
+    address: string;
+    token: string;
+    emailVerified: boolean;
+}
+
+interface Step {
+    time: number;
+    img: string;
+    ingredients: string;
+    utenils: string;
+    des: string;
+}
+
+interface Nuttrition {
+    Cal: number;
+    Fat: string;
+    Protein: string;
+    Carb: string;
+}
+
+interface Recipe {
+    name: string;
+    video: string;
+    imgDes: string;
+    description: string;
+    country: string;
+    type: string;
+    likes: string[];
+    defaultPortion: number;
+    ingredients: string;
+    utensils: string;
+    step: Step[];
 };
 
-const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
+interface UserCmt {
+    _id: string;
+    username: string;
+    img: string;
+}
+
+interface Comment {
+    _id: string;
+    idDish: string;
+    user: UserCmt;
+    content: string;
+    img: string;
+    likes: string[];
+    createdAt: string;
+}
+
+const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
     const [fontLoaded] = useFonts({
-        Inconsolata: require('../../../assets/fonts/Inconsolata_Expanded-Medium.ttf'),
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata_Condensed-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata_Condensed-Medium.ttf'),
-        Other: require('../../../assets/fonts/Inconsolata-Bold.ttf'),
     });
+    const [quantityIngredient, setQunatityIngre] = useState<string[]>([]);
+    const [ingredients, setIngredients] = useState([]);
+    const [unitIngre, setUnitIngre] = useState([]);
 
-    const quantityIngredients = ['200 g', '4', '200 g', '1', '1', '¼ tsp', '100 g'];
-    const quantityIngredient2 = ['400 g', '6', '300 g', '2', '2', '¼ tsp', '200 g'];
-    const ingredients = [
-        'dừa vụn không đường',
-        'lòng trắng trứng',
-        'đường',
-        'quả chanh',
-        'vanilla',
-        'muối',
-        'socola (để trang trí)',
-    ];
-
+    const [recipe, setRecipe] = useState<Recipe>({
+        name: '',
+        video: '',
+        imgDes: 'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2FloadImage.jpg?alt=media&token=b8511f70-070d-4b1d-b1a6-f68daa2a6576',
+        description: '',
+        country: '',
+        type: '',
+        likes: [],
+        defaultPortion: 0,
+        ingredients: '',
+        utensils: '',
+        step: [],
+    });
+    const [nutrition, setNuttrition] = useState<Nuttrition>({
+        Cal: 0,
+        Fat: '',
+        Protein: '',
+        Carb: '',
+    });
+    const [user, setUser] = useState<User>({
+        _id: '',
+        email: '',
+        username: '',
+        img: '',
+        tel: '',
+        address: '',
+        token: '',
+        emailVerified: false,
+    });
     const scrollViewRef = useRef<ScrollView>(null);
     const targetComponentRef = useRef<View>(null);
     const [extend, setExtend] = useState(false);
@@ -56,35 +151,162 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
     const [showFormRating, setShowForm] = useState(false);
     const [showComment, setShowCmt] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [notice, showNotice] = useState(false);
-    const [quantityIngre, setQunatity] = useState(20);
+    const [notice, setNotice] = useState(false);
+    const [defaultPortion, setDefaultPortion] = useState(0);
+    const [ration, setRation] = useState(0);
     const [initTime, setInittime] = useState(300);
     const [start, setStart] = useState(false);
     const [isLike, setLike] = useState(false);
-    const [numberLike, setNumberLike] = useState(812);
+    const [numberLike, setNumberLike] = useState(0);
+    const [showStepCook, setShowStepCook] = useState(false);
+    const [checkAdd, setCheckAdd] = useState(false);
+    const videoRef = useRef<Video>(null);
+    const [modalVideo, setModalVideo] = useState(false);
+    const [checkRating, setCheckRating] = useState(false);
+    const [numberRating, setNumberRating] = useState(0);
+    const [listRating, setListRating] = useState(0);
+    const [listCmt, setListCmt] = useState<Comment[]>([]);
 
-    const renderQuantity =
-        quantityIngre > 20
-            ? quantityIngredient2.map((quantity: string, index: number) => {
-                  return (
-                      <Text key={index} style={styles.textIngredients}>
-                          {quantity}
-                      </Text>
-                  );
-              })
-            : quantityIngredients.map((quantity: string, index: number) => {
-                  return (
-                      <Text key={index} style={styles.textIngredients}>
-                          {quantity}
-                      </Text>
-                  );
-              });
+    useEffect(() => {
+        if (route.params.user) {
+            setUser(route.params.user);
+        }
+        axios
+            .get('http://192.168.34.109:3056/dish/get-detail', {
+                params: { _id: route.params._id },
+            })
+            .then((response) => {
+                const recipe = response.data;
+                setRecipe(recipe);
+                setNumberLike(recipe.likes.length);
+                setDefaultPortion(recipe.defaultPortion);
+                setRation(recipe.defaultPortion);
+                const nutrition: Nuttrition = recipe.nuttrition[0];
+                setNuttrition(nutrition);
+                const ingredient = recipe.ingredients;
+                setIngredients(ingredient.ten);
+                setQunatityIngre(ingredient.soluong);
+                setUnitIngre(ingredient.donvitinh);
+                if (recipe.likes.includes(route.params.user._id) && route.params.user._id !== '') {
+                    setLike(true);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios
+            .get('http://192.168.34.109:3056/danh-gia-mon-an/lay-danh-gia', {
+                params: { idMonAn: route.params._id },
+            })
+            .then((response) => {
+                const data = response.data;
+                if (data.trungBinhDanhGia !== null) {
+                    setNumberRating(data.trungBinhDanhGia);
+                    setListRating(data.list_danh_gia.length);
+                }
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios
+            .get('http://192.168.34.109:3056/comment-dish/get-all', {
+                params: { idDish: route.params._id },
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    setListCmt(response.data);
+                }
+            })
+            .catch((error) => {
+                if (error.response) {
+                    Alert.alert(error.response.data.message);
+                } else if (error.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            });
+    }, []);
+
+    const renderQuantity = quantityIngredient.map((quantity: string, index: number) => {
+        return (
+            <Text key={index} style={styles.textIngredients}>
+                {quantity} {unitIngre[index]}
+            </Text>
+        );
+    });
 
     const renderIngredients = ingredients.map((ingredient: string, index: number) => {
         return (
             <Text key={index} style={styles.textIngredients}>
                 {ingredient}
             </Text>
+        );
+    });
+
+    const formatTime = (time: number): string => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    };
+
+    const renderStepCook = recipe.step.map((step: Step, index: number) => {
+        return (
+            <View style={styles.ctnCookStep} key={index}>
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Text style={styles.textStep}>
+                        Bước {index + 1}/{recipe.step.length}
+                    </Text>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                        }}
+                    >
+                        {/* <FontAwesomeIcon icon={faClock} size={20} style={{ marginBottom: 10 }} /> */}
+                        {/* {step.time && <Text style={[styles.textStep, { color: '#da7e4f', marginLeft: 6 }]}>{formatTime(step.time)}</Text>} */}
+                    </View>
+                </View>
+                {step.img ? (
+                    <Image
+                        source={{
+                            uri: step.img
+                                ? step.img
+                                : 'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2FloadImage.jpg?alt=media&token=b8511f70-070d-4b1d-b1a6-f68daa2a6576',
+                        }}
+                        resizeMode="cover"
+                        style={styles.imgStep}
+                    />
+                ) : null}
+
+                {step.ingredients && (
+                    <View style={{ flexDirection: 'row', marginBottom: 16 }}>
+                        <Image style={styles.imgIcon} source={ingredient} />
+                        <Text style={styles.textIngreCook}>{step.ingredients}</Text>
+                    </View>
+                )}
+
+                {step.utenils && (
+                    <View style={{ flexDirection: 'row', marginBottom: 16 }}>
+                        <Image style={styles.imgIcon} source={cook} />
+                        <Text style={styles.textIngreCook}>{step.utenils}</Text>
+                    </View>
+                )}
+
+                <Text style={styles.textDesCook}>{step.des}</Text>
+            </View>
         );
     });
 
@@ -122,17 +344,10 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
     };
 
     const handleBack = () => {
-        navigation.navigate('Home');
+        navigation.goBack();
     };
 
-    const formatTime = (time: number): string => {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-    };
-
-    const [intervalId, setIntervalId] = useState<number | null>(null);
-
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
     useEffect(() => {
         if (start) {
             const id = setInterval(() => {
@@ -152,20 +367,108 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
     }, [start]);
 
     const handleLike = () => {
+        axios
+            .post('http://192.168.34.109:3056/dish/tha-like-mon-an', {
+                idNguoiDung: route.params.user._id,
+                idMonAn: route.params._id,
+            })
+            .then()
+            .catch((error) => {
+                if (error.response) {
+                    Alert.alert(error.response.data.message);
+                } else if (error.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            });
         setLike(!isLike);
         if (isLike) {
-            setNumberLike(numberLike-1);
+            setNumberLike(numberLike - 1);
+        } else {
+            setNumberLike(numberLike + 1);
         }
-        else {
-            setNumberLike(numberLike+1);
+    };
+
+    const hanldeAddToCart = () => {
+        if (user.token) {
+            axios
+                .post('http://192.168.34.109:3056/user/add-to-cart', {
+                    img: recipe.imgDes,
+                    nameDish: recipe.name,
+                    idDish: route.params._id,
+                    idUser: user._id,
+                    idIngre: recipe.ingredients,
+                    meal: recipe.defaultPortion,
+                })
+                .then((response) => {
+                    if (response.status === 200) {
+                        setCheckAdd(true);
+                    }
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        Alert.alert(error.response.data.message);
+                    } else if (error.request) {
+                        Alert.alert('Network error. Please check your internet connection.');
+                    } else {
+                        Alert.alert('An unexpected error occurred. Please try again later.');
+                    }
+                });
+        } else {
+            navigation.navigate('Login', { address: 'Recipe' });
         }
-    }
+    };
+
+    const increaseRations = () => {
+        if (defaultPortion === ration * 5) {
+            return;
+        }
+        setDefaultPortion(defaultPortion + 1);
+        var arr = Array.from(quantityIngredient);
+        for (let i = 0; i < arr.length; i++) {
+            if (Number.isNaN(parseInt(arr[i]) * 2)) {
+                arr[i] = arr[i];
+            } else {
+                arr[i] = (parseInt(arr[i]) * 2).toString();
+            }
+        }
+        setQunatityIngre(arr);
+    };
+
+    const reduceRation = () => {
+        if (defaultPortion === ration) {
+            return;
+        }
+        setDefaultPortion(defaultPortion - 1);
+        var arr = Array.from(quantityIngredient);
+        for (let i = 0; i < arr.length; i++) {
+            if (Number.isNaN(parseInt(arr[i]) / 2)) {
+                arr[i] = arr[i];
+            } else {
+                arr[i] = (parseInt(arr[i]) / 2).toString();
+            }
+        }
+        setQunatityIngre(arr);
+    };
 
     if (notice) {
         setTimeout(() => {
-            showNotice(false);
+            setNotice(false);
         }, 2000);
-    };
+    }
+
+    if (checkAdd) {
+        setTimeout(() => {
+            setCheckAdd(false);
+        }, 2000);
+    }
+
+    if (checkRating) {
+        setTimeout(() => {
+            setCheckRating(false);
+        }, 2000);
+    }
 
     if (!fontLoaded) {
         return null;
@@ -182,7 +485,11 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     {yScroll >= 518 ? (
                         <View style={styles.ctnSocial}>
                             <TouchableOpacity style={styles.btnSocial} onPress={handleLike}>
-                                <FontAwesomeIcon size={24} icon={isLike ? heart : faHeart} color={isLike ? 'red' : '#212121'}/>
+                                <FontAwesomeIcon
+                                    size={24}
+                                    icon={isLike ? heart : faHeart}
+                                    color={isLike ? 'red' : '#212121'}
+                                />
                             </TouchableOpacity>
 
                             <TouchableOpacity style={styles.btnSocial} onPress={() => setShowModal(true)}>
@@ -205,8 +512,59 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                 </View>
             )}
 
-            {showComment ? <ComentRecipe cancel={() => setShowCmt(false)} /> : ''}
+            {showComment && <ComentRecipe cancel={() => setShowCmt(false)} idDish={route.params._id} user={user} data = {listCmt} />}
+            <Modal animationType="slide" transparent={true} visible={showStepCook}>
+                <CookRecipe data={recipe.step} close={() => setShowStepCook(false)} />
+            </Modal>
 
+            <Modal animationType="slide" transparent={true} visible={checkAdd}>
+                <Notice text="Bạn đã thêm nguyên liệu thành công!" type="success" />
+            </Modal>
+
+            <Modal animationType="slide" transparent={true} visible={checkRating}>
+                <Notice text="Bạn đã đánh giá thành công!" type="success" />
+            </Modal>
+
+            <Modal transparent={true} visible={modalVideo} animationType="slide">
+                <View
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        width: '100%',
+                        bottom: 0,
+                        zIndex: 10000,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#000',
+                    }}
+                >
+                    <TouchableOpacity
+                        style={{
+                            position: 'absolute',
+                            top: 24,
+                            left: 12,
+                            padding: 4,
+                        }}
+                        onPress={() => setModalVideo(false)}
+                    >
+                        <FontAwesomeIcon icon={faXmark} color="#fff" size={24} />
+                    </TouchableOpacity>
+                    <Video
+                        source={{ uri: recipe.video }}
+                        shouldPlay
+                        ref={videoRef}
+                        style={{
+                            width: Dimensions.get('window').width,
+                            height: 320,
+                        }}
+                        useNativeControls
+                    />
+                </View>
+            </Modal>
+
+            <Modal animationType="slide" transparent={true} visible={notice}>
+                <Notice text="Bạn đã lưu thành công!" type="success" />
+            </Modal>
             {showModal && (
                 <View style={styles.containerSaveBook}>
                     <Modal
@@ -218,20 +576,26 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                         <TouchableWithoutFeedback onPress={() => setShowModal(false)} style={styles.overlay}>
                             <View style={styles.overlay} />
                         </TouchableWithoutFeedback>
-                        <SaveCookBook showNotice={() => showNotice(true)} />
+                        <SaveCookBook
+                            showNotice={() => setNotice(true)}
+                            user={route.params.user}
+                            idDish={route.params._id}
+                            close={() => setShowModal(false)}
+                        />
                     </Modal>
-                    {notice ? (
-                        <View style={styles.ctnNotice}>
-                            <View style={styles.notice}>
-                                <Text style={styles.textNotice}>Bạn đã lưu thành công!</Text>
-                            </View>
-                        </View>
-                    ) : null}
                 </View>
             )}
 
+            {recipe.video && (
+                <TouchableOpacity
+                    style={[styles.ctnButtonPlay, yScroll >= 120 ? { zIndex: 15 } : {}]}
+                    onPress={() => setModalVideo(true)}
+                >
+                    <FontAwesomeIcon icon={faPlay} color="#fff" size={48} />
+                </TouchableOpacity>
+            )}
             <View style={styles.ctnIntro}>
-                <Image source={imageIntro} style={styles.imgIntro} resizeMode="cover" />
+                <Image source={{ uri: recipe.imgDes }} style={styles.imgIntro} resizeMode="cover" />
             </View>
             <ScrollView
                 style={styles.body}
@@ -243,36 +607,44 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
             >
                 <View style={styles.marginTop}></View>
                 <View style={styles.ctnInteract}>
-                    <Text style={styles.textRecipe}>Bánh hạnh nhân dừa</Text>
+                    <Text style={styles.textRecipe} numberOfLines={2}>
+                        {recipe.name}
+                    </Text>
                     <View style={styles.ctnRating}>
                         {[1, 2, 3, 4, 5].map((value) => (
                             <TouchableOpacity key={value}>
-                                {/* <Text
+                                <Text
                                     style={{
-                                        color: 'gray',
-                                        fontSize: 20,
-                                        marginHorizontal: 6
+                                        color: value <= numberRating ? '#ffc400' : 'gray',
+                                        fontSize: 24,
+                                        marginHorizontal: 6,
                                     }}
                                 >
                                     &#9733;
-                                </Text> */}
-                                <FontAwesomeIcon
+                                </Text>
+                                {/* <FontAwesomeIcon
                                     icon={faStar}
                                     color="#212121"
                                     style={{ marginHorizontal: 6 }}
                                     size={17}
-                                />
+                                /> */}
                             </TouchableOpacity>
                         ))}
                     </View>
 
                     <TouchableOpacity onPress={() => setShowForm(true)}>
-                        <Text style={styles.numberRating}>chưa có đánh giá</Text>
+                        <Text style={styles.numberRating}>
+                            {numberRating > 0 ? `dựa trên ${listRating} đánh giá` : 'chưa có đánh giá'}
+                        </Text>
                     </TouchableOpacity>
 
                     <View style={styles.ctnSocial}>
                         <TouchableOpacity style={styles.btnSocial} onPress={handleLike}>
-                            <FontAwesomeIcon size={24} icon={isLike ? heart : faHeart} color={isLike ? 'red' : '#212121'}/>
+                            <FontAwesomeIcon
+                                size={24}
+                                icon={isLike ? heart : faHeart}
+                                color={isLike ? '#fa384f' : '#212121'}
+                            />
                             <Text style={styles.textSocial}>{numberLike}</Text>
                         </TouchableOpacity>
 
@@ -294,25 +666,14 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     </View>
 
                     <View style={styles.ctnInfoChef}>
-                        <Text style={styles.nameChef}>Name chef</Text>
+                        <Text style={styles.nameChef}>Kitchen Stories</Text>
                         <Text style={styles.addressWork}>Đầu bếp tại Kitchen Stories</Text>
                     </View>
                 </View>
 
                 <View style={styles.ctnDesRecipe}>
                     <Text style={styles.textDesRecipe} numberOfLines={extend ? 0 : 4} ellipsizeMode="tail">
-                        "Bánh hạnh nhân dừa thực sự là một món nướng kinh điển trong dịp Giáng sinh. Thử thách là làm
-                        cho chúng siêu mềm và ẩm, vì nếu không chúng có thể trở nên khô và cứng và có xu hướng vỡ ra chỉ
-                        khi nhìn vào chúng. Nhưng với công thức bánh hạnh nhân dừa tuyệt vời này, mọi nỗ lực chắc chắn
-                        sẽ thành công kể từ bây giờ. Việc chuẩn bị rất đơn giản và phù hợp hoàn toàn với mùa Mùa Vọng
-                        thường căng thẳng. Sau một số thử nghiệm, cuối cùng tôi đã tìm ra công thức làm bánh hạnh nhân
-                        dừa ngon nhất của mình - dễ dàng, dễ thích nghi và tất nhiên là rất ngon và ẩm! Công thức cơ bản
-                        cho những chiếc bánh hạnh nhân dừa đơn giản này chỉ bao gồm ba nguyên liệu: Dừa vụn, lòng trắng
-                        trứng và đường. Các nguyên liệu còn lại ít nhiều tùy chọn, tùy theo sở thích cá nhân và mong
-                        muốn có thêm hương vị. Tôi đã chọn kiểu cổ điển ở đây có vani và chanh zingy. Không thể bỏ qua
-                        biến thể chanh - chanh cân bằng hoàn hảo giữa đường và dừa để tạo nên một sự kết hợp thực sự làm
-                        hài lòng đám đông. Nếu bạn đang vội, bạn có thể chỉ cần đặt những chiếc bánh hạnh nhân phủ sô cô
-                        la vào trong tủ lạnh sẽ nguội nhanh.”
+                        "{recipe.description}"
                     </Text>
 
                     {!extend ? (
@@ -339,7 +700,7 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     </View>
 
                     <View style={{ marginTop: 8 }}>
-                        <Text style={[styles.numberRating, { marginBottom: 0, color: '#555' }]}>0 bình luận</Text>
+                        <Text style={[styles.numberRating, { marginBottom: 0, color: '#555' }]}>{listCmt.length} bình luận</Text>
                     </View>
                 </View>
 
@@ -347,13 +708,13 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     <Text style={styles.textHeadingReview}>Nguyên liệu</Text>
 
                     <View style={styles.ctnAdjust}>
-                        <Text style={styles.numberAdjust}>{quantityIngre} chiếc</Text>
+                        <Text style={styles.numberAdjust}>{defaultPortion} phần</Text>
                         <View style={styles.adjustQuantity}>
-                            <TouchableOpacity style={styles.btnAdjust} onPress={() => setQunatity(quantityIngre - 10)}>
+                            <TouchableOpacity style={styles.btnAdjust} onPress={reduceRation}>
                                 <FontAwesomeIcon icon={faMinus} />
                             </TouchableOpacity>
-                            <Text style={styles.textAdjust}>{quantityIngre}</Text>
-                            <TouchableOpacity style={styles.btnAdjust} onPress={() => setQunatity(quantityIngre + 10)}>
+                            <Text style={styles.textAdjust}>{defaultPortion}</Text>
+                            <TouchableOpacity style={styles.btnAdjust} onPress={increaseRations}>
                                 <FontAwesomeIcon icon={faPlus} />
                             </TouchableOpacity>
                         </View>
@@ -366,7 +727,7 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     </View>
 
                     <View style={styles.ctnButtonAddToCart}>
-                        <TouchableOpacity style={styles.buttonAddToCart}>
+                        <TouchableOpacity style={styles.buttonAddToCart} onPress={hanldeAddToCart}>
                             <Text style={[styles.textCooking, { marginRight: 4 }]}>Thêm vào</Text>
                             <FontAwesomeIcon icon={faCartShopping} color="#fff" size={18} />
                         </TouchableOpacity>
@@ -375,10 +736,7 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
 
                 <View style={styles.ctnIngredients}>
                     <Text style={styles.textHeadingReview}>Dụng cụ</Text>
-                    <Text style={styles.textUtensils}>
-                        dụng cụ bào mịn, dao, thớt, bát (lớn), máy trộn cầm tay có que đánh, màng bọc thực phẩm, lò
-                        nướng, khay nướng, giấy nến, muỗng múc kem (tùy chọn), nồi (nhỏ), tô (nhỏ)
-                    </Text>
+                    <Text style={styles.textUtensils}>{recipe.utensils}</Text>
                 </View>
 
                 <View style={styles.ctnIngredients} ref={targetComponentRef} onLayout={() => {}}>
@@ -387,117 +745,33 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
                     <View style={styles.ctnNutrition}>
                         <View>
                             <Text style={styles.textNutition}>Cal</Text>
-                            <Text style={styles.textNutition}>133</Text>
+                            <Text style={styles.textNutition}>{nutrition.Cal}</Text>
                         </View>
                         <View>
                             <Text style={styles.textNutition}>Fat</Text>
-                            <Text style={styles.textNutition}>8 g</Text>
+                            <Text style={styles.textNutition}>{nutrition.Fat}</Text>
                         </View>
                         <View>
                             <Text style={styles.textNutition}>Protein</Text>
-                            <Text style={styles.textNutition}>1 g</Text>
+                            <Text style={styles.textNutition}>{nutrition.Protein}</Text>
                         </View>
                         <View>
                             <Text style={styles.textNutition}>Carb</Text>
-                            <Text style={styles.textNutition}>16 g</Text>
+                            <Text style={styles.textNutition}>{nutrition.Carb}</Text>
                         </View>
                     </View>
 
-                    <View style={styles.ctnCookStep}>
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <Text style={styles.textStep}>Bước 1/3</Text>
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faClock} size={20} style={{ marginBottom: 10 }} />
-                                <Text style={[styles.textStep, { color: '#da7e4f', marginLeft: 6 }]}>
-                                    {formatTime(initTime)}
-                                </Text>
-                            </View>
-                        </View>
-                        <Image source={imageIntro} resizeMode="cover" style={styles.imgStep} />
-                        <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-                            <Image style={styles.imgIcon} source={ingredient} />
-                            <Text style={styles.textIngreCook}>
-                                1 quả chanh - 1 đậu vani - 4 lòng trắng trứng - 200 g đường - ¼ thìa cà phê muối - 200 g
-                                dừa nạo không đường
-                            </Text>
-                        </View>
-
-                        <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-                            <Image style={styles.imgIcon} source={cook} />
-                            <Text style={styles.textIngreCook}>
-                                máy xay mịn - dao - thớt - bát (lớn) - máy trộn cầm tay có que đánh - bọc nhựa
-                            </Text>
-                        </View>
-
-                        <Text style={styles.textDesCook}>
-                            Nghiền mịn vỏ chanh và ép lấy nước. Cạo đậu vani. Trong một tô lớn, đánh lòng trắng trứng,
-                            vỏ chanh và nước cốt, đường, bột vani và muối bằng máy trộn cầm tay có máy đánh trứng. Thêm
-                            dừa nạo vào và trộn vào. Dùng màng bọc thực phẩm bọc lại và để trong tủ lạnh khoảng 10 phút.
-                        </Text>
-                    </View>
-
-                    <View style={styles.ctnCookStep}>
-                        <Text style={styles.textStep}>Bước 2/3</Text>
-                        <Image source={imageIntro} resizeMode="cover" style={styles.imgStep} />
-
-                        <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-                            <Image style={styles.imgIcon} source={cook} />
-                            <Text style={styles.textIngreCook}>
-                                lò nướng - khay nướng - giấy nến múc kem (tùy chọn)
-                            </Text>
-                        </View>
-
-                        <Text style={styles.textDesCook}>
-                            Làm nóng lò ở nhiệt độ đối lưu 165°C/330°F (hoặc nhiệt độ trên-dưới 185°C/365°F). Dòng một
-                            tấm nướng bánh bằng giấy giấy da. Dùng muỗng hoặc thìa múc kem nhẹ nhàng nặn hỗn hợp dừa
-                            thành 20 hình nón nhỏ rồi đặt lên khay nướng. Chuyển vào lò nướng và nướng trên giá giữa
-                            trong khoảng. 10–15 phút. Bánh hạnh nhân nên có màu nâu nhạt nhưng vẫn hơi mềm. Lấy ra khỏi
-                            lò và để nguội hoàn toàn. Chỉ sau đó cẩn thận loại bỏ khỏi giấy da.
-                        </Text>
-                    </View>
-
-                    <View style={styles.ctnCookStep}>
-                        <Text style={styles.textStep}>Bước 3/3</Text>
-                        <Image source={imageIntro} resizeMode="cover" style={styles.imgStep} />
-                        <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-                            <Image style={styles.imgIcon} source={ingredient} />
-                            <Text style={styles.textIngreCook}>100g socola (để trang trí)</Text>
-                        </View>
-
-                        <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-                            <Image style={styles.imgIcon} source={cook} />
-                            <Text style={styles.textIngreCook}>nồi (nhỏ)- bát (nhỏ)</Text>
-                        </View>
-
-                        <Text style={styles.textDesCook}>
-                            Đập sô-cô-la vào tô và đun chảy trên nước sốt bain-marie. Nhúng mặt phẳng của bánh hạnh nhân
-                            vào sô cô la tan chảy và đặt lên giấy da. Ngoài ra, bạn có thể múc một ít sô-cô-la lên giấy
-                            nướng bánh và đặt mặt phẳng bánh hạnh nhân xuống trên rồi để nguội. Trang trí với sô cô la
-                            còn lại như mong muốn.
-                        </Text>
-                    </View>
-
+                    <View style={styles.ctnCookStep}>{renderStepCook}</View>
                     <View style={styles.ctnCookStep}>
                         <Text style={[styles.textStep, { marginBottom: 24 }]}>Thưởng thức ngon miệng nhé!</Text>
-                        <Image source={imageIntro} resizeMode="cover" style={styles.imgStep} />
+                        <Image source={{ uri: recipe.imgDes }} resizeMode="cover" style={styles.imgStep} />
                     </View>
                 </View>
             </ScrollView>
 
             {showButtonCook ? (
                 <View style={styles.ctnButtonCook}>
-                    <TouchableOpacity style={styles.buttonStartCook} onPress={() => setStart(!start)}>
+                    <TouchableOpacity style={styles.buttonStartCook} onPress={() => setShowStepCook(true)}>
                         <Text style={styles.textCooking}>Bắt đầu nấu!</Text>
                     </TouchableOpacity>
                 </View>
@@ -506,7 +780,12 @@ const RecipeScreen: React.FC<Navigation> = ({ navigation }) => {
             )}
         </View>
     ) : (
-        <FormRating cancelFunc={() => setShowForm(false)} />
+        <FormRating
+            cancelFunc={() => setShowForm(false)}
+            user={user}
+            idDish={route.params._id}
+            checkRating={() => setCheckRating(true)}
+        />
     );
 };
 

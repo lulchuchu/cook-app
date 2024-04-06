@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     item2: {
-        width: '53%',
+        width: '50%',
         paddingRight: 16,
     },
     textName: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     item3: {
-        width: '22%',
+        width: '25%',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'flex-end',

@@ -12,15 +12,16 @@ import { useFonts } from 'expo-font';
 type Navigation = {
     navigation: StackNavigationProp<RootStackParamList>;
     address: any;
+    user: any;
 };
 
-const Footer: React.FC<Navigation> = ({ navigation, address }) => {
+const Footer: React.FC<Navigation> = ({ navigation, address, user }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
     });
 
     const handleClick = (address: any) => {
-        navigation.navigate(address);
+        navigation.navigate(address, { user: user });
     };
 
     if (!fontLoaded) {

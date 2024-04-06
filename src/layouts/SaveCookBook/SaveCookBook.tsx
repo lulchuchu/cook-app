@@ -1,36 +1,94 @@
-import React, { useState } from 'react';
-import { Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import { useFonts } from 'expo-font';
+import React, { useEffect, useState } from 'react';
+import { Alert, Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 
 import styles from './style';
 import CreateCookBook from '../CreateCookBook/CreateCookBook';
+import axios from 'axios';
 
 const itemFood = require('../../../assets/images/bibimbap.png');
 
 type Func = {
     showNotice: () => void;
+    user: any;
+    idDish: string;
+    close: () => void;
 };
 
-const SaveCookBook: React.FC<Func> = ({ showNotice }) => {
-    const [fontLoaded] = useFonts({
-        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata_Condensed-Bold.ttf'),
-        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata_Condensed-Medium.ttf'),
-    });
+interface CookBook {
+    _id: string;
+    dishs: string[];
+    name: string;
+    user: string;
+}
 
+const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
     const [showFormModal, setShow] = useState(false);
-    const [showItem, setItem] = useState(false);
+    const [cookBook, setCookBook] = useState<CookBook[]>([]);
 
-    const handleSave = () => {
-        setItem(true);
-        setShow(false);
+    useEffect(() => {
+        axios
+            .get('http://192.168.34.109:3056/nhom-mon-an/lay-tat-ca-nhom-ma', {
+                params: { idNguoiDung: user._id },
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    setCookBook(response.data);
+                }
+            })
+            .catch((err) => {
+                Alert.alert(err.message);
+            });
+    }, []);
+
+    const updateCookBook = (data: CookBook) => {
+        var arr = Array.from(cookBook);
+        arr.push(data);
+        setCookBook(arr);
     };
 
-    if (!fontLoaded) {
-        return null;
-    }
+    const addDishToCookBook = (idCookBook: string) => {
+        axios
+            .post('http://192.168.34.109:3056/nhom-mon-an/them-mon', {
+                idCookBook: idCookBook,
+                idDish: idDish,
+                idUser: user._id,
+            })
+            .then((res) => {
+                if (res.status === 200) {
+                    showNotice();
+                    close();
+                } else {
+                    Alert.alert(res.data.message);
+                }
+            })
+            .catch((error) => {
+                if (error.response) {
+                    Alert.alert(error.response.data.message);
+                } else if (error.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            });
+    };
+
+    const renderCookBook = cookBook.map((item: CookBook, index: number) => {
+        return (
+            <TouchableOpacity style={styles.ctnItem} onPress={() => addDishToCookBook(item._id)} key={index}>
+                <Image source={itemFood} resizeMode="cover" style={styles.imgItem} />
+                <Text style={styles.textItem}>{item.name}</Text>
+                <Text style={styles.numberItem}>({item.dishs.length} công thức)</Text>
+            </TouchableOpacity>
+        );
+    });
 
     return showFormModal ? (
-        <CreateCookBook cancel={() => setShow(false)} setItem={handleSave} />
+        <CreateCookBook
+            cancel={() => setShow(false)}
+            user={user}
+            idDish={idDish}
+            updateCookBook={(data: CookBook) => updateCookBook(data)}
+        />
     ) : (
         <View style={styles.container}>
             <View
@@ -39,7 +97,7 @@ const SaveCookBook: React.FC<Func> = ({ showNotice }) => {
                 }}
             >
                 <Text style={styles.textInBold}>Lưu công thức</Text>
-                {showItem ? (
+                {cookBook.length > 0 ? (
                     <Text style={[styles.textInBold, { fontSize: 18, color: '#65676b', marginTop: 20 }]}>
                         Công thức đã lưu
                     </Text>
@@ -48,15 +106,15 @@ const SaveCookBook: React.FC<Func> = ({ showNotice }) => {
                 )}
             </View>
 
-            {showItem ? (
-                <View>
-                    <TouchableOpacity style={styles.ctnItem} onPress={showNotice}>
-                        <Image source={itemFood} resizeMode="cover" style={styles.imgItem} />
-                        <Text style={styles.textItem}>Tráng miệng</Text>
-                        <Text style={styles.numberItem}>(1 công thức)</Text>
-                    </TouchableOpacity>
-                </View>
-            ) : null}
+            <View
+                style={{
+                    flexDirection: 'row',
+                    width: '100%',
+                    justifyContent: 'space-evenly',
+                }}
+            >
+                {renderCookBook}
+            </View>
             <View style={styles.ctnButton}>
                 <TouchableOpacity
                     style={styles.button}

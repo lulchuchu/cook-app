@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
         zIndex: 10,
         width: '100%',
         height: '100%',
-        // paddingBottom: 80,
     },
     marginTop: {
         marginTop: 92,

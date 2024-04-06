@@ -4,6 +4,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    containerLoading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    },
     imgBackground: {
         flex: 1,
         justifyContent: 'center',
@@ -41,9 +47,8 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         color: '#000',
         fontFamily: 'Inconsolata-Medium',
-        fontSize: 18,
-        // borderColor: '#ee82ee',
-        // borderWidth: 1,
+        fontSize: 17,
+        width: '100%',
     },
     error: {
         color: '#fd7f51',

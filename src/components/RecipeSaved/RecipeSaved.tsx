@@ -1,12 +1,62 @@
-import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 import styles from './style';
+const itemFood = require('../../../assets/images/bibimbap.png');
 
-const RecipeSaved: React.FC = () => {
-    return (
+type Props = {
+    user: any;
+};
+
+interface CookBook {
+    _id: string;
+    dishs: string[];
+    name: string;
+    user: string;
+}
+
+const RecipeSaved: React.FC<Props> = ({ user }) => {
+    const [cookBook, setCookBook] = useState<CookBook[]>([]);
+
+    useEffect(() => {
+        axios
+            .get('http://192.168.34.109:3056/nhom-mon-an/lay-tat-ca-nhom-ma', {
+                params: { idNguoiDung: user._id },
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    setCookBook(response.data);
+                }
+            })
+            .catch((err) => {
+                Alert.alert(err.message);
+            });
+    }, []);
+
+    const renderCookBook = cookBook.map((item: CookBook, index: number) => {
+        return (
+            <TouchableOpacity style={styles.ctnItem} key={index}>
+                <Image source={itemFood} resizeMode="cover" style={styles.imgItem} />
+                <Text style={styles.textItem}>{item.name}</Text>
+                <Text style={styles.numberItem}>({item.dishs.length} công thức)</Text>
+            </TouchableOpacity>
+        );
+    });
+
+    return cookBook.length > 0 ? (
+        <View
+            style={{
+                flexDirection: 'row',
+                width: '100%',
+                justifyContent: 'space-evenly',
+            }}
+        >
+            {renderCookBook}
+        </View>
+    ) : (
         <View style={styles.ctnContent}>
             <TouchableOpacity style={styles.btnCreate}>
                 <View style={styles.ctnIcon}>

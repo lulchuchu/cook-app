@@ -11,9 +11,10 @@ const message = require('../../../assets/images/message.png');
 
 type Func = {
     close: () => void;
+    user: any;
 };
 
-const Diet: React.FC<Func> = ({ close }) => {
+const Diet: React.FC<Func> = ({ close, user }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -37,9 +38,9 @@ const Diet: React.FC<Func> = ({ close }) => {
 
     return showItem1 || showItem2 ? (
         showItem1 ? (
-            <Item1 func={handleNextLayout} close={close} />
+            <Item1 func={handleNextLayout} close={close} user={user} />
         ) : (
-            <Item2 close={close} />
+            <Item2 close={close} user={user} />
         )
     ) : (
         <View style={styles.container}>

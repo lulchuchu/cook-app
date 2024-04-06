@@ -26,7 +26,7 @@ const OptionLogin: React.FC<Navigation> = ({ navigation }) => {
     };
 
     const handleToLogin = () => {
-        navigation.navigate('Login');
+        navigation.navigate('Login', { address: '' });
     };
 
     if (!fontLoaded) {
@@ -72,7 +72,7 @@ const OptionLogin: React.FC<Navigation> = ({ navigation }) => {
                 </View>
             </ImageBackground>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Home', { user: null, prevAddress: null })}>
                     <Text style={styles.textSkip}>Bỏ qua</Text>
                 </TouchableOpacity>
             </View>

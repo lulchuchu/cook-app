@@ -8,18 +8,12 @@ import styles from './style';
 
 type Func = {
     cancelModal: () => void;
+    func: () => void;
+    text: string;
+    button: string;
 };
 
-const FormConfirm: React.FC<Func> = ({ cancelModal }) => {
-    const [fontLoaded] = useFonts({
-        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
-    });
-
-    if (!fontLoaded) {
-        return null;
-    }
-
+const FormConfirm: React.FC<Func> = ({ cancelModal, func, text, button }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -38,11 +32,17 @@ const FormConfirm: React.FC<Func> = ({ cancelModal }) => {
             </View>
 
             <View style={{ marginVertical: 20, paddingHorizontal: 20 }}>
-                <Text style={styles.textConfirm}>Bạn đã kiểm tra và xác nhận với những thông tin của đơn hàng.</Text>
+                <Text style={styles.textConfirm}>{text}</Text>
             </View>
 
-            <TouchableOpacity style={styles.btnConfirm} onPress={cancelModal}>
-                <Text style={styles.textBtn}>Xác nhận</Text>
+            <TouchableOpacity
+                style={styles.btnConfirm}
+                onPress={() => {
+                    func();
+                    cancelModal();
+                }}
+            >
+                <Text style={styles.textBtn}>{button}</Text>
             </TouchableOpacity>
         </View>
     );

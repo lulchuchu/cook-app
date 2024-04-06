@@ -54,6 +54,32 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         marginTop: 16,
     },
+    ctnItem: {
+        width: '45%',
+        height: 200,
+        paddingVertical: 16,
+        paddingHorizontal: 20,
+        borderColor: '#0a9b70',
+        borderWidth: 1,
+        borderRadius: 20,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imgItem: {
+        width: 100,
+        height: 100,
+    },
+    textItem: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 18,
+        marginTop: 8,
+    },
+    numberItem: {
+        fontFamily: 'Inconsolata-Bold',
+        color: '#65676b',
+        marginTop: 4,
+    },
 });
 
 export default styles;
