@@ -53,6 +53,12 @@ const styles = StyleSheet.create({
         borderColor: '#c54e22',
         borderWidth: 0.5,
     },
+    ctnImage: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
     flexRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -91,12 +97,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginVertical: 12,
+        paddingVertical: 2,
+        paddingHorizontal: 4,
     },
     ctnInteract: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 8,
         borderBottomColor: '#ccc',
         borderBottomWidth: 0.7,
         borderTopColor: '#ccc',
@@ -108,9 +115,22 @@ const styles = StyleSheet.create({
         color: '#65676b',
         marginLeft: 8,
     },
+    ctnInteracted: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingTop: 8,
+        marginBottom: 12,
+        paddingHorizontal: 16,
+    },
+    textInteracted: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 16,
+        color: '#65676b',
+    },
     ctnComment: {
         paddingBottom: 80,
-        marginTop: 20,
+        // marginTop: 20,
     },
     ctnInputComment: {
         position: 'absolute',
@@ -128,7 +148,7 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.4,
         shadowRadius: 4,
     },
     input: {

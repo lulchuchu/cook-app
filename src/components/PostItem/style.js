@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         width: 44,
         height: 44,
         borderRadius: 50,
-        borderColor: '#c54e22',
+        borderColor: '#ddd',
         borderWidth: 0.5,
     },
     flexRow: {
@@ -44,6 +44,12 @@ const styles = StyleSheet.create({
         // borderBottomColor: '#ccc',
         // borderBottomWidth: 1
     },
+    ctnImage: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
     ctnInteracted: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
         paddingBottom: 12,
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
-        paddingTop: 12,
+        paddingTop: 8,
         paddingHorizontal: 16,
     },
     textInteracted: {
@@ -67,8 +73,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata-Medium',
         fontSize: 16,
         paddingHorizontal: 16,
-        marginBottom: 8,
         lineHeight: 24,
+        marginBottom: 8,
     },
     ctnButton: {
         flexDirection: 'row',

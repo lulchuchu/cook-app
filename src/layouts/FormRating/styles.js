@@ -99,6 +99,19 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
     },
+    imgPost: {
+        width: 48,
+        height: 56,
+        borderRadius: 8,
+    },
+    iconXMark: {
+        position: 'absolute',
+        top: 2,
+        right: 2,
+        padding: 1,
+        backgroundColor: '#fff',
+        borderRadius: 50,
+    },
 });
 
 export default styles;

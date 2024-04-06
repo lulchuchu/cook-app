@@ -47,7 +47,7 @@ const Intro1: React.FC<Navigation> = ({ navigation }) => {
     };
 
     const handleCancel = () => {
-        navigation.navigate('Home');
+        navigation.navigate('Home', { user: null, prevAddress: null });
     };
 
     const handleNextLayout = () => {

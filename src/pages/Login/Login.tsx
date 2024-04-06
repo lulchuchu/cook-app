@@ -1,38 +1,147 @@
 import React, { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
-import { Image, ImageBackground, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+    ActivityIndicator,
+    Alert,
+    Image,
+    ImageBackground,
+    Modal,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+import axios from 'axios';
 import { faApple } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { RouteProp } from '@react-navigation/native';
+import { faCheck, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './styles';
+import Notice from '../../components/NoticeForm/Notice';
 const facebook = require('../../../assets/images/facebook.png');
 const imgBackground = require('../../../assets/images/login_bg.jpeg');
 
-type Navigation = {
-    navigation: StackNavigationProp<RootStackParamList>;
-};
+type Route = RouteProp<RootStackParamList, 'Login'>;
 
-const Login: React.FC<Navigation> = ({ navigation }) => {
+interface Navigation {
+    navigation: StackNavigationProp<RootStackParamList>;
+    route: Route;
+}
+
+const Login: React.FC<Navigation> = ({ navigation, route }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [hidePassword, setHide] = useState(true);
     const [loading, setLoading] = useState(false);
+
+    const [blurEmail, setBlurEmail] = useState(false);
+    const [blurPass, setBlurPass] = useState(false);
+    const [validEmail, setValidEmail] = useState(false);
+    const [validPass, setValiddPass] = useState(false);
+    const [errEmail, setErrEmail] = useState(false);
+    const [errPass, setErrPass] = useState(false);
+
+    const [typeNotice, setType] = useState('');
+    const [textNotice, setText] = useState('');
+    const [showNotice, setShowNotice] = useState(false);
+
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
+        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
 
     const handleBack = () => {
-        navigation.navigate('OptionLogin');
+        navigation.goBack();
     };
     const handleToRegister = () => {
         navigation.navigate('Register');
     };
 
-    const handleLogin = () => {};
+    const onChangeEmail = (mail: string) => {
+        setEmail(mail);
+        if (mail.length > 0 && mail.includes('@gmail.com')) {
+            setValidEmail(true);
+            setErrEmail(false);
+        } else {
+            setValidEmail(false);
+        }
+    };
+
+    const onChangePass = (pass: string) => {
+        setPassword(pass);
+        if (pass.length >= 8) {
+            setValiddPass(true);
+            setErrPass(false);
+        } else {
+            setValiddPass(false);
+        }
+    };
+
+    const handleLogin = () => {
+        setLoading(true);
+
+        if (validEmail && validPass) {
+            const data = { email, password };
+            setTimeout(() => {
+                axios
+                    .post('http://192.168.34.109:3056/user/login', data, { timeout: 1000 })
+                    .then((response) => {
+                        if (response.status === 200) {
+                            setText('Bạn đã đăng nhập thành công!');
+                            navigation.navigate('Home', { user: response.data.user, prevAddress: 'Login' });
+                        } else {
+                            setType('error');
+                            setText(response.data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            setType('error');
+                            setText(error.response.data.message);
+                        } else if (error.request) {
+                            setType('error');
+                            setText('Network error. Please check your internet connection.');
+                        } else {
+                            setType('error');
+                            setText('An unexpected error occurred. Please try again later.');
+                        }
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                        setShowNotice(true);
+                    });
+            }, 1000);
+        } else if (validEmail && !validPass) {
+            setLoading(false);
+            setErrEmail(false);
+            setErrPass(true);
+        } else if (!validEmail && validPass) {
+            setLoading(false);
+            setErrEmail(true);
+            setErrPass(false);
+        } else {
+            setLoading(false);
+            setErrEmail(true);
+            setErrPass(true);
+        }
+    };
+
+    if (loading) {
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }
+
+    if (showNotice) {
+        setTimeout(() => {
+            setShowNotice(false);
+        }, 3000);
+    }
 
     if (!fontLoaded) {
         return null;
@@ -40,6 +149,16 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <Modal transparent visible={showNotice} animationType="fade">
+                <Notice type={typeNotice} text={textNotice} />
+            </Modal>
+            <Modal transparent visible={loading} animationType="slide">
+                <View style={styles.containerLoading}>
+                    <ActivityIndicator size="large" color="white" />
+                    <Text style={styles.textBtnLogin}>Đang đăng nhập...</Text>
+                </View>
+            </Modal>
+
             <ImageBackground source={imgBackground} style={styles.backgroundVideo} blurRadius={16} resizeMode="cover">
                 <View style={styles.header}>
                     <View>
@@ -48,7 +167,7 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                     <Text style={styles.textRegister}>Đăng nhập</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home', { user: null, prevAddress: 'Login' })}>
                         <Text style={styles.textSkip}>Bỏ qua</Text>
                     </TouchableOpacity>
                 </View>
@@ -72,33 +191,68 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
 
                         <View style={styles.form}>
                             <TextInput
-                                style={styles.input}
+                                style={[
+                                    styles.input,
+                                    blurEmail
+                                        ? { borderColor: '#2eb886', borderWidth: 1 }
+                                        : errEmail
+                                          ? { borderColor: '#ff4500', borderWidth: 1 }
+                                          : {},
+                                ]}
                                 placeholder="Email"
                                 value={email}
-                                onChangeText={setEmail}
+                                onChangeText={(text) => onChangeEmail(text)}
                                 placeholderTextColor={'#212121'}
+                                onBlur={() => setBlurEmail(false)}
+                                onFocus={() => setBlurEmail(true)}
                             />
 
+                            <View style={{ height: 20 }}>
+                                {errEmail && <Text style={styles.textError}>Email chưa hợp lệ!</Text>}
+                            </View>
+
+                            {validEmail && (
+                                <View style={styles.ctnValidEmail}>
+                                    <FontAwesomeIcon icon={faCheck} color="#458e6e" />
+                                </View>
+                            )}
+
                             <TextInput
-                                style={styles.input}
+                                style={[
+                                    styles.input,
+                                    blurPass
+                                        ? { borderColor: '#2eb886', borderWidth: 1 }
+                                        : errPass
+                                          ? { borderColor: '#ff4500', borderWidth: 1 }
+                                          : {},
+                                ]}
                                 placeholder="Mật khẩu"
                                 value={password}
-                                onChangeText={setPassword}
+                                onChangeText={(pass) => onChangePass(pass)}
                                 placeholderTextColor={'#212121'}
-                                secureTextEntry
+                                secureTextEntry={hidePassword}
+                                onBlur={() => setBlurPass(false)}
+                                onFocus={() => setBlurPass(true)}
                             />
 
                             <View style={styles.iconEye}>
-                                <TouchableOpacity>
-                                    <FontAwesomeIcon icon={faEye} />
+                                <TouchableOpacity
+                                    onPress={() => setHide(!hidePassword)}
+                                    style={{
+                                        padding: 4,
+                                        marginRight: -4,
+                                        marginTop: -4,
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={hidePassword ? faEye : faEyeSlash} />
                                 </TouchableOpacity>
                             </View>
+
+                            <View>{errPass && <Text style={styles.textError}>Mật khẩu phải từ 8 ký tự!</Text>}</View>
                         </View>
 
-                        <TouchableOpacity style={styles.btnLogin}>
-                            <Text style={styles.textBtnLogin} onPress={handleLogin}>
-                                {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
-                            </Text>
+                        <TouchableOpacity style={styles.btnLogin} onPress={handleLogin}>
+                            <Text style={styles.textBtnLogin}>Đăng nhập</Text>
                         </TouchableOpacity>
 
                         <View style={styles.resetPass}>
@@ -124,7 +278,3 @@ const Login: React.FC<Navigation> = ({ navigation }) => {
 };
 
 export default Login;
-
-function setErrorMessage(arg0: string) {
-    throw new Error('Function not implemented.');
-}

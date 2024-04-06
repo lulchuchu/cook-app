@@ -1,22 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useFonts } from 'expo-font';
-import { Image, Keyboard, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+    Alert,
+    Dimensions,
+    Image,
+    Keyboard,
+    Platform,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faThumbsUp, faComment } from '@fortawesome/free-regular-svg-icons';
-import { faChevronLeft, faEllipsis, faShare, faThumbsUp as Like} from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faEllipsis, faShare, faThumbsUp as Like } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './style';
 import Comment from '../../components/Comment/Comment';
+import countTime from '../../util/CountTime';
+import axios from 'axios';
 
-const chef = require('../../../assets/images/chef.png');
-const meal = require('../../../assets/images/R1016-final-photo-1.jpg');
 const iconSend = require('../../../assets/images/paper-plane.png');
+const iconLike = require('../../../assets/images/facebook-reactions.png');
+const userImage = require('../../../assets/images/user.png');
 
 type Func = {
     func: () => void;
+    user: any;
+    dataPost: any;
 };
 
-const CommentPost: React.FC<Func> = ({ func }) => {
+interface UserCommentInterface {
+    _id: string;
+    username: string;
+    img: string;
+}
+
+interface CommentInterface {
+    _id: string;
+    author: UserCommentInterface;
+    content: string;
+    numberLike: number;
+    timeCreate: string;
+}
+
+const CommentPost: React.FC<Func> = ({ func, user, dataPost }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -26,21 +55,41 @@ const CommentPost: React.FC<Func> = ({ func }) => {
     const [isFocus, setIsFocus] = useState(false);
     const [valueText, setValueText] = useState('');
     const [heightKeyboard, setHeightKeyboard] = useState(0);
-    const [numberLike, setNumberLike] = useState(12);
+    const [numberLike, setNumberLike] = useState(dataPost.numberLike);
     const [isLike, setIsLike] = useState(false);
     const [height, setHeight] = useState(0);
+    const [time, setTime] = useState('');
+    const { width: deviceWidth } = Dimensions.get('window');
+    const [numberShare, setNumberShare] = useState(dataPost.numberShare);
+    const [cmtList, setCmtList] = useState<CommentInterface[]>([]);
 
-    const handleLike = () => {
+    useEffect(() => {
+        if (dataPost.accountLike.includes(user._id)) {
+            setIsLike(true);
+        } else {
+            setIsLike(false);
+        }
+    }, []);
+
+    const handleLike = async () => {
         setIsLike(!isLike);
         if (isLike) {
-            setNumberLike(numberLike-1);
-        }
-        else {
-            setNumberLike(numberLike+1);
+            setNumberLike(numberLike - 1);
+            await axios.post('http://192.168.34.109:3056/user/community/dislike', {
+                idBlog: dataPost._id,
+                idUser: user._id,
+            });
+        } else {
+            setNumberLike(numberLike + 1);
+            await axios.post('http://192.168.34.109:3056/user/community/like', {
+                idBlog: dataPost._id,
+                idUser: user._id,
+            });
         }
     };
 
     useEffect(() => {
+        setTime(countTime(dataPost.timePost));
         const keyboardDidShowListener = Keyboard.addListener(
             Platform.OS === 'android' ? 'keyboardDidShow' : 'keyboardWillShow',
             (event) => {
@@ -54,10 +103,99 @@ const CommentPost: React.FC<Func> = ({ func }) => {
         };
     }, []);
 
+    useEffect(() => {
+        axios
+            .get('http://192.168.34.109:3056/user/comment/blog/get', {
+                params: { idBlog: dataPost._id },
+            })
+            .then((response) => {
+                const data = response.data;
+                const lstCmt = [];
+                for (const item of data) {
+                    const cmt = {
+                        _id: item._id,
+                        author: item.author,
+                        content: item.content,
+                        numberLike: item.numberLike,
+                        timeCreate: item.createdAt,
+                    };
+                    lstCmt.push(cmt);
+                }
+                setCmtList(lstCmt);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    Alert.alert(error.response.data.message);
+                } else if (error.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            });
+    }, []);
+
     const handleScroll = (event: any) => {
         const { contentOffset } = event.nativeEvent;
         const { y } = contentOffset;
         setHeight(y);
+    };
+
+    const renderImage = dataPost.img.map((img: string, index: number) => {
+        return (
+            <Image
+                source={{ uri: img }}
+                resizeMode="cover"
+                style={{
+                    width: dataPost.img.length === 1 ? deviceWidth : deviceWidth * 0.49,
+                    height: 280,
+                    borderWidth: 0.2,
+                    borderColor: '#ccc',
+                }}
+                key={index}
+            />
+        );
+    });
+
+    const renderCmt = useCallback(() => {
+        return cmtList.map((comment: CommentInterface, index: number) => <Comment key={index} data={comment} />);
+    }, [cmtList]);
+
+    const handleComment = () => {
+        const dataCmt = {
+            author: user._id,
+            content: valueText,
+            idBlog: dataPost._id,
+        };
+        axios
+            .post('http://192.168.34.109:3056/user/comment/blog/post', dataCmt)
+            .then((response) => {
+                if (response.status === 200) {
+                    const comment = response.data;
+                    const cmt = {
+                        _id: comment._id,
+                        author: { _id: user._id, username: user.username, img: user.img },
+                        content: comment.content,
+                        numberLike: comment.numberLike,
+                        timeCreate: comment.createdAt,
+                    };
+                    setCmtList((prev) => [cmt, ...prev]);
+                } else {
+                    Alert.alert(response.data.message);
+                }
+            })
+            .catch((error) => {
+                if (error.response) {
+                    Alert.alert(error.response.data.message);
+                } else if (error.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            })
+            .finally(() => {
+                setValueText('');
+                setIsFocus(false);
+            });
     };
 
     if (!fontLoaded) {
@@ -66,23 +204,22 @@ const CommentPost: React.FC<Func> = ({ func }) => {
 
     return (
         <View style={styles.container}>
-            {height >= 40 ?
+            {height >= 40 ? (
                 <View style={styles.ctnHeaderScroll}>
                     <TouchableOpacity style={styles.ctnBack} onPress={func}>
                         <FontAwesomeIcon icon={faChevronLeft} size={20} />
                     </TouchableOpacity>
-                    <Text style={styles.textAccount}>Bài viết của Kitchen Stories</Text>
+                    <Text style={styles.textAccount}>Bài viết của {dataPost.user.username}</Text>
 
                     <TouchableOpacity>
                         <FontAwesomeIcon icon={faEllipsis} color="#65676b" size={20} />
                     </TouchableOpacity>
                 </View>
-                : null
-            }
+            ) : null}
 
-            <ScrollView 
-                showsVerticalScrollIndicator={false} 
-                scrollEventThrottle={16} 
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
                 bounces={false}
                 ref={scrollViewRef}
                 onScroll={handleScroll}
@@ -93,10 +230,14 @@ const CommentPost: React.FC<Func> = ({ func }) => {
                             <FontAwesomeIcon icon={faChevronLeft} size={20} />
                         </TouchableOpacity>
                         <View style={styles.flexRow}>
-                            <Image source={chef} resizeMode="contain" style={styles.imageUser} />
+                            <Image
+                                source={dataPost.user.img ? { uri: dataPost.user.img } : userImage}
+                                resizeMode="contain"
+                                style={styles.imageUser}
+                            />
                             <View style={styles.ctnInfor}>
-                                <Text style={styles.nameUser}>Kitchen Stories</Text>
-                                <Text style={styles.timePosted}>3 ngày</Text>
+                                <Text style={styles.nameUser}>{dataPost.user.username}</Text>
+                                <Text style={styles.timePosted}>{time}</Text>
                             </View>
                         </View>
                     </View>
@@ -107,14 +248,18 @@ const CommentPost: React.FC<Func> = ({ func }) => {
                 </View>
 
                 <View style={styles.ctnContent}>
-                    <Text style={styles.textPost}>Hãy khám phá món mới của chúng tôi: Bánh hạnh nhân dừa</Text>
-                    <Image source={meal} resizeMode="cover" style={styles.imageContent} />
+                    <Text style={styles.textPost}>{dataPost.title}</Text>
+                    <View style={styles.ctnImage}>{dataPost.img && renderImage}</View>
                 </View>
 
                 <View style={styles.ctnInteract}>
-                    <TouchableOpacity style={[styles.ctnButton, {paddingLeft: 16}]} onPress={handleLike}>
-                        <FontAwesomeIcon icon={isLike ? Like : faThumbsUp} color={isLike ? '#0866ff' : "#65676b"} size={18} />
-                        <Text style={[styles.textInteract, isLike ? {color: '#0866ff'} : {}]}>Thích</Text>
+                    <TouchableOpacity style={[styles.ctnButton, { paddingLeft: 16 }]} onPress={handleLike}>
+                        <FontAwesomeIcon
+                            icon={isLike ? Like : faThumbsUp}
+                            color={isLike ? '#0866ff' : '#65676b'}
+                            size={18}
+                        />
+                        <Text style={[styles.textInteract, isLike ? { color: '#0866ff' } : {}]}>Thích</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.ctnButton}>
@@ -128,6 +273,31 @@ const CommentPost: React.FC<Func> = ({ func }) => {
                     </TouchableOpacity>
                 </View>
 
+                <View style={styles.ctnInteracted}>
+                    {numberLike ? (
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Image
+                                source={iconLike}
+                                resizeMode="cover"
+                                style={{ width: 24, height: 24, marginRight: 4 }}
+                            />
+                            <Text style={styles.textInteracted}>{numberLike}</Text>
+                        </View>
+                    ) : (
+                        <View></View>
+                    )}
+                    {dataPost.comments.length > 0 ? (
+                        <Text style={styles.textInteracted}>{dataPost.comments.length} bình luận</Text>
+                    ) : (
+                        <Text></Text>
+                    )}
+                    {numberShare > 0 ? (
+                        <Text style={styles.textInteracted}>{dataPost.numberShare} chia sẻ</Text>
+                    ) : (
+                        <Text></Text>
+                    )}
+                </View>
+
                 <View style={styles.ctnComment}>
                     <Text
                         style={{
@@ -135,24 +305,23 @@ const CommentPost: React.FC<Func> = ({ func }) => {
                             marginLeft: 16,
                             fontSize: 18,
                             marginBottom: 12,
+                            marginTop: -4,
                         }}
                     >
                         Tất cả bình luận
                     </Text>
-                    <Comment />
-                    <Comment />
-                    <Comment />
-                    <Comment />
+                    <View>{renderCmt()}</View>
                 </View>
             </ScrollView>
 
             <View style={[styles.ctnInputComment, isFocus ? { bottom: heightKeyboard } : {}]}>
                 <TextInput
-                    placeholder="Viết bình luận"
+                    placeholder={valueText ? '' : 'Viết bình luận'}
                     numberOfLines={2}
                     placeholderTextColor={'#212121'}
                     style={styles.input}
                     ref={textInputRef}
+                    value={valueText}
                     onFocus={() => {
                         setIsFocus(true);
                     }}
@@ -164,7 +333,7 @@ const CommentPost: React.FC<Func> = ({ func }) => {
                     }}
                 />
                 {valueText.length > 0 ? (
-                    <TouchableOpacity style={{ padding: 4, marginRight: -4 }}>
+                    <TouchableOpacity style={{ padding: 4, marginRight: -4 }} onPress={handleComment}>
                         <Image source={iconSend} resizeMode="cover" style={{ width: 32, height: 32 }} />
                     </TouchableOpacity>
                 ) : (

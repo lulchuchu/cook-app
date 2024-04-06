@@ -2,13 +2,13 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
     itemRecipe: {
-        width: 300,
+        width: 240,
         marginRight: 20,
         position: 'relative',
     },
     imgRecipe: {
         width: '100%',
-        height: 300,
+        height: 280,
         borderRadius: 18,
     },
     nameRecipe: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     ctnHeart: {
         position: 'absolute',
-        bottom: 88,
+        bottom: 100,
         right: 10,
         backgroundColor: '#fff',
         paddingVertical: 4,

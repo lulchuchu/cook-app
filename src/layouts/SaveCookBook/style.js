@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         color: '#0a9b70',
     },
     ctnItem: {
-        width: '50%',
+        width: '45%',
         height: 200,
         paddingVertical: 16,
         paddingHorizontal: 20,

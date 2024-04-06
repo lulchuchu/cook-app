@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.2,
         shadowRadius: 2,
+        zIndex: 20,
     },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
@@ -45,9 +46,6 @@ const styles = StyleSheet.create({
     },
     ctnInputComment: {
         position: 'absolute',
-        flexDirection: 'row',
-        // justifyContent: 'space-between',
-        alignItems: 'center',
         zIndex: 10,
         bottom: 0,
         width: '100%',
@@ -75,6 +73,19 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         color: '#212121',
         marginLeft: 12,
+    },
+    imgPost: {
+        width: 48,
+        height: 56,
+        borderRadius: 8,
+    },
+    iconXMark: {
+        position: 'absolute',
+        top: 2,
+        left: 28,
+        padding: 1,
+        backgroundColor: '#fff',
+        borderRadius: 50,
     },
 });
 

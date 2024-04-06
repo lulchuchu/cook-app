@@ -4,6 +4,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    containerLoading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    },
     backgroundVideo: {
         position: 'relative',
         flex: 1,
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingBottom: 12,
         color: '#fff',
-        fontFamily: 'Inconsolata',
+        fontFamily: 'Inconsolata-Medium',
     },
     form: {
         width: '100%',
@@ -107,9 +113,19 @@ const styles = StyleSheet.create({
         // fontFamily: 'Inconsolata',
         // fontSize: 16,
     },
+    ctnValidEmail: {
+        position: 'absolute',
+        top: 24,
+        right: 8,
+    },
+    textError: {
+        fontFamily: 'Inconsolata-Medium',
+        color: '#ff4500',
+        marginLeft: 12,
+    },
     iconEye: {
         position: 'absolute',
-        top: 88,
+        top: 112,
         right: 16,
         paddingHorizontal: 2,
         paddingVertical: 2,

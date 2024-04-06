@@ -1,56 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './styles';
-import { useFonts } from 'expo-font';
-const background = require('../../../assets/images/home_bg.jpeg');
+import axios from 'axios';
 const chef = require('../../../assets/images/chef.png');
 
 interface Item {
-    uri: string;
+    img: string;
+    _id: string;
+    name: string;
+    numberLike: number;
+    type: string;
+    country: string;
 }
 
 type Navigation = {
     navigation: any;
+    user: any;
+    api: string;
+    params: string;
 };
 
-const RecipeCard: React.FC<Navigation> = ({ navigation }) => {
+const RecipeCard: React.FC<Navigation> = ({ navigation, user, api, params }) => {
     const [data, setData] = useState<Item[]>([
-        { uri: require('../../../assets/images/chef.png') },
-        { uri: require('../../../assets/images/chef.png') },
-        { uri: require('../../../assets/images/chef.png') },
-        { uri: require('../../../assets/images/chef.png') },
-        { uri: require('../../../assets/images/chef.png') },
+        {
+            img: 'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2FloadImage.jpg?alt=media&token=b8511f70-070d-4b1d-b1a6-f68daa2a6576',
+            _id: '',
+            name: '',
+            numberLike: 0,
+            type: '',
+            country: '',
+        },
     ]);
 
-    const [fontLoaded] = useFonts({
-        Inconsolata: require('../../../assets/fonts/Inconsolata-Light.ttf'),
-    });
+    useEffect(() => {
+        axios
+            .get(`http://192.168.34.109:3056/${api}`, {
+                params: { key: params },
+            })
+            .then((response) => {
+                setData(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     const renderCard = ({ item }: { item: Item }) => {
         return (
-            <TouchableOpacity style={styles.itemRecipe} onPress={() => navigation.navigate('Recipe')}>
-                <Image source={background} style={styles.imgRecipe} resizeMode="cover" />
-                <Text style={styles.nameRecipe}>Phở Việt Nam</Text>
+            <TouchableOpacity
+                style={styles.itemRecipe}
+                onPress={() => navigation.navigate('Recipe', { user: user, _id: item._id })}
+            >
+                <Image source={{ uri: item?.img }} style={styles.imgRecipe} resizeMode="cover" />
+                <Text style={styles.nameRecipe}>{item.name}</Text>
                 <View style={styles.ctnChef}>
                     <Image source={chef} style={styles.imgChef} />
                     <Text style={styles.nameChef}>Kitchen stories</Text>
                 </View>
                 <View style={styles.ctnHeart}>
                     <FontAwesomeIcon icon={faHeart} color="#212121" />
-                    <Text style={styles.textHeart}>10</Text>
+                    <Text style={styles.textHeart}>{item.numberLike}</Text>
                 </View>
             </TouchableOpacity>
         );
     };
-
-    if (!fontLoaded) {
-        return null;
-    }
     return (
-        <View>
+        <View style={{ marginBottom: 40 }}>
             <FlatList data={data} renderItem={renderCard} horizontal showsHorizontalScrollIndicator={false} />
         </View>
     );

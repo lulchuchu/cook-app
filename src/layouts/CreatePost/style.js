@@ -1,18 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#fff',
         position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
+        width: '100%',
+        height: '100%',
         zIndex: 100,
     },
     header: {
         width: '100%',
+        position: 'absolute',
         top: 0,
         backgroundColor: '#f0f2f5',
         paddingHorizontal: 16,
@@ -23,6 +21,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
+        zIndex: 10,
     },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
@@ -40,6 +39,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#b3c0c4',
     },
+    ctnBody: {
+        paddingTop: 100,
+        paddingBottom: 100,
+    },
     imgUser: {
         width: 42,
         height: 42,
@@ -49,6 +52,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 16,
         marginTop: 16,
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     ctnInfor: {
         marginLeft: 12,
@@ -72,6 +77,8 @@ const styles = StyleSheet.create({
     },
     ctnInput: {
         marginTop: 8,
+        height: 100,
+        width: '100%',
     },
     input: {
         fontFamily: 'Inconsolata-Medium',
@@ -79,6 +86,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 16,
         borderColor: 'transparent',
+        width: '100%',
+    },
+    ctnImage: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 

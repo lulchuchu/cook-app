@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     flexRow: {
         flexDirection: 'row',
-        marginBottom: 8,
+        marginBottom: 16,
         alignItems: 'center',
     },
     address: {
@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#787878',
         marginLeft: 12,
+        width: '90%',
+        lineHeight: 24,
     },
     textIn: {
         fontFamily: 'Inconsolata-Medium',
@@ -151,6 +153,26 @@ const styles = StyleSheet.create({
         width: '100%',
         top: 0,
         bottom: 0,
+    },
+    input: {
+        padding: 12,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 10,
+        width: '90%',
+        marginLeft: 12,
+    },
+    err: {
+        fontFamily: 'Inconsolata-Medium',
+        color: '#ff4500',
+        marginLeft: 20,
+        marginTop: 4,
+    },
+    warn: {
+        fontFamily: 'Inconsolata-Medium',
+        color: '#ffc621',
+        marginLeft: 12,
+        marginTop: 4,
     },
 });
 

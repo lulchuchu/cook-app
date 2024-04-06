@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
         color: '#212121',
         width: '100%',
     },
+    err: {
+        fontFamily: 'Inconsolata-Medium',
+        color: '#ff4500',
+        marginLeft: 12,
+        marginTop: 8,
+    },
 });
 
 export default styles;

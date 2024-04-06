@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     name: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 18,
+        fontSize: 17,
     },
     content: {
         fontFamily: 'Inconsolata-Medium',
@@ -36,6 +36,15 @@ const styles = StyleSheet.create({
         width: 200,
         paddingHorizontal: 12,
         marginTop: 8,
+    },
+    textInterace: {
+        fontFamily: 'Inconsolata-Bold',
+        color: '#65676b',
+    },
+    btnIterace: {
+        paddingVertical: 4,
+        paddingHorizontal: 4,
+        marginHorizontal: 6,
     },
 });
 

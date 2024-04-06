@@ -15,14 +15,14 @@ import Community from './src/pages/Community/Community';
 
 export type RootStackParamList = {
     Intro: undefined;
-    Login: undefined;
+    Login: { address: string };
     Register: undefined;
     OptionLogin: undefined;
-    Home: undefined;
-    Profile: undefined;
-    Recipe: undefined;
-    Cart: undefined;
-    Community: undefined;
+    Home: { user: any; prevAddress: any };
+    Profile: { user: any };
+    Recipe: { user: any; _id: string };
+    Cart: { user: any };
+    Community: { user: any };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
