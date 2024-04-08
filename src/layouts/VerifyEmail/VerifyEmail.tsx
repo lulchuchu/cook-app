@@ -117,18 +117,14 @@ const VerifyEmail: React.FC<Props> = ({ user, navigation, closeModal }) => {
         const codeVerify = parseInt(code.join(''));
         if (codeVerify > 1000) {
             axios
-                .post(
-                    'http://192.168.34.109:3056/user/verify/email',
-                    {
-                        code: codeVerify,
-                        email: user.email,
-                    },
-                    { timeout: 1000 },
-                )
+                .post('http://192.168.34.109:3056/user/verify/email', {
+                    code: codeVerify,
+                    email: user.email,
+                })
                 .then((response) => {
                     if (response.status === 200) {
                         setShowModal(false);
-                        navigation.navigate('Home');
+                        navigation.navigate('Home', { user: user, prevAddress: 'Regiter' });
                     } else {
                         Alert.alert(response.data.message);
                     }
@@ -150,7 +146,8 @@ const VerifyEmail: React.FC<Props> = ({ user, navigation, closeModal }) => {
     };
 
     const handleClose = () => {
-        navigation.navigate('Home', { user: user });
+        navigation.navigate('Home', { user: user, prevAddress: 'Register' });
+        closeModal();
     };
 
     return (

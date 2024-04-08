@@ -21,9 +21,10 @@ type Navigation = {
     user: any;
     api: string;
     params: string;
+    refreshing: boolean;
 };
 
-const RecipeCard: React.FC<Navigation> = ({ navigation, user, api, params }) => {
+const RecipeCard: React.FC<Navigation> = ({ navigation, user, api, params, refreshing }) => {
     const [data, setData] = useState<Item[]>([
         {
             img: 'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2FloadImage.jpg?alt=media&token=b8511f70-070d-4b1d-b1a6-f68daa2a6576',
@@ -46,7 +47,7 @@ const RecipeCard: React.FC<Navigation> = ({ navigation, user, api, params }) => 
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [refreshing]);
 
     const renderCard = ({ item }: { item: Item }) => {
         return (

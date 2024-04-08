@@ -29,6 +29,7 @@ type Func = {
     func: () => void;
     user: any;
     dataPost: any;
+    updatePostItem: (idCmt: string) => void;
 };
 
 interface UserCommentInterface {
@@ -45,7 +46,7 @@ interface CommentInterface {
     timeCreate: string;
 }
 
-const CommentPost: React.FC<Func> = ({ func, user, dataPost }) => {
+const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -179,6 +180,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost }) => {
                         timeCreate: comment.createdAt,
                     };
                     setCmtList((prev) => [cmt, ...prev]);
+                    updatePostItem(comment._id);
                 } else {
                     Alert.alert(response.data.message);
                 }
@@ -195,6 +197,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost }) => {
             .finally(() => {
                 setValueText('');
                 setIsFocus(false);
+                Keyboard.dismiss();
             });
     };
 
@@ -286,8 +289,8 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost }) => {
                     ) : (
                         <View></View>
                     )}
-                    {dataPost.comments.length > 0 ? (
-                        <Text style={styles.textInteracted}>{dataPost.comments.length} bình luận</Text>
+                    {cmtList.length > 0 ? (
+                        <Text style={styles.textInteracted}>{cmtList.length} bình luận</Text>
                     ) : (
                         <Text></Text>
                     )}

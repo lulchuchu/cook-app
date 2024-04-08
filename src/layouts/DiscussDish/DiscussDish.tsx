@@ -8,7 +8,7 @@ import * as FileSystem from 'expo-file-system';
 import styles from './style';
 const iconSend = require('../../../assets/images/paper-plane.png');
 const camera = require('../../../assets/images/camera.png');
-import Comment from '../../components/CommentRecipe/CommentRecipe';
+import Comment from '../../components/CommentDish/CommentDish';
 import axios from 'axios';
 
 type Func = {
@@ -16,6 +16,7 @@ type Func = {
     idDish: string;
     user: any;
     data: Comment[];
+    updateCmt: (cmt: Comment) => void;
 };
 
 interface User {
@@ -34,7 +35,7 @@ interface Comment {
     createdAt: string;
 }
 
-const ComentRecipe: React.FC<Func> = ({ cancel, idDish, user, data }) => {
+const DiscussDish: React.FC<Func> = ({ cancel, idDish, user, data, updateCmt }) => {
     const textInputRef = useRef<TextInput>(null);
     const scrollViewRef = useRef<ScrollView>(null);
     const [isFocus, setIsFocus] = useState(false);
@@ -43,7 +44,7 @@ const ComentRecipe: React.FC<Func> = ({ cancel, idDish, user, data }) => {
     const [image, setImage] = useState('');
     const [uri, setUri] = useState<object>({
         uri: '',
-        type: ''
+        type: '',
     });
     const [listCmt, setListCmt] = useState<Comment[]>(data);
 
@@ -89,15 +90,16 @@ const ComentRecipe: React.FC<Func> = ({ cancel, idDish, user, data }) => {
                 if (response.status === 200) {
                     var arr = Array.from(listCmt);
                     var data = response.data;
-                    data['user']= {
+                    data['user'] = {
                         _id: user._id,
                         img: user.img,
-                        username: user.username
-                    }
+                        username: user.username,
+                    };
                     setListCmt([data, ...arr]);
                     setValueText('');
                     setIsFocus(false);
                     Keyboard.dismiss();
+                    updateCmt(data);
                     setImage('');
                 }
             })
@@ -143,17 +145,20 @@ const ComentRecipe: React.FC<Func> = ({ cancel, idDish, user, data }) => {
                 ref={scrollViewRef}
             >
                 <View style={styles.ctnComment}>
-                    {listCmt.length > 0 ? renderComment :
-
+                    {listCmt.length > 0 ? (
+                        renderComment
+                    ) : (
                         <Text
-                            style = {{
+                            style={{
                                 fontFamily: 'Inconsolata-Medium',
                                 fontSize: 18,
                                 textAlign: 'center',
-                                marginTop: 20
+                                marginTop: 20,
                             }}
-                        >Chưa có bình luận nào!</Text>
-                    }
+                        >
+                            Chưa có bình luận nào!
+                        </Text>
+                    )}
                 </View>
             </ScrollView>
 
@@ -200,4 +205,4 @@ const ComentRecipe: React.FC<Func> = ({ cancel, idDish, user, data }) => {
     );
 };
 
-export default ComentRecipe;
+export default DiscussDish;

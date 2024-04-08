@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { useFonts } from 'expo-font';
 
 import styles from './style';
 import countTime from '../../util/CountTime';
+import { useEffect, useState } from 'react';
 const imgUser = require('../../../assets/images/user.png');
 
 interface UserCommentInterface {
@@ -25,15 +24,16 @@ type Props = {
 };
 
 const Comment: React.FC<Props> = ({ data }) => {
-    const [fontLoaded] = useFonts({
-        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
-    });
-
-    if (!fontLoaded) {
-        return null;
-    }
-
+    const [timePosted, setTime] = useState(
+        countTime(data.timeCreate) !== '0' ? countTime(data.timeCreate) : 'Vừa xong',
+    );
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const updateTime = countTime(data.timeCreate) !== '0' ? countTime(data.timeCreate) : 'Vừa xong';
+            setTime(updateTime);
+        }, 60000);
+        return () => clearInterval(intervalId);
+    }, []);
     return (
         <View style={styles.container}>
             <View style={styles.ctnImg}>
@@ -54,7 +54,7 @@ const Comment: React.FC<Props> = ({ data }) => {
 
                 <View style={styles.ctnInteract}>
                     <Text style={[styles.textInterace, { fontFamily: 'Inconsolata-Medium', marginRight: 8 }]}>
-                        {countTime(data.timeCreate) !== '0' ? countTime(data.timeCreate) : 'Vừa xong'}
+                        {timePosted}
                     </Text>
                     <TouchableOpacity style={styles.btnIterace}>
                         <Text style={styles.textInterace}>Thích</Text>

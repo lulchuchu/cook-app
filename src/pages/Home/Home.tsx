@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Modal, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -50,6 +50,7 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
     });
     const [showDiet, setShowDiet] = useState(false);
     const [showNotice, setShowNotice] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -62,7 +63,7 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
         if (route.params.user !== null && route.params.prevAddress === 'Login') {
             setShowNotice(true);
         }
-    }, [route.params.user]);
+    }, [route.params.user, refreshing]);
 
     const handleClick = () => {
         if (route.params.user !== null) {
@@ -80,6 +81,18 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
         return null;
     }
 
+    const onRefresh = () => {
+        // Thực hiện các tác vụ cần thiết để làm mới dữ liệu
+        setRefreshing(true);
+
+        // Sau khi làm mới dữ liệu xong, set refreshing về false để dừng indicator
+        setTimeout(() => {
+            setRefreshing(false);
+        }, 500); // Thời gian làm mới ở đây là 2000ms (2 giây)
+
+        // Các tác vụ update dữ liệu ở đây...
+    };
+
     return (
         <View style={styles.container}>
             <Modal transparent visible={showNotice} animationType="fade">
@@ -92,8 +105,9 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
             <ScrollView
                 style={styles.body}
                 showsVerticalScrollIndicator={false}
-                bounces={false}
+                // bounces={false}
                 scrollEventThrottle={16}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 // onScroll={(event: any) => {
                 //     const {y} = event.nativeEvent.contentOffset;
                 //     console.log(y);
@@ -124,13 +138,25 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
                             </TouchableOpacity>
                         </View>
 
-                        <RecipeCard navigation={navigation} user={user} api="dish/get-all" params="" />
+                        <RecipeCard
+                            navigation={navigation}
+                            user={user}
+                            api="dish/get-all"
+                            params=""
+                            refreshing={refreshing}
+                        />
 
                         <View style={{ marginBottom: 20 }}>
                             <Text style={styles.textHeader}>Món ăn Việt Nam</Text>
                         </View>
 
-                        <RecipeCard navigation={navigation} user={user} api="dish/get-by-country" params="Việt Nam" />
+                        <RecipeCard
+                            navigation={navigation}
+                            user={user}
+                            api="dish/get-by-country"
+                            params="Việt Nam"
+                            refreshing={refreshing}
+                        />
                         {user.diet !== '' && (
                             <View style={{ marginBottom: 20 }}>
                                 <Text style={styles.textHeader}>Món ăn theo chế độ</Text>
@@ -138,7 +164,13 @@ const Home: React.FC<HomeProps> = ({ navigation, route }) => {
                         )}
 
                         {user.diet !== '' && (
-                            <RecipeCard navigation={navigation} user={user} api="dish/get-by-diet" params={user.diet} />
+                            <RecipeCard
+                                navigation={navigation}
+                                user={user}
+                                api="dish/get-by-diet"
+                                params={user.diet}
+                                refreshing={refreshing}
+                            />
                         )}
                         {user.diet === '' && (
                             <View style={styles.ctnRecipeSelect}>

@@ -1,6 +1,6 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 
 import styles from './style';
@@ -22,7 +22,22 @@ type Props = {
 
 const CookRecipe: React.FC<Props> = ({ data, close }) => {
     const [stepNumber, setStepNumber] = useState(0);
+    const [initTime, setInittime] = useState(data[stepNumber].time);
     const { width: widthDevice } = Dimensions.get('window');
+
+    useEffect(() => {
+        setTimeout(() => {
+            const intervalId = setInterval(() => {
+                if (initTime > 0) {
+                    setInittime((prevTime) => prevTime - 1);
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 1000);
+
+            return () => clearInterval(intervalId);
+        });
+    }, [initTime]);
 
     const renderFooter = data.map((step: Step, index: number) => {
         return (
@@ -53,6 +68,13 @@ const CookRecipe: React.FC<Props> = ({ data, close }) => {
 
     const handleClick = (number: number) => {
         setStepNumber(number);
+        setInittime(data[number].time);
+    };
+
+    const formatTime = (time: number): string => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     };
 
     return (
@@ -74,6 +96,20 @@ const CookRecipe: React.FC<Props> = ({ data, close }) => {
 
             <ScrollView>
                 <View style={styles.body}>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginBottom: 8,
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faClock} size={20} style={{ marginBottom: 10 }} />
+                        {data[stepNumber].time && (
+                            <Text style={[styles.textStep, { color: '#da7e4f', marginLeft: 6 }]}>
+                                {formatTime(initTime)}
+                            </Text>
+                        )}
+                    </View>
                     {data[stepNumber].ingredients && (
                         <View style={{ flexDirection: 'row', marginBottom: 16 }}>
                             <Image style={styles.imgIcon} source={ingredient} />

@@ -1,15 +1,36 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    ctn: {
+        paddingHorizontal: 16,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 40,
+        marginBottom: 32,
+    },
+    btn: {
+        padding: 4,
+        marginTop: -4,
+    },
+    textCookBook: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 18,
+    },
+    textDelete: {
+        fontFamily: 'Inconsolata-Bold',
+        color: '#da7e4f',
+        fontSize: 16,
+    },
     itemRecipe: {
-        width: 240,
+        width: '46%',
         marginRight: 20,
         position: 'relative',
-        // height: 320
     },
     imgRecipe: {
         width: '100%',
-        height: 280,
+        height: 200,
         borderRadius: 18,
     },
     nameRecipe: {
@@ -20,6 +41,7 @@ const styles = StyleSheet.create({
     ctnChef: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
     imgChef: {
         width: 28,
@@ -32,11 +54,11 @@ const styles = StyleSheet.create({
     nameChef: {
         fontFamily: 'Inconsolata-Medium',
         color: '#da7e4f',
-        fontSize: 17,
+        fontSize: 14,
     },
     ctnHeart: {
         position: 'absolute',
-        top: 240,
+        bottom: 88,
         right: 10,
         backgroundColor: '#fff',
         paddingVertical: 4,

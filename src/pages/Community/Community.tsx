@@ -92,6 +92,23 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
         return <PostItem func={() => handleClickOnPost(post)} key={index} data={post} user={route.params.user} />;
     });
 
+    const updateListPost = (post: PostInterface) => {
+        var arr = Array.from(listPost);
+        setListPost([post, ...arr]);
+    };
+
+    const updatePostItem = (idCmt: string) => {
+        var post = itemPost;
+        var arr = Array.from(listPost);
+        for (const item of arr) {
+            if (item._id === post?._id) {
+                item.comments.unshift(idCmt);
+                return;
+            }
+        }
+        setListPost(arr);
+    };
+
     if (!fontLoaded) {
         return null;
     }
@@ -106,7 +123,11 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
                         setModalVisible(false);
                     }}
                 >
-                    <CreatePost cancel={() => setModalVisible(false)} user={props.user} />
+                    <CreatePost
+                        cancel={() => setModalVisible(false)}
+                        user={props.user}
+                        updateListPost={(post: PostInterface) => updateListPost(post)}
+                    />
                 </Modal>
             )}
             <View style={styles.header}>
@@ -138,7 +159,14 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
             </ScrollView>
 
             <Footer navigation={navigation} address={'Community'} user={props.user} />
-            {showPost ? <CommentPost func={() => setShowPost(false)} user={props.user} dataPost={itemPost} /> : ''}
+            {showPost && (
+                <CommentPost
+                    func={() => setShowPost(false)}
+                    user={props.user}
+                    dataPost={itemPost}
+                    updatePostItem={(idCmt: string) => updatePostItem(idCmt)}
+                />
+            )}
         </View>
     );
 };

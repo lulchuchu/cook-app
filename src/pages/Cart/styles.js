@@ -74,6 +74,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
     },
+    ctnModal: {
+        position: 'absolute',
+        zIndex: 150,
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        top: 0,
+        bottom: 0,
+    },
 });
 
 export default styles;

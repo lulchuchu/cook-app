@@ -1,4 +1,3 @@
-import { useFonts } from 'expo-font';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
@@ -8,7 +7,6 @@ import {
     Image,
     ImageStyle,
     Keyboard,
-    Platform,
     ScrollView,
     Text,
     TextInput,
@@ -27,7 +25,25 @@ const camara = require('../../../assets/images/camera.png');
 type Func = {
     cancel: () => void;
     user: any;
+    updateListPost: (post: PostInterface) => void;
 };
+
+interface User {
+    username: string;
+    img: string;
+}
+
+interface PostInterface {
+    _id: string;
+    user: User;
+    title: string;
+    timePost: string;
+    img: string[];
+    accountLike: string[];
+    numberLike: number;
+    numberShare: number;
+    comments: string[];
+}
 
 interface ImageInterface {
     uri: string;
@@ -35,12 +51,8 @@ interface ImageInterface {
     height: number;
 }
 
-const CreatePost: React.FC<Func> = ({ cancel, user }) => {
+const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
     const textInputRef = useRef<TextInput>(null);
-    const [fontLoaded] = useFonts({
-        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
-    });
     const [valueText, setValueText] = useState('');
     const [imgList, setListImg] = useState<ImageInterface[]>([]);
     const [uri, setUri] = useState<object[]>([]);
@@ -50,10 +62,6 @@ const CreatePost: React.FC<Func> = ({ cancel, user }) => {
     useEffect(() => {
         textInputRef.current?.focus();
     }, []);
-
-    if (!fontLoaded) {
-        return null;
-    }
 
     const handlePostImg = async () => {
         try {
@@ -109,7 +117,23 @@ const CreatePost: React.FC<Func> = ({ cancel, user }) => {
             .post('http://192.168.34.109:3056/user/community/post', dataPost)
             .then((response) => {
                 if (response.status === 200) {
-                    Alert.alert(response.data.message);
+                    const data = response.data;
+                    const post: PostInterface = {
+                        _id: data._id,
+                        user: {
+                            username: user.username,
+                            img: user.img,
+                        },
+                        title: data.content,
+                        timePost: data.createdAt,
+                        img: data.imgDes,
+                        accountLike: data.accountLike,
+                        numberShare: data.numberShare,
+                        numberLike: data.numberLike,
+                        comments: data.comments,
+                    };
+                    updateListPost(post);
+                    cancel();
                 } else {
                     Alert.alert(response.data.message);
                 }
@@ -122,9 +146,6 @@ const CreatePost: React.FC<Func> = ({ cancel, user }) => {
                 } else {
                     Alert.alert('An unexpected error occurred. Please try again later.');
                 }
-            })
-            .finally(() => {
-                cancel();
             });
     };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
-import { Alert, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
 import { faMagnifyingGlass, faSliders } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,7 @@ import styles from './styles';
 import Footer from '../../components/Footer/Footer';
 import CartItem from 'components/CartItem/CartItem';
 import FormCheckOut from '../../layouts/FormCheckOut/FormChekout';
+import ConfirmCancel from 'components/ConfirmCancel/ConfirmCancel';
 import axios from 'axios';
 import { RouteProp } from '@react-navigation/native';
 const uriLogin =
@@ -25,11 +26,13 @@ type Navigation = {
 };
 
 interface CartInterface {
+    _id: string;
     img: string;
     nameDish: string;
     dish: string;
-    ingredient: string;
+    ingredient: object;
     meal: number;
+    state: string;
 }
 
 const CartScreen: React.FC<Navigation> = ({ navigation, route }) => {
@@ -38,25 +41,12 @@ const CartScreen: React.FC<Navigation> = ({ navigation, route }) => {
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
 
-    const [carts, setCart] = useState<CartInterface[]>([
-        {
-            img: '',
-            nameDish: '',
-            dish: '',
-            ingredient: '',
-            meal: 0,
-        },
-    ]);
-
-    const [data, setData] = useState<CartInterface>({
-        img: '',
-        nameDish: '',
-        dish: '',
-        ingredient: '',
-        meal: 0,
-    });
+    const [carts, setCart] = useState<CartInterface[]>([]);
     const [checkLogin, setCheckLogin] = useState(false);
     const [showCheckOut, setShowCheckOut] = useState(false);
+    const [indexSelect, setIndexSelect] = useState(0);
+    const [modalCancel, setModalCancel] = useState(false);
+    const [itemCancel, setItemCancel] = useState(0);
 
     useEffect(() => {
         if (route.params.user._id !== '') {
@@ -86,22 +76,97 @@ const CartScreen: React.FC<Navigation> = ({ navigation, route }) => {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    setShowCheckOut(true);
-                    setData(cart);
+                    if (cart.state === 'Đang chờ') {
+                        setShowCheckOut(true);
+                        setIndexSelect(index);
+                    } else {
+                        return;
+                    }
                 }}
                 key={index}
             >
-                <CartItem checkout={() => setShowCheckOut(true)} data={cart} />
+                <CartItem
+                    checkout={() => setShowCheckOut(true)}
+                    data={cart}
+                    cancelModal={() => {
+                        setModalCancel(true);
+                        setItemCancel(index);
+                    }}
+                    key={cart._id}
+                />
             </TouchableOpacity>
         );
     });
 
+    const updateCart = (cart: CartInterface) => {
+        var arr = Array.from(carts);
+        arr[indexSelect] = cart;
+        setCart(arr);
+    };
+
+    const updateCartCancel = (updatedCart: CartInterface) => {
+        const updatedCarts = carts.map((cart) => (cart._id === updatedCart._id ? updatedCart : cart));
+        setCart(updatedCarts);
+    };
+
+    const handleCancel = () => {
+        axios
+            .post('http://192.168.34.109:3056/user/cancel-cart', {
+                idCart: carts[itemCancel]._id,
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    carts[itemCancel].state = 'Đã hủy';
+                    const updateCart = [...carts];
+                    setCart(updateCart);
+                }
+            })
+            .catch((error) => {
+                if (error.response) {
+                    Alert.alert(error.response.data.message);
+                } else if (error.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            })
+            .finally(() => {
+                setModalCancel(false);
+            });
+    };
     if (!fontLoaded) {
         return null;
     }
 
     return (
         <View style={styles.container}>
+            {modalCancel && (
+                <View style={styles.ctnModal}>
+                    <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalCancel}
+                        onRequestClose={() => {
+                            setModalCancel(false);
+                        }}
+                    >
+                        <View
+                            style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flex: 1,
+                            }}
+                        >
+                            <ConfirmCancel
+                                cart={carts[itemCancel]}
+                                cancel={() => setModalCancel(false)}
+                                updateCartCancel={(cart: CartInterface) => updateCartCancel(cart)}
+                            />
+                        </View>
+                    </Modal>
+                </View>
+            )}
+
             <View style={styles.header}>
                 <View style={styles.ctnSearch}>
                     <TouchableOpacity>
@@ -130,27 +195,26 @@ const CartScreen: React.FC<Navigation> = ({ navigation, route }) => {
                             <Text style={styles.textBtn}>Đăng nhập</Text>
                         </TouchableOpacity>
                     </View>
+                ) : carts.length > 0 ? (
+                    <View style={styles.ctnContent}>{renderCart}</View>
                 ) : (
                     <View style={styles.ctnContent}>
-                        {carts.length > 0 ? (
-                            <View>{renderCart}</View>
-                        ) : (
-                            <View>
-                                <Image source={{ uri: uri }} resizeMode="contain" style={styles.emtyCart} />
-                                <Text style={styles.textNotice}>
-                                    Bạn chưa có nguyên liệu nào cần mua trong giỏ hàng!
-                                </Text>
-                                <TouchableOpacity style={styles.btn}>
-                                    <Text style={styles.textBtn}>Tiếp tục tìm kiếm</Text>
-                                </TouchableOpacity>
-                            </View>
-                        )}
+                        <Image source={{ uri: uri }} resizeMode="contain" style={styles.emtyCart} />
+                        <Text style={styles.textNotice}>Bạn chưa có nguyên liệu nào cần mua trong giỏ hàng!</Text>
+                        <TouchableOpacity style={styles.btn}>
+                            <Text style={styles.textBtn}>Tiếp tục tìm kiếm</Text>
+                        </TouchableOpacity>
                     </View>
                 )}
             </ScrollView>
 
             {showCheckOut && (
-                <FormCheckOut cancel={() => setShowCheckOut(false)} data={data} user={route.params.user} />
+                <FormCheckOut
+                    cancel={() => setShowCheckOut(false)}
+                    data={carts[indexSelect]}
+                    user={route.params.user}
+                    updateCart={(cart: CartInterface) => updateCart(cart)}
+                />
             )}
             <Footer navigation={navigation} address={'Cart'} user={route.params.user} />
         </View>
