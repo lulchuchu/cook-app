@@ -27,7 +27,7 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/nhom-mon-an/lay-tat-ca-nhom-ma', {
+            .get('http://192.168.34.109:3056/cook-book/get-all-cookBook', {
                 params: { idNguoiDung: user._id },
             })
             .then((response) => {
@@ -48,7 +48,7 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
 
     const addDishToCookBook = (idCookBook: string) => {
         axios
-            .post('http://192.168.34.109:3056/nhom-mon-an/them-mon', {
+            .post('http://192.168.34.109:3056/cook-book/add-dish', {
                 idCookBook: idCookBook,
                 idDish: idDish,
                 idUser: user._id,

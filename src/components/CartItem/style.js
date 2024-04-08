@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         backgroundColor: '#fff',
         borderRadius: 16,
+        marginBottom: 12,
     },
     item1: {
         width: '25%',

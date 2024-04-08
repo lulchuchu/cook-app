@@ -114,16 +114,16 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
 
     const handleRegister = () => {
         setLoading(true);
-
+        Keyboard.dismiss();
         if (validEmail && validName && validPass) {
             const data = { email, username, password };
             setTimeout(() => {
                 axios
-                    .post('http://192.168.34.109:3056/user/register', data, { timeout: 1000 })
+                    .post('http://192.168.34.109:3056/user/register', data)
                     .then((response) => {
                         if (response.status === 200) {
                             setUser(response.data.user);
-                            setShowVerify(true);
+                            setText('Bạn đã đăng ký thành công!');
                         } else {
                             setType('warn');
                             setText(response.data.message);
@@ -159,11 +159,11 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
     };
 
     const handleToLogin = () => {
-        navigation.navigate('Login');
+        navigation.navigate('Login', { address: 'Register' });
     };
 
     const handleClick = () => {
-        navigation.navigate('Home', { user: null });
+        navigation.navigate('Home', { user: null, prevAddress: 'Register' });
     };
 
     const handleTouchOutside = () => {
@@ -175,6 +175,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
     }
     if (showNotice) {
         setTimeout(() => {
+            setShowVerify(true);
             setShowNotice(false);
         }, 2000);
     }
@@ -192,6 +193,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
             <Modal transparent visible={isLoading} animationType="slide">
                 <View style={styles.containerLoading}>
                     <ActivityIndicator size="large" color="white" />
+                    <Text style={styles.textVerify}>Đang đăng ký...</Text>
                 </View>
             </Modal>
             <TouchableWithoutFeedback onPress={handleTouchOutside}>

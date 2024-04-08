@@ -23,7 +23,7 @@ import {
     faPlay,
     faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { faHeart, faStar, faBookmark, faClock } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../App';
@@ -37,7 +37,7 @@ const imageIntro = require('../../../assets/images/chef.png');
 const ingredient = require('../../../assets/images/ingredients.png');
 const cook = require('../../../assets/images/pan.png');
 import FormRating from '../../layouts/FormRating/FormRating';
-import ComentRecipe from '../../layouts/CommentRecipe/CommentRecipe';
+import DiscussDish from '../../layouts/DiscussDish/DiscussDish';
 import SaveCookBook from '../../layouts/SaveCookBook/SaveCookBook';
 import CookRecipe from '../../layouts/CookRecipe/CookRecipe';
 import Notice from 'components/NoticeForm/Notice';
@@ -87,7 +87,7 @@ interface Recipe {
     ingredients: string;
     utensils: string;
     step: Step[];
-};
+}
 
 interface UserCmt {
     _id: string;
@@ -105,7 +105,16 @@ interface Comment {
     createdAt: string;
 }
 
-const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
+interface Rating {
+    _id: string;
+    dish: string;
+    account: string;
+    score: number;
+    img: string;
+    content: string;
+}
+
+const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata_Condensed-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata_Condensed-Medium.ttf'),
@@ -154,8 +163,6 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
     const [notice, setNotice] = useState(false);
     const [defaultPortion, setDefaultPortion] = useState(0);
     const [ration, setRation] = useState(0);
-    const [initTime, setInittime] = useState(300);
-    const [start, setStart] = useState(false);
     const [isLike, setLike] = useState(false);
     const [numberLike, setNumberLike] = useState(0);
     const [showStepCook, setShowStepCook] = useState(false);
@@ -163,8 +170,8 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
     const videoRef = useRef<Video>(null);
     const [modalVideo, setModalVideo] = useState(false);
     const [checkRating, setCheckRating] = useState(false);
-    const [numberRating, setNumberRating] = useState(0);
-    const [listRating, setListRating] = useState(0);
+    const [scoreRating, setScoreRating] = useState<number>(0);
+    const [listRating, setListRating] = useState<Rating[]>([]);
     const [listCmt, setListCmt] = useState<Comment[]>([]);
 
     useEffect(() => {
@@ -184,9 +191,9 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
                 const nutrition: Nuttrition = recipe.nuttrition[0];
                 setNuttrition(nutrition);
                 const ingredient = recipe.ingredients;
-                setIngredients(ingredient.ten);
-                setQunatityIngre(ingredient.soluong);
-                setUnitIngre(ingredient.donvitinh);
+                setIngredients(ingredient.name);
+                setQunatityIngre(ingredient.quantity);
+                setUnitIngre(ingredient.unit);
                 if (recipe.likes.includes(route.params.user._id) && route.params.user._id !== '') {
                     setLike(true);
                 }
@@ -198,14 +205,14 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/danh-gia-mon-an/lay-danh-gia', {
+            .get('http://192.168.34.109:3056/rating-dish/get-rating', {
                 params: { idMonAn: route.params._id },
             })
             .then((response) => {
                 const data = response.data;
                 if (data.trungBinhDanhGia !== null) {
-                    setNumberRating(data.trungBinhDanhGia);
-                    setListRating(data.list_danh_gia.length);
+                    setScoreRating(data.trungBinhDanhGia);
+                    setListRating(data.list_danh_gia);
                 }
             })
             .catch((err) => {
@@ -249,12 +256,6 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
             </Text>
         );
     });
-
-    const formatTime = (time: number): string => {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-    };
 
     const renderStepCook = recipe.step.map((step: Step, index: number) => {
         return (
@@ -347,28 +348,9 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
         navigation.goBack();
     };
 
-    const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
-    useEffect(() => {
-        if (start) {
-            const id = setInterval(() => {
-                setInittime((prevCountdown) => prevCountdown - 1);
-            }, 1000);
-            setIntervalId(id);
-        } else {
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-        }
-        return () => {
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-        };
-    }, [start]);
-
     const handleLike = () => {
         axios
-            .post('http://192.168.34.109:3056/dish/tha-like-mon-an', {
+            .post('http://192.168.34.109:3056/dish/like-dish', {
                 idNguoiDung: route.params.user._id,
                 idMonAn: route.params._id,
             })
@@ -452,6 +434,20 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
         setQunatityIngre(arr);
     };
 
+    const updateRating = (rating: Rating) => {
+        var arr = Array.from(listRating);
+        arr = [rating, ...arr];
+        setListRating(arr);
+        setCheckRating(true);
+        setScoreRating(Number((scoreRating * listRating.length + rating.score) / arr.length));
+    };
+
+    const updateComment = (comment: Comment) => {
+        var arr = Array.from(listCmt);
+        arr = [comment, ...arr];
+        setListCmt(arr);
+    };
+
     if (notice) {
         setTimeout(() => {
             setNotice(false);
@@ -512,7 +508,15 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
                 </View>
             )}
 
-            {showComment && <ComentRecipe cancel={() => setShowCmt(false)} idDish={route.params._id} user={user} data = {listCmt} />}
+            {showComment && (
+                <DiscussDish
+                    cancel={() => setShowCmt(false)}
+                    idDish={route.params._id}
+                    user={user}
+                    data={listCmt}
+                    updateCmt={(cmt: Comment) => updateComment(cmt)}
+                />
+            )}
             <Modal animationType="slide" transparent={true} visible={showStepCook}>
                 <CookRecipe data={recipe.step} close={() => setShowStepCook(false)} />
             </Modal>
@@ -615,7 +619,7 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
                             <TouchableOpacity key={value}>
                                 <Text
                                     style={{
-                                        color: value <= numberRating ? '#ffc400' : 'gray',
+                                        color: value <= scoreRating ? '#ffc400' : 'gray',
                                         fontSize: 24,
                                         marginHorizontal: 6,
                                     }}
@@ -634,7 +638,7 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
 
                     <TouchableOpacity onPress={() => setShowForm(true)}>
                         <Text style={styles.numberRating}>
-                            {numberRating > 0 ? `dựa trên ${listRating} đánh giá` : 'chưa có đánh giá'}
+                            {listRating.length > 0 ? `dựa trên ${listRating.length} đánh giá` : 'chưa có đánh giá'}
                         </Text>
                     </TouchableOpacity>
 
@@ -691,7 +695,7 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
 
                 <View style={styles.ctnReviews}>
                     <View style={styles.headingReview}>
-                        <Text style={styles.textHeadingReview}>Đánh giá</Text>
+                        <Text style={styles.textHeadingReview}>Thảo luận</Text>
                         <TouchableOpacity onPress={() => setShowCmt(true)}>
                             <Text style={[styles.textShowMore, { fontSize: 20, fontFamily: 'Inconsolata-Medium' }]}>
                                 Đọc
@@ -700,7 +704,9 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
                     </View>
 
                     <View style={{ marginTop: 8 }}>
-                        <Text style={[styles.numberRating, { marginBottom: 0, color: '#555' }]}>{listCmt.length} bình luận</Text>
+                        <Text style={[styles.numberRating, { marginBottom: 0, color: '#555' }]}>
+                            {listCmt.length} bình luận
+                        </Text>
                     </View>
                 </View>
 
@@ -784,9 +790,9 @@ const RecipeScreen: React.FC<RecipeProps> = ({ navigation, route }) => {
             cancelFunc={() => setShowForm(false)}
             user={user}
             idDish={route.params._id}
-            checkRating={() => setCheckRating(true)}
+            updateRating={(rating: Rating) => updateRating(rating)}
         />
     );
 };
 
-export default RecipeScreen;
+export default Dish;

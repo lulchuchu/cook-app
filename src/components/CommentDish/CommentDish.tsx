@@ -36,10 +36,11 @@ const Comment: React.FC<Props> = ({ user, time, content, like, img, _id }) => {
             setLike(numberLike + 1);
         }
         setIsLiked(!isLiked);
-        axios.post('http://192.168.34.109:3056/comment-dish/create-feeling', {
+        axios
+            .post('http://192.168.34.109:3056/comment-dish/create-feeling', {
                 idCommentDish: _id,
                 idNguoiDung: user._id,
-                state: isLiked ? -1 : 1
+                state: isLiked ? -1 : 1,
             })
             .then()
             .catch((error) => {
@@ -86,9 +87,11 @@ const Comment: React.FC<Props> = ({ user, time, content, like, img, _id }) => {
                 </View>
 
                 <View style={styles.ctnContent}>
-                    {content && <Text style={styles.content} numberOfLines={4}>
-                        {content}
-                    </Text>}
+                    {content && (
+                        <Text style={styles.content} numberOfLines={4}>
+                            {content}
+                        </Text>
+                    )}
                     {img !== '' && <Image source={{ uri: img }} resizeMode="cover" style={styles.imgCmt} />}
                 </View>
 

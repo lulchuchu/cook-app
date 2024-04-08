@@ -58,6 +58,12 @@ const styles = StyleSheet.create({
         paddingLeft: 12,
         // #fd7f51
     },
+    textVerify: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 18,
+        color: '#fff',
+        textAlign: 'center',
+    },
     ctnValidName: {
         position: 'absolute',
         top: 22,

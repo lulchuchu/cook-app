@@ -74,6 +74,11 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         backgroundColor: '#ccc',
     },
+    textStep: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 20,
+        marginBottom: 12,
+    },
 });
 
 export default styles;

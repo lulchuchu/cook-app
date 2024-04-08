@@ -28,7 +28,7 @@ const CreateCookBook: React.FC<Func> = ({ cancel, user, idDish, updateCookBook }
     const handleSave = () => {
         if (textInput.length > 0) {
             axios
-                .post('http://192.168.34.109:3056/nhom-mon-an/tao', {
+                .post('http://192.168.34.109:3056/cook-book/create', {
                     idNguoiDung: user._id,
                     tenNhomMonAn: textInput,
                     idMonAn: idDish,

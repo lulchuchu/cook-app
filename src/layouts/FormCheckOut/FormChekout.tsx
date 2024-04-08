@@ -13,7 +13,18 @@ type Func = {
     data: any;
     user: any;
     cancel: () => void;
+    updateCart: (cart: CartInterface) => void;
 };
+
+interface CartInterface {
+    _id: string;
+    img: string;
+    nameDish: string;
+    dish: string;
+    ingredient: object;
+    meal: number;
+    state: string;
+}
 
 interface Store {
     tel: string;
@@ -21,11 +32,10 @@ interface Store {
     address: string;
 }
 
-const FormCheckOut: React.FC<Func> = ({ data, cancel, user }) => {
+const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalAdd, setModalAdd] = useState(false);
-    const [arr, setArr] = useState(new Array(data.ingredient.ten.length).fill(true));
-    const [price, setPrice] = useState(data.ingredient.ten.length * 10000);
+    const [arr, setArr] = useState(new Array(data.ingredient?.name.length).fill(true));
+    const [price, setPrice] = useState(data.ingredient?.name.length * 10000);
     const [tel, setTel] = useState<string>(user.tel);
     const [address, setAddress] = useState<string>(user.address || '');
     const [distance, setDistance] = useState(0);
@@ -36,7 +46,6 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user }) => {
     });
     const [checkTel, setCheckTel] = useState(true);
     const [checkAddress, setCheckAddress] = useState(true);
-
     useEffect(() => {
         if (address !== '') {
             axios
@@ -96,13 +105,13 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user }) => {
         setArr(prevArr);
     };
 
-    const renderIngre = data?.ingredient.ten.map((ten: string, index: number) => {
+    const renderIngre = data?.ingredient.name.map((ten: string, index: number) => {
         return (
             <View style={styles.ctnItemIngre} key={index}>
                 <View>
                     <Text style={styles.nameIngre}>{ten}</Text>
                     <Text style={styles.textQuantity}>
-                        Số lượng: {data?.ingredient.soluong[index]} {data?.ingredient.donvitinh[index]}
+                        Số lượng: {data?.ingredient.quantity[index]} {data?.ingredient.unit[index]}
                     </Text>
                 </View>
                 <View>
@@ -111,6 +120,31 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user }) => {
             </View>
         );
     });
+
+    const confirmCheckout = () => {
+        axios
+            .post('http://192.168.34.109:3056/user/confirm-cart', {
+                idCart: data._id,
+                state: 'Đang giao',
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    var cart = data;
+                    cart['state'] = 'Đang giao';
+                    updateCart(cart);
+                    cancel();
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    Alert.alert(err.response.data.message);
+                } else if (err.request) {
+                    Alert.alert('Network error. Please check your internet connection.');
+                } else {
+                    Alert.alert('An unexpected error occurred. Please try again later.');
+                }
+            });
+    };
 
     const handleTouch = () => {
         if (checkTel && address.length > 0 && tel.length > 0) {
@@ -278,7 +312,7 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user }) => {
                                 cancelModal={() => setModalVisible(false)}
                                 text="Bạn đã kiểm tra và xác nhận với những thông tin của đơn hàng!"
                                 button="Xác nhận"
-                                func={() => setModalAdd(true)}
+                                func={confirmCheckout}
                             />
                         </View>
                     </Modal>

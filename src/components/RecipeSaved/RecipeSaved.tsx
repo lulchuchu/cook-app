@@ -9,6 +9,8 @@ const itemFood = require('../../../assets/images/bibimbap.png');
 
 type Props = {
     user: any;
+    setIdCookBook: (id: string) => void;
+    setModal: () => void;
 };
 
 interface CookBook {
@@ -18,12 +20,12 @@ interface CookBook {
     user: string;
 }
 
-const RecipeSaved: React.FC<Props> = ({ user }) => {
+const RecipeSaved: React.FC<Props> = ({ user, setIdCookBook, setModal }) => {
     const [cookBook, setCookBook] = useState<CookBook[]>([]);
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/nhom-mon-an/lay-tat-ca-nhom-ma', {
+            .get('http://192.168.34.109:3056/cook-book/get-all-cookBook', {
                 params: { idNguoiDung: user._id },
             })
             .then((response) => {
@@ -38,7 +40,14 @@ const RecipeSaved: React.FC<Props> = ({ user }) => {
 
     const renderCookBook = cookBook.map((item: CookBook, index: number) => {
         return (
-            <TouchableOpacity style={styles.ctnItem} key={index}>
+            <TouchableOpacity
+                style={styles.ctnItem}
+                key={index}
+                onPress={() => {
+                    setIdCookBook(item._id);
+                    setModal();
+                }}
+            >
                 <Image source={itemFood} resizeMode="cover" style={styles.imgItem} />
                 <Text style={styles.textItem}>{item.name}</Text>
                 <Text style={styles.numberItem}>({item.dishs.length} công thức)</Text>

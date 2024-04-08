@@ -8,12 +8,12 @@ import styles from './style';
 
 type Func = {
     cancelModal: () => void;
-    func: () => void;
     text: string;
     button: string;
+    func: () => void;
 };
 
-const FormConfirm: React.FC<Func> = ({ cancelModal, func, text, button }) => {
+const FormConfirm: React.FC<Func> = ({ cancelModal, text, button, func }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>

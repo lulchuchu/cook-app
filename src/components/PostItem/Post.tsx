@@ -43,12 +43,16 @@ const PostItem: React.FC<Func> = ({ func, data, user }) => {
     const [numberLike, setNumberLike] = useState(data.numberLike);
     const [numberShare, setNumberShare] = useState(data.numberShare);
     const [isLike, setIsLike] = useState(false);
-    const [time, setTime] = useState('');
+    const [timePosted, setTime] = useState(countTime(data.timePost) !== '0' ? countTime(data.timePost) : 'Vừa xong');
     const { width: deviceWidth } = Dimensions.get('window');
 
     useEffect(() => {
-        setTime(countTime(data.timePost));
-    });
+        const intervalId = setInterval(() => {
+            const updateTime = countTime(data.timePost) !== '0' ? countTime(data.timePost) : 'Vừa xong';
+            setTime(updateTime);
+        }, 60000);
+        return () => clearInterval(intervalId);
+    }, []);
 
     useEffect(() => {
         if (data.accountLike.includes(user._id)) {
@@ -106,7 +110,7 @@ const PostItem: React.FC<Func> = ({ func, data, user }) => {
                     />
                     <View style={styles.ctnInfor}>
                         <Text style={styles.nameUser}>{data.user.username}</Text>
-                        <Text style={styles.timePosted}>{time}</Text>
+                        <Text style={styles.timePosted}>{timePosted}</Text>
                     </View>
                 </View>
 

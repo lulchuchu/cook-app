@@ -18,16 +18,15 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 const camera = require('../../../assets/images/camera.png');
 const userImage = require('../../../assets/images/user.png');
-const meal = require('../../../assets/images/food-1898194_640.jpg');
 
 type FuncCancel = {
     cancelFunc: () => void;
-    checkRating: () => void;
+    updateRating: (rating: any) => void;
     user: any;
     idDish: string;
 };
 
-const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, checkRating }) => {
+const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRating }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState('');
@@ -83,7 +82,7 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, checkRatin
             return;
         } else {
             axios
-                .post('http:192.168.34.109:3056/danh-gia-mon-an/tao-danh-gia', {
+                .post('http:192.168.34.109:3056/rating-dish/create', {
                     idMonAn: idDish,
                     idNguoiDung: user._id,
                     diemDanhGia: rating,
@@ -92,7 +91,7 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, checkRatin
                 })
                 .then((response) => {
                     if (response.status === 200) {
-                        checkRating();
+                        updateRating(response.data);
                     } else {
                         Alert.alert(response.data.message);
                     }
