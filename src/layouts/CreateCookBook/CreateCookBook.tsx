@@ -8,7 +8,7 @@ import axios from 'axios';
 
 interface CookBook {
     _id: string;
-    dishs: string[];
+    dishs: number;
     name: string;
     user: string;
 }
@@ -18,9 +18,10 @@ type Func = {
     user: any;
     idDish: string;
     updateCookBook: (data: CookBook) => void;
+    showNotice: () => void;
 };
 
-const CreateCookBook: React.FC<Func> = ({ cancel, user, idDish, updateCookBook }) => {
+const CreateCookBook: React.FC<Func> = ({ cancel, user, idDish, updateCookBook, showNotice }) => {
     const [textInput, setText] = useState('');
     const [isBlur, setBlur] = useState(false);
     const [warn, setWarn] = useState(false);
@@ -36,7 +37,14 @@ const CreateCookBook: React.FC<Func> = ({ cancel, user, idDish, updateCookBook }
                 .then((response) => {
                     if (response.status === 200) {
                         const data = response.data;
-                        updateCookBook(data);
+                        const itemUpdate = {
+                            _id: data._id,
+                            dishs: 1,
+                            name: data.name,
+                            user: data.user
+                        }
+                        updateCookBook(itemUpdate);
+                        showNotice();
                         cancel();
                     } else {
                         Alert.alert(response.data.message);

@@ -17,7 +17,7 @@ const countTime = (time: string) => {
     } else if (timeDiffMinutes > 0) {
         return timeDiffMinutes + ' phút trước';
     } else {
-        return '0';
+        return 'Vừa xong';
     }
 };
 

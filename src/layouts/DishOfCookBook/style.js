@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: 40,
-        marginBottom: 32,
+        marginBottom: 20,
     },
     btn: {
         padding: 4,
@@ -16,21 +16,28 @@ const styles = StyleSheet.create({
     },
     textCookBook: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: 18,
+        fontSize: 20,
     },
     textDelete: {
         fontFamily: 'Inconsolata-Bold',
         color: '#da7e4f',
         fontSize: 16,
     },
+    body: {
+        flexDirection: 'row',
+        width: '100%',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingBottom: 200,
+    },
     itemRecipe: {
-        width: '46%',
-        marginRight: 20,
+        width: '48%',
         position: 'relative',
     },
     imgRecipe: {
         width: '100%',
-        height: 200,
+        height: 240,
         borderRadius: 18,
     },
     nameRecipe: {
@@ -68,9 +75,37 @@ const styles = StyleSheet.create({
         borderRadius: 12,
     },
     textHeart: {
-        fontFamily: 'Inconsolata',
+        fontFamily: 'Inconsolata-Medium',
         fontSize: 18,
         marginLeft: 8,
+    },
+    ctnDelete: {
+        position: 'absolute',
+        bottom: -24,
+        zIndex: 5,
+        right: 12,
+        backgroundColor: '#FFFFFF',
+        padding: 6,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        width: 60
+    },
+    textDelete2: {
+        fontFamily: 'Inconsolata-Medium',
+        fontSize: 14,
+        textAlign: 'center',
+    },
+    ctnModal: {
+        position: 'absolute',
+        zIndex: 150,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
     },
 });
 

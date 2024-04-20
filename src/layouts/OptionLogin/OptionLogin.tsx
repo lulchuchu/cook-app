@@ -17,7 +17,6 @@ type Navigation = {
 const OptionLogin: React.FC<Navigation> = ({ navigation }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        Other: require('../../../assets/fonts/Inconsolata_Condensed-Bold.ttf'),
         Inconsolata: require('../../../assets/fonts/Inconsolata-Medium.ttf'),
     });
 

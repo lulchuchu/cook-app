@@ -94,6 +94,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    img: {
+        width: '46%',
+        height: 200
+    }
 });
 
 export default styles;

@@ -65,6 +65,31 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata-Bold',
         fontSize: 18,
     },
+    ctnAdjust: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 16
+    },
+    numberAdjust: {
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: 20,
+    },
+    adjustQuantity: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    textAdjust: {
+        fontFamily: 'Inconsolata-Medium',
+        fontSize: 18,
+        marginHorizontal: 12,
+    },
+    btnAdjust: {
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        backgroundColor: '#ede5dc',
+        borderRadius: 8,
+    },
     textQuantity: {
         fontFamily: 'Inconsolata-Medium',
         fontSize: 16,

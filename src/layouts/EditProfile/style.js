@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    img: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 60
+    },
     textHeader: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: 24,

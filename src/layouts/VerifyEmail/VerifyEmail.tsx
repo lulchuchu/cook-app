@@ -123,8 +123,8 @@ const VerifyEmail: React.FC<Props> = ({ user, navigation, closeModal }) => {
                 })
                 .then((response) => {
                     if (response.status === 200) {
-                        setShowModal(false);
-                        navigation.navigate('Home', { user: user, prevAddress: 'Regiter' });
+                        closeModal();
+                        navigation.navigate('Home', { user: user, prevAddress: 'Register' });
                     } else {
                         Alert.alert(response.data.message);
                     }
@@ -146,8 +146,8 @@ const VerifyEmail: React.FC<Props> = ({ user, navigation, closeModal }) => {
     };
 
     const handleClose = () => {
-        navigation.navigate('Home', { user: user, prevAddress: 'Register' });
         closeModal();
+        navigation.navigate('Home', { user: user, prevAddress: 'Register' });
     };
 
     return (

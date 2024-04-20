@@ -134,9 +134,6 @@ const styles = StyleSheet.create({
     },
     ctnInputComment: {
         position: 'absolute',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
         zIndex: 10,
         bottom: 0,
         width: '100%',
@@ -148,7 +145,7 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.2,
         shadowRadius: 4,
     },
     input: {
@@ -159,10 +156,23 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         fontSize: 18,
         marginLeft: 4,
-        width: '85%',
+        width: '80%',
         backgroundColor: '#f0f2f5',
         borderRadius: 20,
         color: '#212121',
+    },
+    imgPost: {
+        width: 48,
+        height: 56,
+        borderRadius: 8,
+    },
+    iconXMark: {
+        position: 'absolute',
+        top: 2,
+        left: 28,
+        padding: 1,
+        backgroundColor: '#fff',
+        borderRadius: 50,
     },
 });
 

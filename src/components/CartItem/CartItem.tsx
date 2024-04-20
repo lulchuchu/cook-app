@@ -26,7 +26,7 @@ const CartItem: React.FC<Func> = ({ data, checkout, cancelModal }) => {
         setTimeout(() => {
             setState('Giao thành công');
             axios
-                .post('http://192.168.34.109:3056/user/confirm-cart', {
+                .post('http://10.20.97.53:3056/user/confirm-cart', {
                     idCart: data._id,
                     state: 'Giao thành công',
                 })
