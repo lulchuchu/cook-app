@@ -28,6 +28,12 @@ type Func = {
     updateListPost: (post: PostInterface) => void;
 };
 
+interface ImageInterface {
+    uri: string;
+    width: number;
+    height: number;
+};
+
 interface User {
     username: string;
     img: string;
@@ -35,7 +41,7 @@ interface User {
 
 interface PostInterface {
     _id: string;
-    user: User;
+    author: User;
     title: string;
     timePost: string;
     img: string[];
@@ -43,13 +49,7 @@ interface PostInterface {
     numberLike: number;
     numberShare: number;
     comments: string[];
-}
-
-interface ImageInterface {
-    uri: string;
-    width: number;
-    height: number;
-}
+};
 
 const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
     const textInputRef = useRef<TextInput>(null);
@@ -57,7 +57,6 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
     const [imgList, setListImg] = useState<ImageInterface[]>([]);
     const [uri, setUri] = useState<object[]>([]);
     const { width: deviceWidth } = Dimensions.get('window');
-    const { height: deviceHeight } = Dimensions.get('window');
 
     useEffect(() => {
         textInputRef.current?.focus();
@@ -100,7 +99,9 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
                 resizeMode="cover"
                 style={{
                     width: imgList.length === 1 ? deviceWidth : deviceWidth / 2,
-                    height: imgList.length === 1 ? deviceHeight : deviceHeight / 2,
+                    height: 240,
+                    borderWidth: 0.2,
+                    borderColor: '#ccc',
                 }}
                 key={index}
             />
@@ -118,20 +119,20 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
             .then((response) => {
                 if (response.status === 200) {
                     const data = response.data;
-                    const post: PostInterface = {
+                    const post : PostInterface = {
                         _id: data._id,
-                        user: {
+                        author: {
                             username: user.username,
-                            img: user.img,
+                            img: user.img
                         },
-                        title: data.content,
-                        timePost: data.createdAt,
+                        title: valueText,
+                        timePost: 'Vừa xong',
                         img: data.imgDes,
-                        accountLike: data.accountLike,
-                        numberShare: data.numberShare,
-                        numberLike: data.numberLike,
-                        comments: data.comments,
-                    };
+                        accountLike: [],
+                        numberShare: 0,
+                        numberLike: 0,
+                        comments: [],
+                    }
                     updateListPost(post);
                     cancel();
                 } else {
@@ -174,7 +175,7 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
                         <View style={styles.ctnUser}>
                             <View style={{ flexDirection: 'row' }}>
                                 <Image
-                                    source={user.img ? user.img : userImage}
+                                    source={user.img ? {uri: user.img} : userImage}
                                     resizeMode="cover"
                                     style={styles.imgUser as ImageStyle}
                                 />

@@ -4,6 +4,7 @@ import { Alert, Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, 
 import styles from './style';
 import CreateCookBook from '../CreateCookBook/CreateCookBook';
 import axios from 'axios';
+import Notice from 'components/NoticeForm/Notice';
 
 const itemFood = require('../../../assets/images/bibimbap.png');
 
@@ -16,14 +17,15 @@ type Func = {
 
 interface CookBook {
     _id: string;
-    dishs: string[];
+    dishs: number;
     name: string;
     user: string;
-}
+};
 
 const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
     const [showFormModal, setShow] = useState(false);
     const [cookBook, setCookBook] = useState<CookBook[]>([]);
+    const [notice, showNoticeSuccess] = useState(false);
 
     useEffect(() => {
         axios
@@ -32,7 +34,19 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
             })
             .then((response) => {
                 if (response.status === 200) {
-                    setCookBook(response.data);
+                    const cookBooks : CookBook[] = [];
+                    for (const data of response.data) {
+                        const dishs = data.numberDish;
+                        const group = data.group;
+                        const item : CookBook = {
+                            _id: group?._id,
+                            dishs: dishs,
+                            name: group?.name,
+                            user: group?.user
+                        }
+                        cookBooks.push(item);
+                    }
+                    setCookBook(cookBooks);   
                 }
             })
             .catch((err) => {
@@ -42,7 +56,7 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
 
     const updateCookBook = (data: CookBook) => {
         var arr = Array.from(cookBook);
-        arr.push(data);
+        arr.unshift(data);
         setCookBook(arr);
     };
 
@@ -69,7 +83,7 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
                 } else {
                     Alert.alert('An unexpected error occurred. Please try again later.');
                 }
-            });
+            })
     };
 
     const renderCookBook = cookBook.map((item: CookBook, index: number) => {
@@ -77,10 +91,16 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
             <TouchableOpacity style={styles.ctnItem} onPress={() => addDishToCookBook(item._id)} key={index}>
                 <Image source={itemFood} resizeMode="cover" style={styles.imgItem} />
                 <Text style={styles.textItem}>{item.name}</Text>
-                <Text style={styles.numberItem}>({item.dishs.length} công thức)</Text>
+                <Text style={styles.numberItem}>({item.dishs} công thức)</Text>
             </TouchableOpacity>
         );
     });
+
+    if (notice) {
+        setTimeout(() => {
+            showNoticeSuccess(false);
+        }, 2000);
+    }
 
     return showFormModal ? (
         <CreateCookBook
@@ -88,9 +108,13 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
             user={user}
             idDish={idDish}
             updateCookBook={(data: CookBook) => updateCookBook(data)}
+            showNotice = {() => showNoticeSuccess(true)}
         />
     ) : (
         <View style={styles.container}>
+            <Modal animationType="slide" transparent={true} visible={notice}>
+                <Notice text="Bạn đã lưu món ăn thành công!" type="success" />
+            </Modal>
             <View
                 style={{
                     marginBottom: 20,
@@ -110,7 +134,10 @@ const SaveCookBook: React.FC<Func> = ({ showNotice, user, idDish, close }) => {
                 style={{
                     flexDirection: 'row',
                     width: '100%',
-                    justifyContent: 'space-evenly',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingBottom: 80,
                 }}
             >
                 {renderCookBook}

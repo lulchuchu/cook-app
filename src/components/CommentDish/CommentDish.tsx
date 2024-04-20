@@ -40,7 +40,7 @@ const Comment: React.FC<Props> = ({ user, time, content, like, img, _id }) => {
             .post('http://192.168.34.109:3056/comment-dish/create-feeling', {
                 idCommentDish: _id,
                 idNguoiDung: user._id,
-                state: isLiked ? -1 : 1,
+                state: 1,
             })
             .then()
             .catch((error) => {

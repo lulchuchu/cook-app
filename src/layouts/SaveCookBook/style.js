@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 20
     },
     imgItem: {
         width: 100,

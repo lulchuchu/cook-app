@@ -18,26 +18,38 @@ interface Step {
 type Props = {
     data: Step[];
     close: () => void;
+    img: string;
 };
 
-const CookRecipe: React.FC<Props> = ({ data, close }) => {
+const CookRecipe: React.FC<Props> = ({ data, close, img }) => {
     const [stepNumber, setStepNumber] = useState(0);
-    const [initTime, setInittime] = useState(data[stepNumber].time);
+    const [initTime, setInittime] = useState(data[0].time);
     const { width: widthDevice } = Dimensions.get('window');
 
     useEffect(() => {
-        setTimeout(() => {
-            const intervalId = setInterval(() => {
-                if (initTime > 0) {
-                    setInittime((prevTime) => prevTime - 1);
-                } else {
-                    clearInterval(intervalId);
-                }
-            }, 1000);
+        let intervalId: NodeJS.Timeout | undefined;
 
-            return () => clearInterval(intervalId);
-        });
+        if (initTime > 0) {
+            intervalId = setInterval(() => {
+                setInittime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+            }, 1000);
+        }
+
+        return () => {
+            clearInterval(intervalId);
+        };
     }, [initTime]);
+
+    const handleClick = (number: number) => {
+        setStepNumber(number);
+        setInittime(data[number].time);
+    };
+
+    const formatTime = (time: number): string => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    };
 
     const renderFooter = data.map((step: Step, index: number) => {
         return (
@@ -66,17 +78,6 @@ const CookRecipe: React.FC<Props> = ({ data, close }) => {
         );
     });
 
-    const handleClick = (number: number) => {
-        setStepNumber(number);
-        setInittime(data[number].time);
-    };
-
-    const formatTime = (time: number): string => {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-    };
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -88,7 +89,7 @@ const CookRecipe: React.FC<Props> = ({ data, close }) => {
                     source={{
                         uri: data[stepNumber].img
                             ? data[stepNumber].img
-                            : 'https://images.services.kitchenstories.io/GM9vE3FlOLksxLpKyEF0GyViT1s=/640x0/filters:quality(80)/images.kitchenstories.io/wagtailOriginalImages/R1628_final_photo_309.jpg',
+                            : img
                     }}
                     resizeMode="cover"
                 />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Checkbox from 'expo-checkbox';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { Alert, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { faChevronLeft, faHouse, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faHouse, faMinus, faPlus, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import styles from './style';
@@ -36,6 +36,9 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [arr, setArr] = useState(new Array(data.ingredient?.name.length).fill(true));
     const [price, setPrice] = useState(data.ingredient?.name.length * 10000);
+    const [defaultPortion, setDefaultPortion] = useState(data.meal);
+    const [quantityIngredient, setQunatityIngre] = useState<string[]>(data.ingredient.quantity);
+    const [ration, setRation] = useState(0);
     const [tel, setTel] = useState<string>(user.tel);
     const [address, setAddress] = useState<string>(user.address || '');
     const [distance, setDistance] = useState(0);
@@ -67,28 +70,36 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
     }, []);
 
     const getStore = () => {
-        axios
-            .get('http://192.168.34.109:3056/store/calculate-distance', {
-                params: { address },
-            })
-            .then((response) => {
-                if (response.status === 200) {
-                    const data = response.data;
-                    setStore(data.nearStore);
-                    setDistance(data.minDistance);
-                } else {
-                    Alert.alert(response.data.message);
-                }
-            })
-            .catch((err) => {
-                if (err.response) {
-                    Alert.alert(err.response.data.message);
-                } else if (err.request) {
-                    Alert.alert('Network error. Please check your internet connection.');
-                } else {
-                    Alert.alert('An unexpected error occurred. Please try again later.');
-                }
-            });
+        if (address.length < 5) {
+            Alert.alert('Địa chỉ cần chi tiết hơn!');
+            setStore({tel: '',
+            address: '',
+            staf: '',});
+        }
+        else {
+            axios
+                .get('http://192.168.34.109:3056/store/calculate-distance', {
+                    params: { address },
+                })
+                .then((response) => {
+                    if (response.status === 200) {
+                        const data = response.data;
+                        setStore(data.nearStore);
+                        setDistance(data.minDistance);
+                    } else {
+                        Alert.alert(response.data.message);
+                    }
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        Alert.alert(err.response.data.message);
+                    } else if (err.request) {
+                        Alert.alert('Network error. Please check your internet connection.');
+                    } else {
+                        Alert.alert('An unexpected error occurred. Please try again later.');
+                    }
+                });
+        }
     };
 
     const checkBox = (value: number) => {
@@ -105,13 +116,13 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
         setArr(prevArr);
     };
 
-    const renderIngre = data?.ingredient.name.map((ten: string, index: number) => {
+    const renderIngre = quantityIngredient.map((quantity: any, index: number) => {
         return (
             <View style={styles.ctnItemIngre} key={index}>
                 <View>
-                    <Text style={styles.nameIngre}>{ten}</Text>
+                    <Text style={styles.nameIngre}>{data?.ingredient.name[index]}</Text>
                     <Text style={styles.textQuantity}>
-                        Số lượng: {data?.ingredient.quantity[index]} {data?.ingredient.unit[index]}
+                        Số lượng: {quantity} {data?.ingredient.unit[index]}
                     </Text>
                 </View>
                 <View>
@@ -147,16 +158,60 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
     };
 
     const handleTouch = () => {
-        if (checkTel && address.length > 0 && tel.length > 0) {
+        if (checkTel && store.address !== '') {
             setModalVisible(true);
-        } else if (address.length === 0 && tel.length > 0) {
-            setCheckAddress(false);
-        } else if (tel.length === 0 && address.length > 0) {
+            setCheckTel(true);
+            setCheckAddress(true);
+        } 
+        else if (!checkTel && address.length === 0) {
             setCheckTel(false);
-        } else {
             setCheckAddress(false);
-            setCheckTel(false);
         }
+        else if (address.length === 0 && checkTel) {
+            setCheckAddress(false);
+            setCheckTel(true);
+        }
+        else if (address.length > 0 && !checkTel) {
+            setCheckTel(false);
+            setCheckAddress(true);
+        }
+        else {
+            Alert.alert('Địa chỉ cần chi tiết hơn');
+        }
+    };
+
+    const increaseRations = () => {
+        if (defaultPortion === ration * 5) {
+            return;
+        }
+        setDefaultPortion(defaultPortion + 1);
+        var arr = Array.from(quantityIngredient);
+        for (let i = 0; i < arr.length; i++) {
+            if (Number.isNaN(parseInt(arr[i]) * 2)) {
+                arr[i] = arr[i];
+            } else {
+                arr[i] = (parseInt(arr[i]) * 2).toString();
+            }
+        }
+        setQunatityIngre(arr);
+        setPrice(price * 3/2);
+    };
+
+    const reduceRation = () => {
+        if (defaultPortion === ration) {
+            return;
+        }
+        setDefaultPortion(defaultPortion - 1);
+        var arr = Array.from(quantityIngredient);
+        for (let i = 0; i < arr.length; i++) {
+            if (Number.isNaN(parseInt(arr[i]) / 2)) {
+                arr[i] = arr[i];
+            } else {
+                arr[i] = (parseInt(arr[i]) / 2).toString();
+            }
+        }
+        setQunatityIngre(arr);
+        setPrice(price / 1.5);
     };
 
     return (
@@ -174,6 +229,18 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
                 <View style={styles.ctnBody}>
                     <View style={styles.mb20}>
                         <Text style={styles.textTitle}>Nguyên liệu</Text>
+                        <View style={styles.ctnAdjust}>
+                            <Text style={styles.numberAdjust}>{defaultPortion} phần</Text>
+                            <View style={styles.adjustQuantity}>
+                                <TouchableOpacity style={styles.btnAdjust} onPress={reduceRation}>
+                                    <FontAwesomeIcon icon={faMinus} />
+                                </TouchableOpacity>
+                                <Text style={styles.textAdjust}>{defaultPortion}</Text>
+                                <TouchableOpacity style={styles.btnAdjust} onPress={increaseRations}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                         {renderIngre}
                     </View>
                     <View style={styles.mb32}>
@@ -209,6 +276,7 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
                                                 setCheckTel(false);
                                             }
                                         }}
+                                        editable = {!checkTel}
                                         textContentType="telephoneNumber"
                                         keyboardType="numeric"
                                         placeholder="Nhập số điện thoại!"
@@ -287,7 +355,7 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
                 </View>
 
                 <TouchableOpacity style={styles.btnConfirm} onPress={handleTouch}>
-                    <Text style={styles.textBtn}>Xác nhận</Text>
+                    <Text style={styles.textBtn}>Đặt đơn</Text>
                 </TouchableOpacity>
             </View>
 

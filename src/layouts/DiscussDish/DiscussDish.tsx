@@ -89,19 +89,20 @@ const DiscussDish: React.FC<Func> = ({ cancel, idDish, user, data, updateCmt }) 
             .then((response) => {
                 if (response.status === 200) {
                     var arr = Array.from(listCmt);
-                    var data = response.data;
+                    var data = response.data.comment;
                     data['user'] = {
                         _id: user._id,
                         img: user.img,
                         username: user.username,
                     };
+                    data["likes"] = response.data.likes;
                     setListCmt([data, ...arr]);
                     setValueText('');
                     setIsFocus(false);
                     Keyboard.dismiss();
                     updateCmt(data);
                     setImage('');
-                }
+                };
             })
             .catch((error) => {
                 if (error.response) {

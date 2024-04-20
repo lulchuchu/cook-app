@@ -3,7 +3,6 @@ import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { faEllipsis, faShare, faThumbsUp as Like } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp, faComment } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { useFonts } from 'expo-font';
 
 import styles from './style';
 import countTime from '../../util/CountTime';
@@ -19,7 +18,7 @@ interface User {
 
 interface PostInterface {
     _id: string;
-    user: User;
+    author: User;
     title: string;
     timePost: string;
     img: string[];
@@ -29,30 +28,19 @@ interface PostInterface {
     comments: string[];
 }
 
-type Func = {
+type Props = {
     func: () => void;
     data: PostInterface;
     user: any;
+    handleOnPressOnImage: (data: string[]) => void;
 };
 
-const PostItem: React.FC<Func> = ({ func, data, user }) => {
-    const [fontLoaded] = useFonts({
-        'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
-        'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
-    });
+const PostItem: React.FC<Props> = ({ func, data, user, handleOnPressOnImage}) => {
     const [numberLike, setNumberLike] = useState(data.numberLike);
     const [numberShare, setNumberShare] = useState(data.numberShare);
     const [isLike, setIsLike] = useState(false);
-    const [timePosted, setTime] = useState(countTime(data.timePost) !== '0' ? countTime(data.timePost) : 'Vừa xong');
+    const [timePosted, setTime] = useState('');
     const { width: deviceWidth } = Dimensions.get('window');
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            const updateTime = countTime(data.timePost) !== '0' ? countTime(data.timePost) : 'Vừa xong';
-            setTime(updateTime);
-        }, 60000);
-        return () => clearInterval(intervalId);
-    }, []);
 
     useEffect(() => {
         if (data.accountLike.includes(user._id)) {
@@ -60,6 +48,15 @@ const PostItem: React.FC<Func> = ({ func, data, user }) => {
         } else {
             setIsLike(false);
         }
+        setTime(countTime(data.timePost));
+    }, []);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const updateTime = countTime(data.timePost);
+            setTime(updateTime);
+        }, 60000);
+        return () => clearInterval(intervalId);
     }, []);
 
     const handleLike = async () => {
@@ -81,35 +78,32 @@ const PostItem: React.FC<Func> = ({ func, data, user }) => {
 
     const renderImage = data.img.map((img: string, index: number) => {
         return (
-            <Image
-                source={{ uri: img }}
-                resizeMode="cover"
-                style={{
-                    width: data.img.length === 1 ? deviceWidth : deviceWidth * 0.49,
-                    height: 280,
-                    borderWidth: 0.2,
-                    borderColor: '#ccc',
-                }}
-                key={index}
-            />
+            <TouchableOpacity key={index} onPress={() => handleOnPressOnImage(data.img)}>
+                <Image
+                    source={{ uri: img }}
+                    resizeMode="cover"
+                    style={{
+                        width: data.img.length === 1 ? deviceWidth : deviceWidth * 0.49,
+                        height: 280,
+                        borderWidth: 0.2,
+                        borderColor: '#ccc',
+                    }}
+                />
+            </TouchableOpacity>
         );
     });
-
-    if (!fontLoaded) {
-        return null;
-    }
 
     return (
         <View style={styles.container}>
             <View style={styles.ctnHeader}>
                 <View style={styles.flexRow}>
                     <Image
-                        source={data.user.img ? { uri: data.user.img } : userImage}
+                        source={data.author.img ? { uri: data.author.img } : userImage}
                         resizeMode="contain"
                         style={styles.imageUser}
                     />
                     <View style={styles.ctnInfor}>
-                        <Text style={styles.nameUser}>{data.user.username}</Text>
+                        <Text style={styles.nameUser}>{data.author.username}</Text>
                         <Text style={styles.timePosted}>{timePosted}</Text>
                     </View>
                 </View>
@@ -124,7 +118,6 @@ const PostItem: React.FC<Func> = ({ func, data, user }) => {
                 <View style={styles.ctnImage}>
                     {
                         data.img && renderImage
-                        // <Image source={meal} resizeMode="cover" style={styles.imageContent} />
                     }
                 </View>
             </View>

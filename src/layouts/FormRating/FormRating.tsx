@@ -24,16 +24,25 @@ type FuncCancel = {
     updateRating: (rating: any) => void;
     user: any;
     idDish: string;
+    updateDataRated: (data: DataRated) => void;
+    dataRated: DataRated;
 };
 
-const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRating }) => {
+interface DataRated {
+    _id: string;
+    score: number;
+    content: string;
+    uri: string;
+}
+
+const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRating, updateDataRated, dataRated }) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [rating, setRating] = useState(0);
-    const [content, setContent] = useState('');
-    const [uri, setUri] = useState('');
+    const [rating, setRating] = useState(dataRated.score);
+    const [content, setContent] = useState(dataRated.content);
+    const [uri, setUri] = useState(dataRated.uri);
     const [img, setImg] = useState<object>({
-        uri: '',
-        type: '',
+        uri: dataRated.uri,
+        type: 'png',
     });
 
     const handleRating = (value: number) => {
@@ -77,12 +86,12 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRati
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (rating === 0) {
             return;
         } else {
             axios
-                .post('http:192.168.34.109:3056/rating-dish/create', {
+                .post('http://192.168.34.109:3056/rating-dish/create', {
                     idMonAn: idDish,
                     idNguoiDung: user._id,
                     diemDanhGia: rating,
@@ -91,7 +100,19 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRati
                 })
                 .then((response) => {
                     if (response.status === 200) {
+                        const data = response.data;
+                        data.account = {
+                            _id: user._id,
+                            username: user.username,
+                            img: user.img
+                        }
                         updateRating(response.data);
+                        updateDataRated({
+                            _id: dataRated._id,
+                            score: rating,
+                            content: content,
+                            uri: uri
+                        });
                     } else {
                         Alert.alert(response.data.message);
                     }
@@ -157,6 +178,7 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRati
                         <View style={styles.ctnTextCmt}>
                             <TextInput
                                 editable
+                                value={content}
                                 multiline
                                 placeholder="Ừm! Tôi đã thêm một chút...(tùy chọn)"
                                 placeholderTextColor={'#868686'}
@@ -183,7 +205,10 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRati
                             {uri !== '' && (
                                 <View style={{ marginRight: 8 }}>
                                     <Image source={{ uri: uri }} resizeMode="cover" style={styles.imgPost} />
-                                    <TouchableOpacity style={styles.iconXMark} onPress={() => setUri('')}>
+                                    <TouchableOpacity style={styles.iconXMark} onPress={() => {
+                                        setUri('');
+                                        setImg({uri: '', type: ''});
+                                    }}>
                                         <FontAwesomeIcon icon={faXmark} size={14} />
                                     </TouchableOpacity>
                                 </View>

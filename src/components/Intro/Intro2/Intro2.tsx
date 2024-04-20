@@ -35,7 +35,7 @@ const Intro2: React.FC<Props> = ({ numberPage, largeText, smallText, video, next
 
     return (
         <View style={styles.container}>
-            <Video ref={videoRef} source={video} style={styles.backgroundVideo} isLooping shouldPlay />
+            <Video ref={videoRef} source={{ uri: video }} style={styles.backgroundVideo} isLooping shouldPlay />
 
             <TouchableOpacity style={styles.ctnSkip} onPress={handleCancel}>
                 <Text style={styles.textSkip}>Bỏ qua</Text>
