@@ -80,9 +80,10 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
                 const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
                     encoding: FileSystem.EncodingType.Base64,
                 });
+                const filename = result.assets[0].fileName;
                 const objectImage = {
                     uri: base64,
-                    type: result.assets[0].type,
+                    type: String(filename?.split('.')[1]),
                 };
                 setUri((prev) => [...prev, objectImage]);
                 setListImg((prev) => [...prev, uri]);
@@ -115,7 +116,7 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
             author: user._id,
         };
         axios
-            .post('http://192.168.34.109:3056/user/community/post', dataPost)
+            .post('https://7732-113-160-14-39.ngrok-free.app/user/community/post', dataPost)
             .then((response) => {
                 if (response.status === 200) {
                     const data = response.data;
@@ -133,8 +134,8 @@ const CreatePost: React.FC<Func> = ({ cancel, user, updateListPost }) => {
                         numberLike: 0,
                         comments: [],
                     }
-                    updateListPost(post);
                     cancel();
+                    updateListPost(post);
                 } else {
                     Alert.alert(response.data.message);
                 }

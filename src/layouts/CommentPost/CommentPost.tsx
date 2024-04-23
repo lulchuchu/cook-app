@@ -35,6 +35,9 @@ type Func = {
     user: any;
     dataPost: any;
     updatePostItem: (idCmt: string) => void;
+    updateLikePost: (idUser: string, 
+        idBlog: string, 
+        state: string) => void;
 };
 
 interface UserCommentInterface {
@@ -52,7 +55,7 @@ interface CommentInterface {
     img: string;
 }
 
-const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) => {
+const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem, updateLikePost }) => {
     const [fontLoaded] = useFonts({
         'Inconsolata-Bold': require('../../../assets/fonts/Inconsolata-Bold.ttf'),
         'Inconsolata-Medium': require('../../../assets/fonts/Inconsolata-Medium.ttf'),
@@ -62,7 +65,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
     const [isFocus, setIsFocus] = useState(false);
     const [valueText, setValueText] = useState('');
     const [heightKeyboard, setHeightKeyboard] = useState(0);
-    const [numberLike, setNumberLike] = useState(dataPost.numberLike);
+    const [numberLike, setNumberLike] = useState(0);
     const [isLike, setIsLike] = useState(false);
     const [height, setHeight] = useState(0);
     const [time, setTime] = useState('');
@@ -82,19 +85,22 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
         } else {
             setIsLike(false);
         }
+        setNumberLike(dataPost.accountLike.length);
     }, []);
 
     const handleLike = async () => {
         setIsLike(!isLike);
         if (isLike) {
             setNumberLike(numberLike - 1);
-            await axios.post('http://192.168.34.109:3056/user/community/dislike', {
+            updateLikePost(user._id, dataPost._id, 'unlike');
+            await axios.post('https://7732-113-160-14-39.ngrok-free.app/user/community/dislike', {
                 idBlog: dataPost._id,
                 idUser: user._id,
             });
         } else {
             setNumberLike(numberLike + 1);
-            await axios.post('http://192.168.34.109:3056/user/community/like', {
+            updateLikePost(user._id, dataPost._id, 'like');
+            await axios.post('https://7732-113-160-14-39.ngrok-free.app/user/community/like', {
                 idBlog: dataPost._id,
                 idUser: user._id,
             });
@@ -118,7 +124,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/user/comment/blog/get', {
+            .get('https://7732-113-160-14-39.ngrok-free.app/user/comment/blog/get', {
                 params: { idBlog: dataPost._id },
             })
             .then((response) => {
@@ -184,12 +190,13 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
 
         if (!result.canceled) {
             setUriImage(result.assets[0].uri);
+            const filename = result.assets[0].fileName;
             const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
                 encoding: FileSystem.EncodingType.Base64
             });
             setObjectImage({
                 uri: base64,
-                type: result.assets[0].type || 'png'
+                type: String(filename?.split('.')[1])
             });
         } else {
             Alert.alert('Upload ảnh lỗi!');
@@ -205,7 +212,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
                 img: objectImage
             };
             axios
-                .post('http://192.168.34.109:3056/user/comment/blog/post', dataCmt)
+                .post('https://7732-113-160-14-39.ngrok-free.app/user/comment/blog/post', dataCmt)
                 .then((response) => {
                     if (response.status === 200) {
                         const comment = response.data;
@@ -213,7 +220,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
                             _id: comment._id,
                             author: { _id: user._id, username: user.username, img: user.img },
                             content: comment.content,
-                            likes: comment.likes,
+                            likes: [],
                             img: comment.img,
                             timeCreate: comment.createdAt,
                         };
@@ -257,7 +264,7 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
                     <TouchableOpacity style={styles.ctnBack} onPress={func}>
                         <FontAwesomeIcon icon={faChevronLeft} size={20} />
                     </TouchableOpacity>
-                    <Text style={styles.textAccount}>Bài viết của {dataPost.user.username}</Text>
+                    <Text style={styles.textAccount}>Bài viết của {dataPost.author.username}</Text>
 
                     <TouchableOpacity>
                         <FontAwesomeIcon icon={faEllipsis} color="#65676b" size={20} />
@@ -279,12 +286,12 @@ const CommentPost: React.FC<Func> = ({ func, user, dataPost, updatePostItem }) =
                         </TouchableOpacity>
                         <View style={styles.flexRow}>
                             <Image
-                                source={dataPost.user.img ? { uri: dataPost.user.img } : userImage}
+                                source={dataPost.author.img ? { uri: dataPost.author.img } : userImage}
                                 resizeMode="contain"
                                 style={styles.imageUser}
                             />
                             <View style={styles.ctnInfor}>
-                                <Text style={styles.nameUser}>{dataPost.user.username}</Text>
+                                <Text style={styles.nameUser}>{dataPost.author.username}</Text>
                                 <Text style={styles.timePosted}>{time}</Text>
                             </View>
                         </View>

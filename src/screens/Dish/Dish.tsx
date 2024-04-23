@@ -201,7 +201,7 @@ const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
             setUser(route.params.user);
         }
         axios
-            .get('http://192.168.34.109:3056/dish/get-detail', {
+            .get('https://7732-113-160-14-39.ngrok-free.app/dish/get-detail', {
                 params: { _id: route.params._id },
             })
             .then((response) => {
@@ -227,7 +227,7 @@ const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/rating-dish/get-rating', {
+            .get('https://7732-113-160-14-39.ngrok-free.app/rating-dish/get-rating', {
                 params: { idMonAn: route.params._id },
             })
             .then((response) => {
@@ -257,7 +257,7 @@ const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/comment-dish/get-all', {
+            .get('https://7732-113-160-14-39.ngrok-free.app/comment-dish/get-all', {
                 params: { idDish: route.params._id },
             })
             .then((response) => {
@@ -386,7 +386,7 @@ const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
     const handleLike = () => {
         if (user !== null  && user._id !== '') {
             axios
-                .post('http://192.168.34.109:3056/dish/like-dish', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/dish/like-dish', {
                     idNguoiDung: route.params.user._id,
                     idMonAn: route.params._id,
                 })
@@ -415,7 +415,7 @@ const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
     const hanldeAddToCart = () => {
         if (user.token) {
             axios
-                .post('http://192.168.34.109:3056/user/add-to-cart', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/user/add-to-cart', {
                     img: recipe.imgDes,
                     nameDish: recipe.name,
                     idDish: route.params._id,
@@ -754,12 +754,12 @@ const Dish: React.FC<RecipeProps> = ({ navigation, route }) => {
                     <View style={[styles.headingReview, {paddingHorizontal: 16}]}>
                         <Text style={styles.textHeadingReview}>Đánh giá</Text>
                     </View>
-                    <View style={{ marginTop: 8, paddingLeft: 16 }}>
+                    {listRating.length === 0 ? <View style={{ marginTop: 8, paddingLeft: 16 }}>
                         <Text style={[styles.numberRating, { marginBottom: 0, color: '#212121' }]}>
                             Chưa có đánh giá nào!
                         </Text>
                     </View>
-                    <RatingCard data = {listRating}/>
+                    : <RatingCard data = {listRating}/>}
                 </View>
 
                 <View style={styles.ctnReviews}>

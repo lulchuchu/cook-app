@@ -33,10 +33,13 @@ type Props = {
     data: PostInterface;
     user: any;
     handleOnPressOnImage: (data: string[]) => void;
+    updateLikePost: (idUser: string, 
+        idBlog: string, 
+        state: string) => void;
 };
 
-const PostItem: React.FC<Props> = ({ func, data, user, handleOnPressOnImage}) => {
-    const [numberLike, setNumberLike] = useState(data.numberLike);
+const PostItem: React.FC<Props> = ({ func, data, user, handleOnPressOnImage, updateLikePost}) => {
+    const [numberLike, setNumberLike] = useState(0);
     const [numberShare, setNumberShare] = useState(data.numberShare);
     const [isLike, setIsLike] = useState(false);
     const [timePosted, setTime] = useState('');
@@ -49,7 +52,8 @@ const PostItem: React.FC<Props> = ({ func, data, user, handleOnPressOnImage}) =>
             setIsLike(false);
         }
         setTime(countTime(data.timePost));
-    }, []);
+        setNumberLike(data.accountLike.length);
+    }, [data]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -63,13 +67,15 @@ const PostItem: React.FC<Props> = ({ func, data, user, handleOnPressOnImage}) =>
         setIsLike(!isLike);
         if (isLike) {
             setNumberLike(numberLike - 1);
-            await axios.post('http://192.168.34.109:3056/user/community/dislike', {
+            updateLikePost(user._id, data._id, 'unlike');
+            await axios.post('https://7732-113-160-14-39.ngrok-free.app/user/community/dislike', {
                 idBlog: data._id,
                 idUser: user._id,
             });
         } else {
             setNumberLike(numberLike + 1);
-            await axios.post('http://192.168.34.109:3056/user/community/like', {
+            updateLikePost(user._id, data._id, 'like');
+            await axios.post('https://7732-113-160-14-39.ngrok-free.app/user/community/like', {
                 idBlog: data._id,
                 idUser: user._id,
             });
@@ -123,14 +129,12 @@ const PostItem: React.FC<Props> = ({ func, data, user, handleOnPressOnImage}) =>
             </View>
 
             <View style={styles.ctnInteracted}>
-                {numberLike ? (
+                {numberLike > 0 && 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Image source={iconLike} resizeMode="cover" style={{ width: 24, height: 24, marginRight: 4 }} />
                         <Text style={styles.textInteracted}>{numberLike}</Text>
                     </View>
-                ) : (
-                    <View></View>
-                )}
+                }
                 {data.comments.length > 0 ? (
                     <TouchableOpacity onPress={func}>
                         <Text style={styles.textInteracted}>{data.comments.length} bình luận</Text>

@@ -89,7 +89,7 @@ const Login: React.FC<Navigation> = ({ navigation, route }) => {
             const data = { email, password };
             setTimeout(() => {
                 axios
-                    .post('http://192.168.34.109:3056/user/login', data)
+                    .post('https://7732-113-160-14-39.ngrok-free.app/user/login', data)
                     .then((response) => {
                         if (response.status === 200) {
                             setText('Bạn đã đăng nhập thành công!');

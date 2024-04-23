@@ -54,7 +54,7 @@ const Comment: React.FC<Props> = ({ data, user}) => {
             setIsLike(!isLike);
             if (isLike) {
                 setNumberLike(numberLike - 1);
-                axios.post('http://192.168.34.109:3056/user/comment/blog/unlike', {
+                axios.post('https://7732-113-160-14-39.ngrok-free.app/user/comment/blog/unlike', {
                         idCmt: data._id,
                         idUser: user._id
                     })
@@ -63,7 +63,7 @@ const Comment: React.FC<Props> = ({ data, user}) => {
             }
             else {
                 setNumberLike(numberLike + 1);
-                axios.post('http://192.168.34.109:3056/user/comment/blog/like', {
+                axios.post('https://7732-113-160-14-39.ngrok-free.app/user/comment/blog/like', {
                         idCmt: data._id,
                         idUser: user._id
                     })
@@ -80,12 +80,12 @@ const Comment: React.FC<Props> = ({ data, user}) => {
         <View style={styles.container}>
             <View style={styles.itemLeft}>
                 <Image
-                    source={data.author.img ? { uri: data.author.img } : imgUser}
+                    source={data.author?.img ? { uri: data.author?.img } : imgUser}
                     resizeMode="contain"
                     style={styles.imgUser}
                 />
                 <View style={styles.ctnInfor}>
-                    <Text style={styles.name}>{data.author.username}</Text>
+                    <Text style={styles.name}>{data.author?.username}</Text>
                     {data.content && <Text style={styles.content} numberOfLines={4}>
                         {data.content}
                     </Text>}

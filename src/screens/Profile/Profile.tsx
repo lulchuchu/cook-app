@@ -62,7 +62,7 @@ const Profile: React.FC<Navigation> = ({ navigation, route }) => {
     useEffect(() => {
         if (user._id !== '') {
             axios
-                .get('http://192.168.34.109:3056/cook-book/get-all-cookBook', {
+                .get('https://7732-113-160-14-39.ngrok-free.app/cook-book/get-all-cookBook', {
                     params: { idNguoiDung: user._id },
                 })
                 .then((response) => {

@@ -74,13 +74,14 @@ const DiscussDish: React.FC<Func> = ({ cancel, idDish, user, data, updateCmt }) 
             const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
                 encoding: FileSystem.EncodingType.Base64,
             });
-            setUri({ uri: base64, type: result.assets[0].type });
+            const filename = result.assets[0].fileName;
+            setUri({ uri: base64, type: String(filename?.split('.')[1]) });
             setImage(result.assets[0].uri);
         }
     };
     const handlePostCmt = () => {
         axios
-            .post('http://192.168.34.109:3056/comment-dish/create', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/comment-dish/create', {
                 idDish: idDish,
                 idUser: user._id,
                 content: valueText,

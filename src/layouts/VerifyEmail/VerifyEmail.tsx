@@ -90,7 +90,7 @@ const VerifyEmail: React.FC<Props> = ({ user, navigation, closeModal }) => {
     const handleSendMail = () => {
         setModal(true);
         axios
-            .post('http://192.168.34.109:3056/user/send/mail', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/user/send/mail', {
                 email: user.email,
             })
             .then((response) => {
@@ -117,7 +117,7 @@ const VerifyEmail: React.FC<Props> = ({ user, navigation, closeModal }) => {
         const codeVerify = parseInt(code.join(''));
         if (codeVerify > 1000) {
             axios
-                .post('http://192.168.34.109:3056/user/verify/email', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/user/verify/email', {
                     code: codeVerify,
                     email: user.email,
                 })

@@ -25,7 +25,7 @@ interface CartInterface {
 const ConfirmCancel: React.FC<Props> = ({ cart, cancel, updateCartCancel }) => {
     const handleCancel = () => {
         axios
-            .post('http://192.168.34.109:3056/user/cancel-cart', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/user/cancel-cart', {
                 idCart: cart._id,
             })
             .then((response) => {

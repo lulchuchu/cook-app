@@ -52,7 +52,7 @@ const CartScreen: React.FC<Navigation> = ({ navigation, route }) => {
         if (route.params.user._id !== '') {
             setCheckLogin(true);
             axios
-                .get('http://192.168.34.109:3056/user/get-all-cart', {
+                .get('https://7732-113-160-14-39.ngrok-free.app/user/get-all-cart', {
                     params: { idUser: route.params.user._id },
                 })
                 .then((response) => {
@@ -111,7 +111,7 @@ const CartScreen: React.FC<Navigation> = ({ navigation, route }) => {
 
     const handleCancel = () => {
         axios
-            .post('http://192.168.34.109:3056/user/cancel-cart', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/user/cancel-cart', {
                 idCart: carts[itemCancel]._id,
             })
             .then((response) => {

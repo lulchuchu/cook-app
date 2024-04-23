@@ -27,7 +27,7 @@ const RecipeLiked: React.FC<Props> = ({ user, navigation }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/user/get-dish-liked', {
+            .get('https://7732-113-160-14-39.ngrok-free.app/user/get-dish-liked', {
                 params: { user: user._id },
             })
             .then((response) => {

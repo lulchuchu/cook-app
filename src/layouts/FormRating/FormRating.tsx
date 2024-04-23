@@ -74,9 +74,10 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRati
                 const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
                     encoding: FileSystem.EncodingType.Base64,
                 });
+                const filename = result.assets[0].fileName;
                 const objectImage = {
                     uri: base64,
-                    type: result.assets[0].type,
+                    type: String(filename?.split('.')[1]),
                 };
                 setImg(objectImage);
                 setUri(result.assets[0].uri);
@@ -91,7 +92,7 @@ const FormRating: React.FC<FuncCancel> = ({ cancelFunc, user, idDish, updateRati
             return;
         } else {
             axios
-                .post('http://192.168.34.109:3056/rating-dish/create', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/rating-dish/create', {
                     idMonAn: idDish,
                     idNguoiDung: user._id,
                     diemDanhGia: rating,
