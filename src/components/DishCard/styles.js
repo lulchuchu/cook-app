@@ -50,6 +50,21 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 8,
     },
+    ctnType: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: '#9ee17b',
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 12,
+    },
+    textType: {
+        fontFamily: 'Inconsolata-Medium',
+        fontSize: 14,
+    }
 });
 
 export default styles;

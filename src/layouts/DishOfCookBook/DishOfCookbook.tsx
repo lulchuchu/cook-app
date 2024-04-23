@@ -40,7 +40,7 @@ const DishOfCookbook: React.FC<Props> = ({ user, _idCookBook, navigation, cancel
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/cook-book/get-all-dish-of-cookbook', {
+            .get('https://7732-113-160-14-39.ngrok-free.app/cook-book/get-all-dish-of-cookbook', {
                 params: { idNhomMonAn: _idCookBook },
             })
             .then((response) => {
@@ -89,7 +89,7 @@ const DishOfCookbook: React.FC<Props> = ({ user, _idCookBook, navigation, cancel
     });
 
     const handleDelete = () => {
-        axios.delete('http://192.168.34.109:3056/cook-book/erase', {
+        axios.delete('https://7732-113-160-14-39.ngrok-free.app/cook-book/erase', {
                 data: {idCookBook: _idCookBook}
             })
             .then(response => {
@@ -111,7 +111,7 @@ const DishOfCookbook: React.FC<Props> = ({ user, _idCookBook, navigation, cancel
             idMonAn: dishSelect._id,
             idNhomMonAn: _idCookBook
         }
-        axios.delete('http://192.168.34.109:3056/cook-book/erase-dish', {
+        axios.delete('https://7732-113-160-14-39.ngrok-free.app/cook-book/erase-dish', {
                 data: body
             })
             .then(response => {

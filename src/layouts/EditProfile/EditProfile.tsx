@@ -60,7 +60,7 @@ const EditProfile: React.FC<Navigation> = ({navigation, route}) => {
             setCheckTel(false);
         } else {
             axios
-                .post('http://192.168.34.109:3056/user/update-profile', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/user/update-profile', {
                     _id: user?._id,
                     username: username || user?.username,
                     img: img,
@@ -111,10 +111,11 @@ const EditProfile: React.FC<Navigation> = ({navigation, route}) => {
             const base64 = await FileSystem.readAsStringAsync(resulst.assets[0].uri, {
                 encoding: 'base64'
             });
+            const filename = resulst.assets[0].fileName;
 
             const objectImage = {
                 uri: base64,
-                type: 'png'
+                type: String(filename?.split('.')[1])
             };
             setImg(objectImage);
         }

@@ -24,7 +24,7 @@ const Item1: React.FC<Func> = ({ func, close, user }) => {
             func();
         } else {
             axios
-                .post('http://192.168.34.109:3056/user/select-diet', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/user/select-diet', {
                     diet: diet[index - 1],
                     _id: user._id,
                 })

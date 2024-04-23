@@ -58,7 +58,7 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/user/community/getAll')
+            .get('https://7732-113-160-14-39.ngrok-free.app/user/community/getAll')
             .then((response) => {
                 const listPost = response.data;
                 const result = listPost.map((post: any) => ({
@@ -115,6 +115,27 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
         setListPost(arr);
     };
 
+    const updateLikePost = (idUser: string, idBlog: string, state: string) => {
+        setListPost(prevListPost => {
+            return prevListPost.map(post => {
+                if (post._id === idBlog) {
+                    if (state === 'like') {
+                        return {
+                            ...post,
+                            accountLike: [idUser, ...post.accountLike]
+                        };
+                    } else {
+                        return {
+                            ...post,
+                            accountLike: post.accountLike.filter(account => account !== idUser)
+                        };
+                    }
+                }
+                return post;
+            });
+        });
+    }
+
     const handleOnPress = () => {
         if (route.params.user._id !== '') {
             setModalVisible(true);
@@ -129,6 +150,12 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
                 data={post} 
                 user={route.params.user} 
                 func={() => handleClickOnPost(post)}
+                updateLikePost = {(
+                    idUser: string, 
+                    idBlog: string, 
+                    state: string
+                ) => updateLikePost(idUser, idBlog, state
+                )}
                 handleOnPressOnImage = {(data: string[]) => handleOnPressOnImage(data)} 
             />
     )}, [listPost]);
@@ -205,6 +232,12 @@ const Community: React.FC<Props> = ({ navigation, route }) => {
                     func={() => setShowPost(false)}
                     user={props.user}
                     dataPost={itemPost}
+                    updateLikePost = {(
+                        idUser: string, 
+                        idBlog: string, 
+                        state: string
+                    ) => updateLikePost(idUser, idBlog, state
+                    )}
                     updatePostItem={(idCmt: string) => updatePostItem(idCmt)}
                 />
             )}

@@ -55,7 +55,7 @@ const Search: React.FC<Navigation> = ({ navigation, route }) => {
 
     useEffect(() => {
         axios
-            .get('http://192.168.34.109:3056/dish/get-all')
+            .get('https://7732-113-160-14-39.ngrok-free.app/dish/get-all')
             .then((response) => {
                 setDishs(response.data);
             })
@@ -93,7 +93,7 @@ const Search: React.FC<Navigation> = ({ navigation, route }) => {
     });
 
     const handleOnPressCardType = (type: string) => {
-        axios.get('http://192.168.34.109:3056/dish/get-by-type', {
+        axios.get('https://7732-113-160-14-39.ngrok-free.app/dish/get-by-type', {
                 params: {type: type}
             })
             .then(response => {

@@ -43,7 +43,7 @@ const Item2: React.FC<Func> = ({ close, user }) => {
 
     const handleClick = () => {
         axios
-            .post('http://192.168.34.109:3056/user/select-country', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/user/select-country', {
                 _id: user._id,
                 country,
             })

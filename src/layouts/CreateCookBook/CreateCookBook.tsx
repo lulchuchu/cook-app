@@ -29,7 +29,7 @@ const CreateCookBook: React.FC<Func> = ({ cancel, user, idDish, updateCookBook, 
     const handleSave = () => {
         if (textInput.length > 0) {
             axios
-                .post('http://192.168.34.109:3056/cook-book/create', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/cook-book/create', {
                     idNguoiDung: user._id,
                     tenNhomMonAn: textInput,
                     idMonAn: idDish,

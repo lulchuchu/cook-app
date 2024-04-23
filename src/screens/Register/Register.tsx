@@ -105,7 +105,7 @@ const Register: React.FC<Navigation> = ({ navigation }) => {
             const data = { email, username, password };
             setTimeout(() => {
                 axios
-                    .post('http://192.168.34.109:3056/user/register', data)
+                    .post('https://7732-113-160-14-39.ngrok-free.app/user/register', data)
                     .then((response) => {
                         if (response.status === 200) {
                             setUser(response.data.user);

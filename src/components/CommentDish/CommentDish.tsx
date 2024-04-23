@@ -37,7 +37,7 @@ const Comment: React.FC<Props> = ({ user, time, content, like, img, _id }) => {
         }
         setIsLiked(!isLiked);
         axios
-            .post('http://192.168.34.109:3056/comment-dish/create-feeling', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/comment-dish/create-feeling', {
                 idCommentDish: _id,
                 idNguoiDung: user._id,
                 state: 1,

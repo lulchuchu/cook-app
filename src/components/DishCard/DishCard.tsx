@@ -40,7 +40,7 @@ const DishCard: React.FC<Navigation> = ({ navigation, user, api, params, refresh
 
     useEffect(() => {
         axios
-            .get(`http://192.168.34.109:3056/${api}`, {
+            .get(`https://7732-113-160-14-39.ngrok-free.app/${api}`, {
                 params: { key: params },
             })
             .then((response) => {
@@ -72,6 +72,9 @@ const DishCard: React.FC<Navigation> = ({ navigation, user, api, params, refresh
                     />
                     <Text style={styles.textHeart}>{item.likes.length}</Text>
                 </View>
+                {item.type === 'Món chay' && <View style = {styles.ctnType}>
+                    <Text style = {styles.textType}>Món chay</Text>
+                </View>}
             </TouchableOpacity>
         );
     };

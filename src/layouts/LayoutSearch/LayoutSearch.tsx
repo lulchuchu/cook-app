@@ -63,7 +63,7 @@ const LayoutSearch: React.FC<Props> = ({ closeModal, navigation, user }) => {
         setTextInput(text);
         debounceFn();
         setTimeout(() => {
-            axios.get('http://192.168.34.109:3056/dish/search', {
+            axios.get('https://7732-113-160-14-39.ngrok-free.app/dish/search', {
                     params: {key: text}
                 })
                 .then(response => {

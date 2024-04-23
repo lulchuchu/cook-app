@@ -10,7 +10,8 @@ const delivery =
     'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2Ffood-delivery.png?alt=media&token=bc882880-abac-42c2-b34b-85f443118b73';
 const cancel =
     'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2Fdelete.png?alt=media&token=74fc1352-5430-4909-ad17-92e3bd948838';
-
+const deliveried = 
+    'https://firebasestorage.googleapis.com/v0/b/kitchenstories-7031c.appspot.com/o/images%2Fdelivered.png?alt=media&token=1c3c75bb-c15f-490c-9121-d4e93b1a23b4';
 type Func = {
     data: any;
     checkout: () => void;
@@ -26,7 +27,7 @@ const CartItem: React.FC<Func> = ({ data, checkout, cancelModal }) => {
         setTimeout(() => {
             setState('Giao thành công');
             axios
-                .post('http://10.20.97.53:3056/user/confirm-cart', {
+                .post('https://7732-113-160-14-39.ngrok-free.app/user/confirm-cart', {
                     idCart: data._id,
                     state: 'Giao thành công',
                 })
@@ -65,7 +66,7 @@ const CartItem: React.FC<Func> = ({ data, checkout, cancelModal }) => {
                 <TouchableOpacity style={{ marginBottom: 4 }} onPress={state === 'Đang chờ' ? checkout : () => {}}>
                     <Image
                         source={
-                            state === 'Đang chờ' ? shiper : state === 'Đã hủy' ? { uri: cancel } : { uri: delivery }
+                            state === 'Đang chờ' ? shiper : (state === 'Giao thành công' ? {uri: deliveried} : (state === 'Đã hủy'? {uri: cancel } : { uri: delivery }))
                         }
                         style={styles.imgShiper}
                     />

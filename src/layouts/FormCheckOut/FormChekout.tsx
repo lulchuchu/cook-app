@@ -52,7 +52,7 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
     useEffect(() => {
         if (address !== '') {
             axios
-                .get('http://192.168.34.109:3056/store/calculate-distance', {
+                .get('https://7732-113-160-14-39.ngrok-free.app/store/calculate-distance', {
                     params: { address },
                 })
                 .then((response) => {
@@ -78,7 +78,7 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
         }
         else {
             axios
-                .get('http://192.168.34.109:3056/store/calculate-distance', {
+                .get('https://7732-113-160-14-39.ngrok-free.app/store/calculate-distance', {
                     params: { address },
                 })
                 .then((response) => {
@@ -134,7 +134,7 @@ const FormCheckOut: React.FC<Func> = ({ data, cancel, user, updateCart }) => {
 
     const confirmCheckout = () => {
         axios
-            .post('http://192.168.34.109:3056/user/confirm-cart', {
+            .post('https://7732-113-160-14-39.ngrok-free.app/user/confirm-cart', {
                 idCart: data._id,
                 state: 'Đang giao',
             })
